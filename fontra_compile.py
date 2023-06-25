@@ -91,6 +91,15 @@ async def buildTTGlyph(
     locations = []
     sourceCoordinates = []
     defaultGlyph = None
+
+    # TODO:
+    # - collect components data
+    # - ensure compatibility
+    # - for each component:
+    #   - find which transform fields are non-default OR are variable
+    #   - build GlyphVarComponent
+    #   - build "coordinate" data for gvar
+
     for source in glyph.sources:
         location = {**defaultLocation, **source.location}
         locations.append(normalizeLocation(location, axisDict))
