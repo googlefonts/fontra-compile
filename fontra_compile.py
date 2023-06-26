@@ -67,15 +67,22 @@ class Builder:
             codePoints = self.glyphMap.get(glyphName)
             self.xAndvances[glyphName] = 500
 
+            glyphInfo = None
+
             if codePoints is not None:
                 self.cmap.update((codePoint, glyphName) for codePoint in codePoints)
-                glyphInfo = await self.buildOneGlyph(glyphName)
-                self.xAndvances[glyphName] = glyphInfo.xAdvance
-                if glyphInfo.variations:
-                    self.variations[glyphName] = glyphInfo.variations
-                self.glyphs[glyphName] = glyphInfo.glyph
-                self.localAxisTags.update(glyphInfo.localAxisTags)
-            else:
+                try:
+                    glyphInfo = await self.buildOneGlyph(glyphName)
+                except Exception as e:
+                    print("warning", repr(e))  # TODO: use logging
+                else:
+                    self.xAndvances[glyphName] = glyphInfo.xAdvance
+                    if glyphInfo.variations:
+                        self.variations[glyphName] = glyphInfo.variations
+                    self.glyphs[glyphName] = glyphInfo.glyph
+                    self.localAxisTags.update(glyphInfo.localAxisTags)
+
+            if glyphInfo is None:
                 # make .notdef based on UPM
                 glyph = TTGlyphPointPen(None).glyph()
                 self.xAndvances[glyphName] = 500
@@ -95,6 +102,7 @@ class Builder:
         defaultGlyph = None
 
         componentInfo = await self.collectComponentInfo(glyph)
+        firstSourcePath = None
 
         for sourceIndex, source in enumerate(glyph.sources):
             location = {**defaultLocation, **source.location}
@@ -128,6 +136,11 @@ class Builder:
                 coordinates._a.extend(
                     sourceGlyph.path.coordinates
                 )  # shortcut via ._a array
+                if firstSourcePath is None:
+                    firstSourcePath = sourceGlyph.path
+                else:
+                    if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
+                        raise ValueError(f"contours for source {source.name} of {glyphName} are not compatible")
             # phantom points
             coordinates.append((0, 0))
             coordinates.append((sourceGlyph.xAdvance, 0))
@@ -136,6 +149,7 @@ class Builder:
             sourceCoordinates.append(coordinates)
 
         model = VariationModel(locations)  # XXX axis order!
+
         deltas, supports = model.getDeltasAndSupports(sourceCoordinates)
         assert len(supports) == len(deltas)
 
