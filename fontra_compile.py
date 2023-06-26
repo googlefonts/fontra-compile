@@ -178,6 +178,7 @@ class Builder:
             )
             for compo in firstSourceGlyph.components
         ]
+
         for source in glyph.sources:
             sourceGlyph = glyph.layers[source.layerName].glyph
 
