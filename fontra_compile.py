@@ -109,6 +109,15 @@ class Builder:
 
             if componentInfo:
                 for compoInfo in componentInfo:
+                    location = mapDictKeys(
+                        {
+                            axisName: values[sourceIndex]
+                            for axisName, values in compoInfo.location.items()
+                        },
+                        compoInfo.baseAxisTags,
+                    )
+                    coordinates.extend(getLocationCoords(location, compoInfo.flags))
+
                     transform = {
                         attrName: values[sourceIndex]
                         for attrName, values in compoInfo.transform.items()
@@ -341,6 +350,14 @@ def makeLocalAxisTags(axisDict, globalAxes):
 
 def mapDictKeys(d, mapping):
     return {mapping[k]: v for k, v in d.items()}
+
+
+def getLocationCoords(location, flags):
+    coords = []
+    if flags & VarComponentFlags.AXES_HAVE_VARIATION:
+        for tag, value in location.items():
+            coords.append((fl2fi(value, 14), 0))
+    return coords
 
 
 def getTransformCoords(transform, flags):
