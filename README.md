@@ -12,6 +12,7 @@ Initial goals:
 
 Future goals:
 
+- Output regular components when possible
 - Add option to convert cubic curves to quadratics
 - Add option to convert quadratic curves to cubics
 - Add option to flatten variable components
