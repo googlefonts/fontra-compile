@@ -16,3 +16,24 @@ Future goals:
 - Add option to convert quadratic curves to cubics
 - Add option to flatten variable components
 - Add option to build a backwards compatible glyf-0 table
+
+## Install
+
+- Clone this repository
+- `cd` into the cloned repository
+- Create and activate a virtual environment with Python 3.10 or up
+- Install dependencies:
+
+    `pip install -r requirements.txt`
+
+- Install this package:
+
+    `pip install -e .`
+
+## Usage
+
+    $ fontra-compile source.designspace out.ttf
+    $ fontra-compile source.designspace out.ttf --glyph-names A,B,C
+    $ fontra-compile source.rcjk out.ttf
+    $ fontra-compile source.otf out.ttf
+    $ fontra-compile source.ttf out.ttf
