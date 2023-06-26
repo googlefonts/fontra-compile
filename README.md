@@ -24,11 +24,11 @@ Future goals:
 - Create and activate a virtual environment with Python 3.10 or up
 - Install dependencies:
 
-    `pip install -r requirements.txt`
+  `pip install -r requirements.txt`
 
 - Install this package:
 
-    `pip install -e .`
+  `pip install -e .`
 
 ## Usage
 

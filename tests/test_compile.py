@@ -4,8 +4,8 @@ import subprocess
 
 from fontTools.ttLib import TTFont
 
-
 ignorePat = r"<(checkSumAdjustment|modified) value=\"([^\"]+)\"/>"
+
 
 def cleanupTTX(ttx):
     return re.sub(ignorePat, "------------", ttx)
