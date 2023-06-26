@@ -19,159 +19,165 @@ from fontTools.varLib.models import (
 from fontra.core.classes import LocalAxis, from_dict
 
 
-async def buildTTF(reader):
-    glyphMap = await reader.getGlyphMap()
-    glyphOrder = sorted(glyphMap)  # XXX
-    if ".notdef" not in glyphOrder:
-        glyphOrder.insert(0, ".notdef")
+class Builder:
+    def __init__(self, reader):
+        self.reader = reader  # a Fontra Backend, such as DesignspaceBackend
 
-    globalAxes = await reader.getGlobalAxes()
-    globalAxisDict = {axis.name: applyAxisMapToAxisValues(axis) for axis in globalAxes}
-    globalAxisTags = {axis.name: axis.tag for axis in globalAxes}
-    defaultLocation = {k: v[1] for k, v in globalAxisDict.items()}
+    async def setup(self):
+        self.glyphMap = await self.reader.getGlyphMap()
+        glyphOrder = sorted(self.glyphMap)  # XXX
+        if ".notdef" not in glyphOrder:
+            glyphOrder.insert(0, ".notdef")
+        self.glyphOrder = glyphOrder
 
-    glyphs = {}
-    cmap = {}
-    hMetrics = {}
-    variations = {}
-    localAxisTags = set()
+        self.globalAxes = await self.reader.getGlobalAxes()
+        self.globalAxisDict = {
+            axis.name: applyAxisMapToAxisValues(axis) for axis in self.globalAxes
+        }
+        self.globalAxisTags = {axis.name: axis.tag for axis in self.globalAxes}
+        self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
-    for glyphName in glyphOrder:
-        codePoints = glyphMap.get(glyphName)
-        hMetrics[glyphName] = (500, 0)
+        self.glyphs = {}
+        self.cmap = {}
+        self.hMetrics = {}
+        self.variations = {}
+        self.localAxisTags = set()
 
-        if codePoints is not None:
-            cmap.update((codePoint, glyphName) for codePoint in codePoints)
-            glyphInfo = await buildTTGlyph(
-                reader, glyphName, defaultLocation, globalAxisDict, globalAxisTags
-            )
-            hMetrics[glyphName] = (glyphInfo.xAdvance, 0)
-            if glyphInfo.variations:
-                variations[glyphName] = glyphInfo.variations
-            glyphs[glyphName] = glyphInfo.glyph
-            localAxisTags.update(glyphInfo.localAxisTags)
+    async def build(self):
+        await self.buildGlyphs()
+        return await self.buildFont()
+
+    async def buildGlyphs(self):
+        for glyphName in self.glyphOrder:
+            codePoints = self.glyphMap.get(glyphName)
+            self.hMetrics[glyphName] = (500, 0)
+
+            if codePoints is not None:
+                self.cmap.update((codePoint, glyphName) for codePoint in codePoints)
+                glyphInfo = await self.buildOneGlyph(glyphName)
+                self.hMetrics[glyphName] = (glyphInfo.xAdvance, 0)
+                if glyphInfo.variations:
+                    self.variations[glyphName] = glyphInfo.variations
+                self.glyphs[glyphName] = glyphInfo.glyph
+                self.localAxisTags.update(glyphInfo.localAxisTags)
+            else:
+                # make .notdef based on UPM
+                glyph = TTGlyphPointPen(None).glyph()
+                self.hMetrics[glyphName] = (500, 0)
+                self.glyphs[glyphName] = glyph
+
+    async def buildOneGlyph(self, glyphName):
+        glyph = await self.reader.getGlyph(glyphName)
+        localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
+        localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
+        defaultLocation = {**self.defaultLocation, **localDefaultLocation}
+        axisDict = {**self.globalAxisDict, **localAxisDict}
+        localAxisTags = makeLocalAxisTags(axisDict, self.globalAxisDict)
+        axisTags = {**self.globalAxisTags, **localAxisTags}
+
+        locations = []
+        sourceCoordinates = []
+        defaultGlyph = None
+
+        # TODO:
+        # - collect components data
+        # - ensure compatibility
+        # - for each component:
+        #   - find which transform fields are non-default OR are variable
+        #   - build GlyphVarComponent
+        #   - build "coordinate" data for gvar
+
+        for source in glyph.sources:
+            location = {**defaultLocation, **source.location}
+            locations.append(normalizeLocation(location, axisDict))
+            sourceGlyph = glyph.layers[source.layerName].glyph
+            if location == defaultLocation:
+                defaultGlyph = sourceGlyph
+            coordinates = GlyphCoordinates()
+            coordinates._a.extend(
+                sourceGlyph.path.coordinates
+            )  # shortcut via ._a array
+            # phantom points
+            coordinates.append((0, 0))
+            coordinates.append((sourceGlyph.xAdvance, 0))
+            coordinates.append((0, 0))
+            coordinates.append((0, 0))
+            sourceCoordinates.append(coordinates)
+
+        model = VariationModel(locations)  # XXX axis order!
+        deltas, supports = model.getDeltasAndSupports(sourceCoordinates)
+        assert len(supports) == len(deltas)
+
+        deltas.pop(0)  # pop the default
+        supports.pop(0)  # pop the default
+        for d in deltas:
+            d.toInt()
+        supports = [
+            {axisTags[name]: values for name, values in s.items()} for s in supports
+        ]
+
+        variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
+        if defaultGlyph.components:
+            ttGlyph = Glyph()
+            ttGlyph.numberOfContours = -2
+            ttGlyph.components = []
+            ttGlyph.xMin = ttGlyph.yMin = ttGlyph.xMax = ttGlyph.yMax = 0
+            for compo in defaultGlyph.components:
+                # Ideally we need the full "made of" graph, so we can normalize
+                # nested var composites, but then again, our local axis name -> fvar tag name
+                # mechanism doesn't account for that, either.
+                baseGlyph = await self.reader.getGlyph(compo.name)
+                baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
+                baseAxisDict = {**self.globalAxisDict, **baseAxisDict}
+                baseAxisDict = {
+                    name: values
+                    for name, values in baseAxisDict.items()
+                    if name in compo.location
+                }
+                baseAxisTags = {
+                    **self.globalAxisTags,
+                    **makeLocalAxisTags(baseAxisDict, self.globalAxisDict),
+                }
+                ttCompo = GlyphVarComponent()
+                ttCompo.glyphName = compo.name
+                ttCompo.transform = compo.transformation
+                normLoc = normalizeLocation(compo.location, baseAxisDict)
+                ttCompo.location = {
+                    baseAxisTags[name]: value for name, value in normLoc.items()
+                }
+                ttGlyph.components.append(ttCompo)
+            variations = []
         else:
-            # make .notdef based on UPM
-            glyph = TTGlyphPointPen(None).glyph()
-            hMetrics[glyphName] = (500, 0)
-            glyphs[glyphName] = glyph
+            ttGlyphPen = TTGlyphPointPen(None)
+            defaultGlyph.path.drawPoints(ttGlyphPen)
+            ttGlyph = ttGlyphPen.glyph()
+        return SimpleNamespace(
+            glyph=ttGlyph,
+            xAdvance=defaultGlyph.xAdvance,
+            variations=variations,
+            localAxisTags=set(localAxisTags.values()),
+        )
 
-    builder = FontBuilder(await reader.getUnitsPerEm(), glyphDataFormat=1)
+    async def buildFont(self):
+        builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
 
-    builder.setupGlyphOrder(glyphOrder)
-    builder.setupNameTable(dict())
-    builder.setupGlyf(glyphs)
-    if globalAxes or localAxisTags:
-        dsAxes = makeDSAxes(globalAxes, sorted(localAxisTags))
-        builder.setupFvar(dsAxes, [])
-        if any(axis.map for axis in dsAxes):
-            builder.setupAvar(dsAxes)
-    if variations:
-        builder.setupGvar(variations)
-    builder.setupHorizontalHeader()
-    builder.setupHorizontalMetrics(hMetrics)
-    builder.setupCharacterMap(cmap)
-    builder.setupOS2()
-    builder.setupPost()
+        builder.setupGlyphOrder(self.glyphOrder)
+        builder.setupNameTable(dict())
+        builder.setupGlyf(self.glyphs)
+        if self.globalAxes or self.localAxisTags:
+            dsAxes = makeDSAxes(self.globalAxes, sorted(self.localAxisTags))
+            builder.setupFvar(dsAxes, [])
+            if any(axis.map for axis in dsAxes):
+                builder.setupAvar(dsAxes)
+        if self.variations:
+            builder.setupGvar(self.variations)
+        builder.setupHorizontalHeader()
+        builder.setupHorizontalMetrics(self.hMetrics)
+        builder.setupCharacterMap(self.cmap)
+        builder.setupOS2()
+        builder.setupPost()
 
-    return builder.font
-
-
-async def buildTTGlyph(
-    reader, glyphName, defaultLocation, globalAxisDict, globalAxisTags
-):
-    glyph = await reader.getGlyph(glyphName)
-    localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
-    localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
-    defaultLocation = {**defaultLocation, **localDefaultLocation}
-    axisDict = {**globalAxisDict, **localAxisDict}
-    localAxisTags = makeLocalAxisTags(axisDict, globalAxisDict)
-    axisTags = {**globalAxisTags, **localAxisTags}
-
-    locations = []
-    sourceCoordinates = []
-    defaultGlyph = None
-
-    # TODO:
-    # - collect components data
-    # - ensure compatibility
-    # - for each component:
-    #   - find which transform fields are non-default OR are variable
-    #   - build GlyphVarComponent
-    #   - build "coordinate" data for gvar
-
-    for source in glyph.sources:
-        location = {**defaultLocation, **source.location}
-        locations.append(normalizeLocation(location, axisDict))
-        sourceGlyph = glyph.layers[source.layerName].glyph
-        if location == defaultLocation:
-            defaultGlyph = sourceGlyph
-        coordinates = GlyphCoordinates()
-        coordinates._a.extend(sourceGlyph.path.coordinates)  # shortcut via ._a array
-        # phantom points
-        coordinates.append((0, 0))
-        coordinates.append((sourceGlyph.xAdvance, 0))
-        coordinates.append((0, 0))
-        coordinates.append((0, 0))
-        sourceCoordinates.append(coordinates)
-
-    model = VariationModel(locations)  # XXX axis order!
-    deltas, supports = model.getDeltasAndSupports(sourceCoordinates)
-    assert len(supports) == len(deltas)
-
-    deltas.pop(0)  # pop the default
-    supports.pop(0)  # pop the default
-    for d in deltas:
-        d.toInt()
-    supports = [
-        {axisTags[name]: values for name, values in s.items()} for s in supports
-    ]
-
-    variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
-    if defaultGlyph.components:
-        ttGlyph = Glyph()
-        ttGlyph.numberOfContours = -2
-        ttGlyph.components = []
-        ttGlyph.xMin = ttGlyph.yMin = ttGlyph.xMax = ttGlyph.yMax = 0
-        for compo in defaultGlyph.components:
-            # Ideally we need the full "made of" graph, so we can normalize
-            # nested var composites, but then again, our local axis name -> fvar tag name
-            # mechanism doesn't account for that, either.
-            baseGlyph = await reader.getGlyph(compo.name)
-            baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
-            baseAxisDict = {**globalAxisDict, **baseAxisDict}
-            baseAxisDict = {
-                name: values
-                for name, values in baseAxisDict.items()
-                if name in compo.location
-            }
-            baseAxisTags = {
-                **globalAxisTags,
-                **makeLocalAxisTags(baseAxisDict, globalAxisDict),
-            }
-            ttCompo = GlyphVarComponent()
-            ttCompo.glyphName = compo.name
-            ttCompo.transform = compo.transformation
-            normLoc = normalizeLocation(compo.location, baseAxisDict)
-            ttCompo.location = {
-                baseAxisTags[name]: value for name, value in normLoc.items()
-            }
-            if ttCompo.location:
-                print(glyphName, compo.name, ttCompo.location)
-            ttGlyph.components.append(ttCompo)
-        variations = []
-    else:
-        # if glyphName == "A":
-        #     print(variations)
-        ttGlyphPen = TTGlyphPointPen(None)
-        defaultGlyph.path.drawPoints(ttGlyphPen)
-        ttGlyph = ttGlyphPen.glyph()
-    return SimpleNamespace(
-        glyph=ttGlyph,
-        xAdvance=defaultGlyph.xAdvance,
-        variations=variations,
-        localAxisTags=set(localAxisTags.values()),
-    )
+        return builder.font
 
 
 def applyAxisMapToAxisValues(axis):
@@ -255,7 +261,9 @@ async def main():
     entryPoint = backendEntryPoints[fileType]
     backendClass = entryPoint.load()
     reader = backendClass.fromPath(sourceFontPath)
-    ttFont = await buildTTF(reader)
+    builder = Builder(reader)
+    await builder.setup()
+    ttFont = await builder.build()
     ttFont.save(outputFontPath)
 
 
