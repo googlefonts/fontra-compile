@@ -2,8 +2,6 @@ import pathlib
 import re
 import subprocess
 
-from fontTools.ttLib import TTFont
-
 ignorePat = r"<(checkSumAdjustment|modified) value=\"([^\"]+)\"/>"
 
 
