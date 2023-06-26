@@ -10,7 +10,11 @@ async def main_async():
     parser = argparse.ArgumentParser()
     parser.add_argument("source_font")
     parser.add_argument("output_font")
-    parser.add_argument("--glyph-names")
+    parser.add_argument(
+        "--glyph-names",
+        help="Comma- or space-delimited list of glyph names to include. "
+        "When not given, include all glyphs.",
+    )
 
     args = parser.parse_args()
     sourceFontPath = pathlib.Path(args.source_font).resolve()
