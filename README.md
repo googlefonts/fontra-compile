@@ -20,7 +20,7 @@ Future goals:
 ## Install
 
 - Clone this repository
-- `cd` into the cloned repository
+- `cd` into the cloned repository folder
 - Create and activate a virtual environment with Python 3.10 or up
 - Install dependencies:
 
