@@ -2,8 +2,8 @@ from types import SimpleNamespace
 
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
-from fontTools.misc.transform import DecomposedTransform
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
+from fontTools.misc.transform import DecomposedTransform
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib.tables._g_l_y_f import (
     VAR_COMPONENT_TRANSFORM_MAPPING,

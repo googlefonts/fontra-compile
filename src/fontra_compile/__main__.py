@@ -1,7 +1,8 @@
 import argparse
 import asyncio
-from importlib.metadata import entry_points
 import pathlib
+from importlib.metadata import entry_points
+
 from .builder import Builder
 
 
