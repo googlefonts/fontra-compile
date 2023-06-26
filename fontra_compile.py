@@ -45,7 +45,7 @@ class Builder:
 
         self.glyphs = {}
         self.cmap = {}
-        self.hMetrics = {}
+        self.xAndvances = {}
         self.variations = {}
         self.localAxisTags = set()
 
@@ -56,12 +56,12 @@ class Builder:
     async def buildGlyphs(self):
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
-            self.hMetrics[glyphName] = (500, 0)
+            self.xAndvances[glyphName] = 500
 
             if codePoints is not None:
                 self.cmap.update((codePoint, glyphName) for codePoint in codePoints)
                 glyphInfo = await self.buildOneGlyph(glyphName)
-                self.hMetrics[glyphName] = (glyphInfo.xAdvance, 0)
+                self.xAndvances[glyphName] = glyphInfo.xAdvance
                 if glyphInfo.variations:
                     self.variations[glyphName] = glyphInfo.variations
                 self.glyphs[glyphName] = glyphInfo.glyph
@@ -69,7 +69,7 @@ class Builder:
             else:
                 # make .notdef based on UPM
                 glyph = TTGlyphPointPen(None).glyph()
-                self.hMetrics[glyphName] = (500, 0)
+                self.xAndvances[glyphName] = 500
                 self.glyphs[glyphName] = glyph
 
     async def buildOneGlyph(self, glyphName):
@@ -246,12 +246,19 @@ class Builder:
         if self.variations:
             builder.setupGvar(self.variations)
         builder.setupHorizontalHeader()
-        builder.setupHorizontalMetrics(self.hMetrics)
+        builder.setupHorizontalMetrics(addLSB(builder.font["glyf"], self.xAndvances))
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
 
         return builder.font
+
+
+def addLSB(glyfTable, metrics):
+    return {
+        glyphName: (xAdvance, glyfTable[glyphName].xMin)
+        for glyphName, xAdvance in metrics.items()
+    }
 
 
 def applyAxisMapToAxisValues(axis):
