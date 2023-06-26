@@ -7,8 +7,8 @@ from types import SimpleNamespace
 # from fontra.core.classes import LocalAxis, from_dict
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
-from fontTools.misc.transform import DecomposedTransform
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
+from fontTools.misc.transform import DecomposedTransform
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib.tables._g_l_y_f import (
     VAR_COMPONENT_TRANSFORM_MAPPING,
@@ -140,7 +140,9 @@ class Builder:
                     firstSourcePath = sourceGlyph.path
                 else:
                     if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
-                        raise ValueError(f"contours for source {source.name} of {glyphName} are not compatible")
+                        raise ValueError(
+                            f"contours for source {source.name} of {glyphName} are not compatible"
+                        )
             # phantom points
             coordinates.append((0, 0))
             coordinates.append((sourceGlyph.xAdvance, 0))
