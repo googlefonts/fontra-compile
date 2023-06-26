@@ -50,7 +50,7 @@ class Builder:
 
         self.glyphs = {}
         self.cmap = {}
-        self.xAndvances = {}
+        self.xAdvances = {}
         self.variations = {}
         self.localAxisTags = set()
 
@@ -65,7 +65,7 @@ class Builder:
     async def buildGlyphs(self):
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
-            self.xAndvances[glyphName] = 500
+            self.xAdvances[glyphName] = 500
 
             glyphInfo = None
 
@@ -76,7 +76,7 @@ class Builder:
                 except Exception as e:
                     print("warning", repr(e))  # TODO: use logging
                 else:
-                    self.xAndvances[glyphName] = glyphInfo.xAdvance
+                    self.xAdvances[glyphName] = glyphInfo.xAdvance
                     if glyphInfo.variations:
                         self.variations[glyphName] = glyphInfo.variations
                     self.glyphs[glyphName] = glyphInfo.glyph
@@ -85,7 +85,7 @@ class Builder:
             if glyphInfo is None:
                 # make .notdef based on UPM
                 glyph = TTGlyphPointPen(None).glyph()
-                self.xAndvances[glyphName] = 500
+                self.xAdvances[glyphName] = 500
                 self.glyphs[glyphName] = glyph
 
     async def buildOneGlyph(self, glyphName):
@@ -280,7 +280,7 @@ class Builder:
         if self.variations:
             builder.setupGvar(self.variations)
         builder.setupHorizontalHeader()
-        builder.setupHorizontalMetrics(addLSB(builder.font["glyf"], self.xAndvances))
+        builder.setupHorizontalMetrics(addLSB(builder.font["glyf"], self.xAdvances))
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
