@@ -58,6 +58,10 @@ class Builder:
         await self.buildGlyphs()
         return await self.buildFont()
 
+    def ensureGlyphDependency(self, glyphName):
+        if glyphName not in self.glyphs and glyphName not in self.glyphOrder:
+            self.glyphOrder.append(glyphName)
+
     async def buildGlyphs(self):
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
@@ -174,7 +178,6 @@ class Builder:
             )
             for compo in firstSourceGlyph.components
         ]
-
         for source in glyph.sources:
             sourceGlyph = glyph.layers[source.layerName].glyph
 
@@ -216,6 +219,8 @@ class Builder:
                     break
 
             compoInfo.flags = flags
+
+            self.ensureGlyphDependency(compoInfo.name)
 
         return components
 
