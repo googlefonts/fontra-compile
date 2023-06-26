@@ -26,12 +26,17 @@ from fontTools.varLib.models import (
 
 
 class Builder:
-    def __init__(self, reader):
+    def __init__(self, reader, requestedGlyphNames=None):
         self.reader = reader  # a Fontra Backend, such as DesignspaceBackend
+        self.requestedGlyphNames = requestedGlyphNames
 
     async def setup(self):
         self.glyphMap = await self.reader.getGlyphMap()
-        glyphOrder = sorted(self.glyphMap)  # XXX
+        glyphOrder = (
+            self.requestedGlyphNames
+            if self.requestedGlyphNames
+            else sorted(self.glyphMap)  # XXX
+        )
         if ".notdef" not in glyphOrder:
             glyphOrder.insert(0, ".notdef")
         self.glyphOrder = glyphOrder
@@ -360,17 +365,21 @@ async def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("source_font")
     parser.add_argument("output_font")
+    parser.add_argument("--glyph-names")
 
     args = parser.parse_args()
     sourceFontPath = pathlib.Path(args.source_font).resolve()
     outputFontPath = pathlib.Path(args.output_font).resolve()
+    glyphNames = (
+        args.glyph_names.replace(",", " ").split() if args.glyph_names else None
+    )
 
     fileType = sourceFontPath.suffix.lstrip(".").lower()
     backendEntryPoints = entry_points(group="fontra.filesystem.backends")
     entryPoint = backendEntryPoints[fileType]
     backendClass = entryPoint.load()
     reader = backendClass.fromPath(sourceFontPath)
-    builder = Builder(reader)
+    builder = Builder(reader, glyphNames)
     await builder.setup()
     ttFont = await builder.build()
     ttFont.save(outputFontPath)
