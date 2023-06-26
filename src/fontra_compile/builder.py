@@ -1,14 +1,9 @@
-import argparse
-import asyncio
-import pathlib
-from importlib.metadata import entry_points
 from types import SimpleNamespace
 
-# from fontra.core.classes import LocalAxis, from_dict
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
-from fontTools.misc.fixedTools import floatToFixed as fl2fi
 from fontTools.misc.transform import DecomposedTransform
+from fontTools.misc.fixedTools import floatToFixed as fl2fi
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib.tables._g_l_y_f import (
     VAR_COMPONENT_TRANSFORM_MAPPING,
@@ -398,31 +393,3 @@ def getTransformCoords(transform, flags):
     if flags & (VarComponentFlags.HAVE_TCENTER_X | VarComponentFlags.HAVE_TCENTER_Y):
         coords.append((transform.tCenterX, transform.tCenterY))
     return coords
-
-
-async def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("source_font")
-    parser.add_argument("output_font")
-    parser.add_argument("--glyph-names")
-
-    args = parser.parse_args()
-    sourceFontPath = pathlib.Path(args.source_font).resolve()
-    outputFontPath = pathlib.Path(args.output_font).resolve()
-    glyphNames = (
-        args.glyph_names.replace(",", " ").split() if args.glyph_names else None
-    )
-
-    fileType = sourceFontPath.suffix.lstrip(".").lower()
-    backendEntryPoints = entry_points(group="fontra.filesystem.backends")
-    entryPoint = backendEntryPoints[fileType]
-    backendClass = entryPoint.load()
-    reader = backendClass.fromPath(sourceFontPath)
-    builder = Builder(reader, glyphNames)
-    await builder.setup()
-    ttFont = await builder.build()
-    ttFont.save(outputFontPath)
-
-
-if __name__ == "__main__":
-    asyncio.run(main())
