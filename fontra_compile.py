@@ -1,22 +1,28 @@
 import argparse
 import asyncio
 import pathlib
+from importlib.metadata import entry_points
 from types import SimpleNamespace
 
-from importlib.metadata import entry_points
-
+# from fontra.core.classes import LocalAxis, from_dict
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
+from fontTools.misc.transform import DecomposedTransform
+from fontTools.misc.fixedTools import floatToFixed as fl2fi
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
-from fontTools.ttLib.tables._g_l_y_f import Glyph, GlyphCoordinates, GlyphVarComponent
+from fontTools.ttLib.tables._g_l_y_f import (
+    VAR_COMPONENT_TRANSFORM_MAPPING,
+    Glyph,
+    GlyphCoordinates,
+    GlyphVarComponent,
+    VarComponentFlags,
+)
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.varLib.models import (
+    VariationModel,
     normalizeLocation,
     piecewiseLinearMap,
-    VariationModel,
 )
-
-from fontra.core.classes import LocalAxis, from_dict
 
 
 class Builder:
@@ -79,24 +85,31 @@ class Builder:
         sourceCoordinates = []
         defaultGlyph = None
 
-        # TODO:
-        # - collect components data
-        # - ensure compatibility
-        # - for each component:
-        #   - find which transform fields are non-default OR are variable
-        #   - build GlyphVarComponent
-        #   - build "coordinate" data for gvar
+        componentInfo = await self.collectComponentInfo(glyph)
 
-        for source in glyph.sources:
+        for sourceIndex, source in enumerate(glyph.sources):
             location = {**defaultLocation, **source.location}
             locations.append(normalizeLocation(location, axisDict))
             sourceGlyph = glyph.layers[source.layerName].glyph
+
             if location == defaultLocation:
+                # This is the fefault glyph
                 defaultGlyph = sourceGlyph
+
             coordinates = GlyphCoordinates()
-            coordinates._a.extend(
-                sourceGlyph.path.coordinates
-            )  # shortcut via ._a array
+
+            if componentInfo:
+                for compoInfo in componentInfo:
+                    transform = {
+                        attrName: values[sourceIndex]
+                        for attrName, values in compoInfo.transform.items()
+                    }
+                    transform = DecomposedTransform(**transform)
+                    coordinates.extend(getTransformCoords(transform, compoInfo.flags))
+            else:
+                coordinates._a.extend(
+                    sourceGlyph.path.coordinates
+                )  # shortcut via ._a array
             # phantom points
             coordinates.append((0, 0))
             coordinates.append((sourceGlyph.xAdvance, 0))
@@ -112,51 +125,112 @@ class Builder:
         supports.pop(0)  # pop the default
         for d in deltas:
             d.toInt()
-        supports = [
-            {axisTags[name]: values for name, values in s.items()} for s in supports
-        ]
+        supports = [mapDictKeys(s, axisTags) for s in supports]
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
-        if defaultGlyph.components:
+
+        if componentInfo:
             ttGlyph = Glyph()
             ttGlyph.numberOfContours = -2
             ttGlyph.components = []
             ttGlyph.xMin = ttGlyph.yMin = ttGlyph.xMax = ttGlyph.yMax = 0
-            for compo in defaultGlyph.components:
-                # Ideally we need the full "made of" graph, so we can normalize
-                # nested var composites, but then again, our local axis name -> fvar tag name
-                # mechanism doesn't account for that, either.
-                baseGlyph = await self.reader.getGlyph(compo.name)
-                baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
-                baseAxisDict = {**self.globalAxisDict, **baseAxisDict}
-                baseAxisDict = {
-                    name: values
-                    for name, values in baseAxisDict.items()
-                    if name in compo.location
-                }
-                baseAxisTags = {
-                    **self.globalAxisTags,
-                    **makeLocalAxisTags(baseAxisDict, self.globalAxisDict),
-                }
+            for compo, compoInfo in zip(defaultGlyph.components, componentInfo):
                 ttCompo = GlyphVarComponent()
+                ttCompo.flags = compoInfo.flags
                 ttCompo.glyphName = compo.name
                 ttCompo.transform = compo.transformation
-                normLoc = normalizeLocation(compo.location, baseAxisDict)
-                ttCompo.location = {
-                    baseAxisTags[name]: value for name, value in normLoc.items()
-                }
+                normLoc = normalizeLocation(compo.location, compoInfo.baseAxisDict)
+                ttCompo.location = mapDictKeys(normLoc, compoInfo.baseAxisTags)
                 ttGlyph.components.append(ttCompo)
-            variations = []
         else:
             ttGlyphPen = TTGlyphPointPen(None)
             defaultGlyph.path.drawPoints(ttGlyphPen)
             ttGlyph = ttGlyphPen.glyph()
+
         return SimpleNamespace(
             glyph=ttGlyph,
             xAdvance=defaultGlyph.xAdvance,
             variations=variations,
             localAxisTags=set(localAxisTags.values()),
         )
+
+    async def collectComponentInfo(self, glyph):
+        firstSource = glyph.sources[0]
+        firstSourceGlyph = glyph.layers[firstSource.layerName].glyph
+
+        components = [
+            SimpleNamespace(
+                name=compo.name,
+                transform={
+                    attrName: [] for attrName in VAR_COMPONENT_TRANSFORM_MAPPING
+                },
+                location={axisName: [] for axisName in compo.location},
+                **await self.setupComponentBaseAxes(compo),
+            )
+            for compo in firstSourceGlyph.components
+        ]
+
+        for source in glyph.sources:
+            sourceGlyph = glyph.layers[source.layerName].glyph
+
+            if len(sourceGlyph.components) != len(components):
+                raise ValueError(f"components not compatible {glyph.name}")
+
+            for compoInfo, compo in zip(components, sourceGlyph.components):
+                if compo.name != compoInfo.name:
+                    raise ValueError(
+                        f"components not compatible in {glyph.name}: "
+                        f"{compo.name} vs. {compoInfo.name}"
+                    )
+                if sorted(compoInfo.location) != sorted(compo.location):
+                    raise ValueError(
+                        f"component locations not compatible in {glyph.name}: "
+                        f"{compo.name}"
+                    )
+                for attrName in VAR_COMPONENT_TRANSFORM_MAPPING:
+                    compoInfo.transform[attrName].append(
+                        getattr(compo.transformation, attrName)
+                    )
+                normLoc = normalizeLocation(compo.location, compoInfo.baseAxisDict)
+                for axisName, axisValue in normLoc.items():
+                    compoInfo.location[axisName].append(axisValue)
+
+        for compoInfo in components:
+            flags = 0
+
+            for attrName, fieldInfo in VAR_COMPONENT_TRANSFORM_MAPPING.items():
+                values = compoInfo.transform[attrName]
+                firstValue = values[0]
+                if any(v != firstValue or v != fieldInfo.defaultValue for v in values):
+                    flags |= fieldInfo.flag
+
+            for axisName, values in compoInfo.location.items():
+                firstValue = values[0]
+                if any(v != firstValue for v in values[1:]):
+                    flags |= VarComponentFlags.AXES_HAVE_VARIATION
+                    break
+
+            compoInfo.flags = flags
+
+        return components
+
+    async def setupComponentBaseAxes(self, compo):
+        # Ideally we need the full "made of" graph, so we can normalize
+        # nested var composites, but then again, our local axis name -> fvar tag name
+        # mechanism doesn't account for that, either.
+        baseGlyph = await self.reader.getGlyph(compo.name)
+        baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
+        baseAxisDict = {**self.globalAxisDict, **baseAxisDict}
+        baseAxisDict = {
+            name: values
+            for name, values in baseAxisDict.items()
+            if name in compo.location
+        }
+        baseAxisTags = {
+            **self.globalAxisTags,
+            **makeLocalAxisTags(baseAxisDict, self.globalAxisDict),
+        }
+        return dict(baseAxisDict=baseAxisDict, baseAxisTags=baseAxisTags)
 
     async def buildFont(self):
         builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
@@ -245,6 +319,34 @@ def makeLocalAxisTags(axisDict, globalAxes):
         numNames = len(axisTags)
         axisTags[name] = f"V{numNames:03}"
     return axisTags
+
+
+def mapDictKeys(d, mapping):
+    return {mapping[k]: v for k, v in d.items()}
+
+
+def getTransformCoords(transform, flags):
+    # This is mostly taken from _g_l_y_f.py, would be nice if we could
+    # reuse that code somehow.
+    coords = []
+    if flags & (
+        VarComponentFlags.HAVE_TRANSLATE_X | VarComponentFlags.HAVE_TRANSLATE_Y
+    ):
+        coords.append((transform.translateX, transform.translateY))
+    if flags & VarComponentFlags.HAVE_ROTATION:
+        coords.append((fl2fi(transform.rotation / 180, 12), 0))
+    if flags & (VarComponentFlags.HAVE_SCALE_X | VarComponentFlags.HAVE_SCALE_Y):
+        coords.append((fl2fi(transform.scaleX, 10), fl2fi(transform.scaleY, 10)))
+    if flags & (VarComponentFlags.HAVE_SKEW_X | VarComponentFlags.HAVE_SKEW_Y):
+        coords.append(
+            (
+                fl2fi(transform.skewX / -180, 12),
+                fl2fi(transform.skewY / 180, 12),
+            )
+        )
+    if flags & (VarComponentFlags.HAVE_TCENTER_X | VarComponentFlags.HAVE_TCENTER_Y):
+        coords.append((transform.tCenterX, transform.tCenterY))
+    return coords
 
 
 async def main():
