@@ -115,12 +115,14 @@ class Builder:
 
             if componentInfo:
                 for compoInfo in componentInfo:
-                    location = mapDictKeys(
-                        {
-                            axisName: values[sourceIndex]
-                            for axisName, values in compoInfo.location.items()
-                        },
-                        compoInfo.baseAxisTags,
+                    location = sortedDict(
+                        mapDictKeys(
+                            {
+                                axisName: values[sourceIndex]
+                                for axisName, values in compoInfo.location.items()
+                            },
+                            compoInfo.baseAxisTags,
+                        )
                     )
                     coordinates.extend(getLocationCoords(location, compoInfo.flags))
 
@@ -173,7 +175,9 @@ class Builder:
                 ttCompo.glyphName = compo.name
                 ttCompo.transform = compo.transformation
                 normLoc = normalizeLocation(compo.location, compoInfo.baseAxisDict)
-                ttCompo.location = mapDictKeys(normLoc, compoInfo.baseAxisTags)
+                ttCompo.location = sortedDict(
+                    mapDictKeys(normLoc, compoInfo.baseAxisTags)
+                )
                 ttGlyph.components.append(ttCompo)
         else:
             ttGlyphPen = TTGlyphPointPen(None)
@@ -229,7 +233,7 @@ class Builder:
                     compoInfo.location[axisName].append(axisValue)
 
         for compoInfo in components:
-            flags = 0
+            flags = 0  # VarComponentFlags.RESET_UNSPECIFIED_AXES
 
             for attrName, fieldInfo in VAR_COMPONENT_TRANSFORM_MAPPING.items():
                 values = compoInfo.transform[attrName]
@@ -366,6 +370,10 @@ def makeLocalAxisTags(axisDict, globalAxes):
 
 def mapDictKeys(d, mapping):
     return {mapping[k]: v for k, v in d.items()}
+
+
+def sortedDict(d):
+    return dict(sorted(d.items()))
 
 
 def getLocationCoords(location, flags):
