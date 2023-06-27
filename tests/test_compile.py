@@ -2,7 +2,7 @@ import pathlib
 import re
 import subprocess
 
-ignorePat = r"<(checkSumAdjustment|modified) value=\"([^\"]+)\"/>"
+ignorePat = r"<(checkSumAdjustment|created|modified) value=\"([^\"]+)\"/>"
 
 
 def cleanupTTX(ttx):

@@ -3,6 +3,7 @@ from types import SimpleNamespace
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
+from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib.tables._g_l_y_f import (
@@ -269,6 +270,7 @@ class Builder:
     async def buildFont(self):
         builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
 
+        builder.updateHead(created=timestampNow(), modified=timestampNow())
         builder.setupGlyphOrder(self.glyphOrder)
         builder.setupNameTable(dict())
         builder.setupGlyf(self.glyphs)
