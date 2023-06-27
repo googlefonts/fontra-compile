@@ -6,7 +6,7 @@ Initial goals:
 
 - Focus on outlines and (variable) components
 - Input: Fontra "backend" objects ([core](https://github.com/googlefonts/fontra/tree/main/src/fontra/backends) and [rcjk](https://github.com/googlefonts/fontra-rcjk/blob/main/src/fontra_rcjk/backend_fs.py))
-- Initially [glyph-1](https://github.com/harfbuzz/boring-expansion-spec/blob/main/glyf1.md)-only
+- Initially [`glyf-1`](https://github.com/harfbuzz/boring-expansion-spec/blob/main/glyf1.md)-only
 - [Variable Components](https://github.com/harfbuzz/boring-expansion-spec/blob/main/glyf1-varComposites.md)
 - [Cubics outlines in glyf](https://github.com/harfbuzz/boring-expansion-spec/blob/main/glyf1-cubicOutlines.md)
 
@@ -16,7 +16,7 @@ Future goals:
 - Add option to convert cubic curves to quadratics
 - Add option to convert quadratic curves to cubics
 - Add option to flatten variable components
-- Add option to build a backwards compatible glyf-0 table
+- Add option to build a backwards compatible `glyf-0` table
 
 ## Install
 
