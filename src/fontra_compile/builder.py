@@ -71,7 +71,7 @@ class Builder:
                 except KeyboardInterrupt:
                     raise
                 except ValueError as e:  # InterpolationError
-                    print("warning", repr(e))  # TODO: use logging
+                    print("warning", glyphName, repr(e))  # TODO: use logging
                 else:
                     self.xAdvances[glyphName] = glyphInfo.xAdvance
                     if glyphInfo.variations:
@@ -156,6 +156,7 @@ class Builder:
         supports.pop(0)  # pop the default
         for d in deltas:
             d.toInt()
+            ensureWordRange(d)
         supports = [mapDictKeys(s, axisTags) for s in supports]
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
@@ -371,6 +372,12 @@ def getLocationCoords(location, flags):
         for tag, value in location.items():
             coords.append((fl2fi(value, 14), 0))
     return coords
+
+
+def ensureWordRange(d):
+    for v in d._a:
+        if not (-0x8000 <= v < 0x8000):
+            raise ValueError("delta value out of range")
 
 
 def getTransformCoords(transform, flags):
