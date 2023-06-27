@@ -74,7 +74,7 @@ class Builder:
                 except ValueError as e:  # InterpolationError
                     print("warning", glyphName, repr(e))  # TODO: use logging
                 else:
-                    self.xAdvances[glyphName] = glyphInfo.xAdvance
+                    self.xAdvances[glyphName] = max(glyphInfo.xAdvance, 0)
                     if glyphInfo.variations:
                         self.variations[glyphName] = glyphInfo.variations
                     self.glyphs[glyphName] = glyphInfo.glyph
