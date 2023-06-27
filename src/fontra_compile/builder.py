@@ -68,7 +68,9 @@ class Builder:
                 self.cmap.update((codePoint, glyphName) for codePoint in codePoints)
                 try:
                     glyphInfo = await self.buildOneGlyph(glyphName)
-                except Exception as e:
+                except KeyboardInterrupt:
+                    raise
+                except ValueError as e:  # InterpolationError
                     print("warning", repr(e))  # TODO: use logging
                 else:
                     self.xAdvances[glyphName] = glyphInfo.xAdvance
