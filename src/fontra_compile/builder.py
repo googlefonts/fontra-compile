@@ -133,7 +133,7 @@ class Builder:
                     transform = DecomposedTransform(**transform)
                     coordinates.extend(getTransformCoords(transform, compoInfo.flags))
             else:
-                coordinates._a.extend(
+                coordinates.array.extend(
                     sourceGlyph.path.coordinates
                 )  # shortcut via ._a array
                 if firstSourcePath is None:
@@ -385,7 +385,7 @@ def getLocationCoords(location, flags):
 
 
 def ensureWordRange(d):
-    for v in d._a:
+    for v in d.array:
         if not (-0x8000 <= v < 0x8000):
             raise ValueError("delta value out of range")
 
