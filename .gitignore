@@ -161,3 +161,4 @@ cython_debug/
 
 # this project:
 src/fontra_compile/_version.py
+/vault/
