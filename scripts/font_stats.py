@@ -20,16 +20,30 @@ def getGvarSizes(font):
     return sizes
 
 
+header = [
+    "file",
+    "num chars",
+    "num glyphs",
+    "num outline glyphs",
+    "num composite glyphs",
+    "num var composite glyphs",
+    "glyf table size",
+    "gvar table size",
+    "glyf outline glyphs size",
+    "glyf composite glyphs size",
+    "glyf var composite glyphs size",
+    "gvar outline glyphs size",
+    "gvar composite glyphs size",
+    "gvar var composite glyphs size",
+]
+
+separator = ";"
+print(separator.join(header))
+
 for fontPath in sys.argv[1:]:
-    print("=========================================")
-    print("   ", fontPath)
-    print("=========================================")
     font = TTFont(fontPath, lazy=True)
 
     cmap = font.getBestCmap()
-
-    print("num chars:", len(cmap))
-    print("num glyphs:", len(font.getGlyphOrder()))
 
     regularGlyphs = set()
     compositeGlyphs = set()
@@ -63,19 +77,23 @@ for fontPath in sys.argv[1:]:
                 regularGlyphsSize += len(glyph.data)
             regularGlyphsVarSize += gvarSizes[glyphName]
 
-    print("num regular glyphs:", len(regularGlyphs))
-    print("num composite glyphs:", len(compositeGlyphs))
-    print("num var composite glyphs:", len(varCompositeGlyphs))
+    row = []
+    row.append(fontPath)
+    row.append(len(cmap))
+    row.append(len(font.getGlyphOrder()))
+    row.append(len(regularGlyphs))
+    row.append(len(compositeGlyphs))
+    row.append(len(varCompositeGlyphs))
 
-    print()
+    row.append(font.reader.tables["glyf"].length)
+    row.append(font.reader.tables["gvar"].length)
 
-    print("glyf table:")
-    print("total bytes regular glyphs:", regularGlyphsSize)
-    print("total bytes composite glyphs:", compositeGlyphsSize)
-    print("total bytes var composite glyphs:", varCompositeGlyphsSize)
+    row.append(regularGlyphsSize)
+    row.append(compositeGlyphsSize)
+    row.append(varCompositeGlyphsSize)
 
-    print()
-    print("gvar table:")
-    print("total bytes regular glyphs:", regularGlyphsVarSize)
-    print("total bytes composite glyphs:", compositeGlyphsVarSize)
-    print("total bytes var composite glyphs:", varCompositeGlyphsVarSize)
+    row.append(regularGlyphsVarSize)
+    row.append(compositeGlyphsVarSize)
+    row.append(varCompositeGlyphsVarSize)
+
+    print(separator.join(str(cell) for cell in row))
