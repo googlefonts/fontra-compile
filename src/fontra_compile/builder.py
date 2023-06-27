@@ -152,6 +152,10 @@ class Builder:
 
         model = VariationModel(locations)  # XXX axis order!
 
+        numPoints = len(sourceCoordinates[0])
+        for coords in sourceCoordinates[1:]:
+            assert len(coords) == numPoints
+
         deltas, supports = model.getDeltasAndSupports(sourceCoordinates)
         assert len(supports) == len(deltas)
 
@@ -175,6 +179,7 @@ class Builder:
                 ttCompo.glyphName = compo.name
                 ttCompo.transform = compo.transformation
                 normLoc = normalizeLocation(compo.location, compoInfo.baseAxisDict)
+                normLoc = filterDict(normLoc, compoInfo.location)
                 ttCompo.location = sortedDict(
                     mapDictKeys(normLoc, compoInfo.baseAxisTags)
                 )
@@ -233,7 +238,7 @@ class Builder:
                     compoInfo.location[axisName].append(axisValue)
 
         for compoInfo in components:
-            flags = 0  # VarComponentFlags.RESET_UNSPECIFIED_AXES
+            flags = VarComponentFlags.RESET_UNSPECIFIED_AXES
 
             for attrName, fieldInfo in VAR_COMPONENT_TRANSFORM_MAPPING.items():
                 values = compoInfo.transform[attrName]
@@ -241,11 +246,16 @@ class Builder:
                 if any(v != firstValue or v != fieldInfo.defaultValue for v in values):
                     flags |= fieldInfo.flag
 
+            axesAtDefault = []
             for axisName, values in compoInfo.location.items():
                 firstValue = values[0]
                 if any(v != firstValue for v in values[1:]):
                     flags |= VarComponentFlags.AXES_HAVE_VARIATION
-                    break
+                elif firstValue == 0:
+                    axesAtDefault.append(axisName)
+
+            for axisName in axesAtDefault:
+                del compoInfo.location[axisName]
 
             compoInfo.flags = flags
 
@@ -374,6 +384,10 @@ def mapDictKeys(d, mapping):
 
 def sortedDict(d):
     return dict(sorted(d.items()))
+
+
+def filterDict(d, keys):
+    return {k: v for k, v in d.items() if k in keys}
 
 
 def getLocationCoords(location, flags):
