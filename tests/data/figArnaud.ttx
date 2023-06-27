@@ -90,12 +90,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.0"/>
-    <checkSumAdjustment value="0x6b729f2b"/>
+    <checkSumAdjustment value="0xd57dda51"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Thu Jan  1 00:00:00 1970"/>
-    <modified value="Mon Jun 26 19:43:57 2023"/>
+    <created value="Tue Jun 27 17:54:11 2023"/>
+    <modified value="Tue Jun 27 17:54:11 2023"/>
     <xMin value="0"/>
     <yMin value="-20"/>
     <xMax value="327"/>
@@ -323,7 +323,7 @@
     <TTGlyph name=".notdef"/><!-- contains no outline data -->
 
     <TTGlyph name="DC_0030_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="zero_00" flags="0x2000">
+      <varComponent glyphName="zero_00" flags="0x6000">
         <location>
           <axis tag="V000" value="0.33"/>
           <axis tag="V001" value="0.45"/>
@@ -332,7 +332,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0031_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="one_00" flags="0x2008">
+      <varComponent glyphName="one_00" flags="0x6008">
         <location>
           <axis tag="V000" value="0.1"/>
           <axis tag="V001" value="0.441"/>
@@ -341,7 +341,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0032_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="two_00" flags="0x2008" translateX="18.0">
+      <varComponent glyphName="two_00" flags="0x6008" translateX="18.0">
         <location>
           <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
@@ -353,7 +353,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0033_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="three_00" flags="0x2000">
+      <varComponent glyphName="three_00" flags="0x6000">
         <location>
           <axis tag="V000" value="0.3"/>
           <axis tag="V001" value="0.47"/>
@@ -362,7 +362,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0034_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="four_00" flags="0x2008">
+      <varComponent glyphName="four_00" flags="0x6008">
         <location>
           <axis tag="V000" value="0.36"/>
           <axis tag="V001" value="0.1"/>
@@ -376,7 +376,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0035_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="five_00" flags="0x2008">
+      <varComponent glyphName="five_00" flags="0x6008">
         <location>
           <axis tag="V000" value="0.3"/>
           <axis tag="V001" value="0.455"/>
@@ -385,7 +385,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0036_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="six_00" flags="0x2008">
+      <varComponent glyphName="six_00" flags="0x6008">
         <location>
           <axis tag="V000" value="0.2"/>
           <axis tag="V001" value="0.33"/>
@@ -395,7 +395,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0037_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="seven_00" flags="0x2000">
+      <varComponent glyphName="seven_00" flags="0x6000">
         <location>
           <axis tag="V000" value="0.08"/>
           <axis tag="V001" value="0.0"/>
@@ -406,7 +406,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0038_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="eight_00" flags="0x2000">
+      <varComponent glyphName="eight_00" flags="0x6000">
         <location>
           <axis tag="V000" value="0.32"/>
           <axis tag="V001" value="0.465"/>
@@ -415,7 +415,7 @@
     </TTGlyph>
 
     <TTGlyph name="DC_0039_00" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="nine_00" flags="0x2000">
+      <varComponent glyphName="nine_00" flags="0x6000">
         <location>
           <axis tag="V000" value="0.2"/>
           <axis tag="V001" value="0.33"/>
@@ -752,16 +752,15 @@
     </TTGlyph>
 
     <TTGlyph name="uni0030" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0030_00" flags="0x2048" translateX="16.0">
+      <varComponent glyphName="DC_0030_00" flags="0x6048" translateX="16.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0030.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0030_00" flags="0x20d8" translateX="27.0" translateY="-178.0" scaleX="0.6" scaleY="0.66">
+      <varComponent glyphName="DC_0030_00" flags="0x60d8" translateX="27.0" translateY="-178.0" scaleX="0.6" scaleY="0.66">
         <location>
           <axis tag="V000" value="0.42"/>
           <axis tag="V001" value="0.3"/>
@@ -770,7 +769,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0030.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0030_00" flags="0x20d8" translateX="36.0" translateY="-3.0" scaleX="0.76" scaleY="0.776">
+      <varComponent glyphName="DC_0030_00" flags="0x60d8" translateX="36.0" translateY="-3.0" scaleX="0.76" scaleY="0.776">
         <location>
           <axis tag="V000" value="0.26"/>
           <axis tag="V001" value="0.3"/>
@@ -779,7 +778,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0030.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0030_00" flags="0x20d8" translateX="30.0" translateY="-3.0" scaleX="0.81" scaleY="0.842">
+      <varComponent glyphName="DC_0030_00" flags="0x60d8" translateX="30.0" translateY="-3.0" scaleX="0.81" scaleY="0.842">
         <location>
           <axis tag="V000" value="0.215"/>
           <axis tag="V001" value="0.2"/>
@@ -788,7 +787,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0030.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0030_00" flags="0x20d8" translateX="27.0" translateY="362.0" scaleX="0.6" scaleY="0.66">
+      <varComponent glyphName="DC_0030_00" flags="0x60d8" translateX="27.0" translateY="362.0" scaleX="0.6" scaleY="0.66">
         <location>
           <axis tag="V000" value="0.42"/>
           <axis tag="V001" value="0.3"/>
@@ -797,25 +796,23 @@
     </TTGlyph>
 
     <TTGlyph name="uni0030.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0030_00" flags="0x2048" translateX="16.0">
+      <varComponent glyphName="DC_0030_00" flags="0x6048" translateX="16.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0031" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0031_00" flags="0x2048" translateX="-1.0">
+      <varComponent glyphName="DC_0031_00" flags="0x6048" translateX="-1.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0031.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0031_00" flags="0x20d8" translateX="32.0" translateY="-180.0" scaleX="0.65" scaleY="0.667">
+      <varComponent glyphName="DC_0031_00" flags="0x60d8" translateX="32.0" translateY="-180.0" scaleX="0.65" scaleY="0.667">
         <location>
           <axis tag="V000" value="0.224"/>
           <axis tag="V001" value="0.349"/>
@@ -824,7 +821,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0031.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0031_00" flags="0x20c8" translateX="22.0" scaleX="0.74" scaleY="0.767">
+      <varComponent glyphName="DC_0031_00" flags="0x60c8" translateX="22.0" scaleX="0.74" scaleY="0.767">
         <location>
           <axis tag="V000" value="0.244"/>
           <axis tag="V001" value="0.33"/>
@@ -833,7 +830,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0031.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0031_00" flags="0x20c8" translateX="31.0" scaleX="0.81" scaleY="0.834">
+      <varComponent glyphName="DC_0031_00" flags="0x60c8" translateX="31.0" scaleX="0.81" scaleY="0.834">
         <location>
           <axis tag="V000" value="0.22"/>
           <axis tag="V001" value="0.236"/>
@@ -842,7 +839,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0031.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0031_00" flags="0x20d8" translateX="32.0" translateY="360.0" scaleX="0.65" scaleY="0.667">
+      <varComponent glyphName="DC_0031_00" flags="0x60d8" translateX="32.0" translateY="360.0" scaleX="0.65" scaleY="0.667">
         <location>
           <axis tag="V000" value="0.224"/>
           <axis tag="V001" value="0.349"/>
@@ -851,7 +848,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0031.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0031_00" flags="0x2048" translateX="134.0">
+      <varComponent glyphName="DC_0031_00" flags="0x6048" translateX="134.0">
         <location>
           <axis tag="V000" value="0.398"/>
           <axis tag="V001" value="0.0"/>
@@ -860,21 +857,16 @@
     </TTGlyph>
 
     <TTGlyph name="uni0032" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0032_00" flags="0x2048" translateX="-10.0">
+      <varComponent glyphName="DC_0032_00" flags="0x6048" translateX="-10.0">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
-          <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.0"/>
-          <axis tag="V004" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0032.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0032_00" flags="0x20d8" translateX="10.0" translateY="-180.0" scaleX="0.68" scaleY="0.663">
+      <varComponent glyphName="DC_0032_00" flags="0x60d8" translateX="10.0" translateY="-180.0" scaleX="0.68" scaleY="0.663">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.035"/>
           <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.292"/>
@@ -884,11 +876,9 @@
     </TTGlyph>
 
     <TTGlyph name="uni0032.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0032_00" flags="0x20c8" translateX="10.0" scaleX="0.77" scaleY="0.772">
+      <varComponent glyphName="DC_0032_00" flags="0x60c8" translateX="10.0" scaleX="0.77" scaleY="0.772">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.18"/>
-          <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.292"/>
           <axis tag="V004" value="0.2"/>
         </location>
@@ -896,11 +886,9 @@
     </TTGlyph>
 
     <TTGlyph name="uni0032.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0032_00" flags="0x20c8" translateX="23.0" scaleX="0.79" scaleY="0.837">
+      <varComponent glyphName="DC_0032_00" flags="0x60c8" translateX="23.0" scaleX="0.79" scaleY="0.837">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
-          <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.19"/>
           <axis tag="V004" value="0.2"/>
         </location>
@@ -908,9 +896,8 @@
     </TTGlyph>
 
     <TTGlyph name="uni0032.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0032_00" flags="0x20d8" translateX="10.0" translateY="360.0" scaleX="0.68" scaleY="0.663">
+      <varComponent glyphName="DC_0032_00" flags="0x60d8" translateX="10.0" translateY="360.0" scaleX="0.68" scaleY="0.663">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.035"/>
           <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.292"/>
@@ -920,46 +907,39 @@
     </TTGlyph>
 
     <TTGlyph name="uni0032.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0032_00" flags="0x2048" translateX="40.0">
+      <varComponent glyphName="DC_0032_00" flags="0x6048" translateX="40.0">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
-          <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.0"/>
-          <axis tag="V004" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0033" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0033_00" flags="0x2048" translateX="30.0">
+      <varComponent glyphName="DC_0033_00" flags="0x6048" translateX="30.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0033.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0033_00" flags="0x20d8" translateX="11.0" translateY="-178.0" scaleX="0.67" scaleY="0.66">
+      <varComponent glyphName="DC_0033_00" flags="0x60d8" translateX="11.0" translateY="-178.0" scaleX="0.67" scaleY="0.66">
         <location>
           <axis tag="V000" value="0.284"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0033.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0033_00" flags="0x2058" translateX="30.0" translateY="-140.0">
+      <varComponent glyphName="DC_0033_00" flags="0x6058" translateX="30.0" translateY="-140.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0033.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0033_00" flags="0x20d8" translateX="30.0" translateY="-2.0" scaleX="0.8" scaleY="0.84">
+      <varComponent glyphName="DC_0033_00" flags="0x60d8" translateX="30.0" translateY="-2.0" scaleX="0.8" scaleY="0.84">
         <location>
           <axis tag="V000" value="0.24"/>
           <axis tag="V001" value="0.1"/>
@@ -968,53 +948,47 @@
     </TTGlyph>
 
     <TTGlyph name="uni0033.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0033_00" flags="0x20d8" translateX="11.0" translateY="362.0" scaleX="0.67" scaleY="0.66">
+      <varComponent glyphName="DC_0033_00" flags="0x60d8" translateX="11.0" translateY="362.0" scaleX="0.67" scaleY="0.66">
         <location>
           <axis tag="V000" value="0.284"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0033.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0033_00" flags="0x2048" translateX="73.0">
+      <varComponent glyphName="DC_0033_00" flags="0x6048" translateX="73.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0034" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0034_00" flags="0x2048" translateX="5.0">
+      <varComponent glyphName="DC_0034_00" flags="0x6048" translateX="5.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.0"/>
           <axis tag="V004" value="0.0"/>
           <axis tag="V005" value="0.0"/>
-          <axis tag="V006" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0034.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0034_00" flags="0x20d8" translateX="9.0" translateY="-180.0" scaleX="0.69" scaleY="0.668">
+      <varComponent glyphName="DC_0034_00" flags="0x60d8" translateX="9.0" translateY="-180.0" scaleX="0.69" scaleY="0.668">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.1"/>
           <axis tag="V002" value="0.117"/>
           <axis tag="V003" value="0.17"/>
           <axis tag="V004" value="0.225"/>
           <axis tag="V005" value="0.18"/>
-          <axis tag="V006" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0034.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0034_00" flags="0x2058" translateX="5.0" translateY="-140.0">
+      <varComponent glyphName="DC_0034_00" flags="0x6058" translateX="5.0" translateY="-140.0">
         <location>
           <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.14"/>
@@ -1022,16 +996,13 @@
           <axis tag="V003" value="0.0"/>
           <axis tag="V004" value="0.0"/>
           <axis tag="V005" value="0.0"/>
-          <axis tag="V006" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0034.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0034_00" flags="0x20c8" translateX="10.0" scaleX="0.87" scaleY="0.834">
+      <varComponent glyphName="DC_0034_00" flags="0x60c8" translateX="10.0" scaleX="0.87" scaleY="0.834">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.045"/>
           <axis tag="V003" value="0.06"/>
           <axis tag="V004" value="0.12"/>
@@ -1042,44 +1013,39 @@
     </TTGlyph>
 
     <TTGlyph name="uni0034.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0034_00" flags="0x20d8" translateX="9.0" translateY="360.0" scaleX="0.69" scaleY="0.668">
+      <varComponent glyphName="DC_0034_00" flags="0x60d8" translateX="9.0" translateY="360.0" scaleX="0.69" scaleY="0.668">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.1"/>
           <axis tag="V002" value="0.117"/>
           <axis tag="V003" value="0.17"/>
           <axis tag="V004" value="0.225"/>
           <axis tag="V005" value="0.18"/>
-          <axis tag="V006" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0034.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0034_00" flags="0x2048" translateX="28.0">
+      <varComponent glyphName="DC_0034_00" flags="0x6048" translateX="28.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
           <axis tag="V003" value="0.0"/>
           <axis tag="V004" value="0.0"/>
           <axis tag="V005" value="0.0"/>
-          <axis tag="V006" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0035" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0035_00" flags="0x2048" translateX="30.0">
+      <varComponent glyphName="DC_0035_00" flags="0x6048" translateX="30.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0035.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0035_00" flags="0x20d8" translateX="27.0" translateY="-178.0" scaleX="0.66" scaleY="0.664">
+      <varComponent glyphName="DC_0035_00" flags="0x60d8" translateX="27.0" translateY="-178.0" scaleX="0.66" scaleY="0.664">
         <location>
           <axis tag="V000" value="0.33"/>
           <axis tag="V001" value="0.1"/>
@@ -1088,16 +1054,15 @@
     </TTGlyph>
 
     <TTGlyph name="uni0035.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0035_00" flags="0x2058" translateX="30.0" translateY="-140.0">
+      <varComponent glyphName="DC_0035_00" flags="0x6058" translateX="30.0" translateY="-140.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0035.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0035_00" flags="0x20d8" translateX="25.0" translateY="-2.0" scaleX="0.835" scaleY="0.837">
+      <varComponent glyphName="DC_0035_00" flags="0x60d8" translateX="25.0" translateY="-2.0" scaleX="0.835" scaleY="0.837">
         <location>
           <axis tag="V000" value="0.2"/>
           <axis tag="V001" value="0.03"/>
@@ -1106,7 +1071,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0035.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0035_00" flags="0x20d8" translateX="27.0" translateY="362.0" scaleX="0.66" scaleY="0.664">
+      <varComponent glyphName="DC_0035_00" flags="0x60d8" translateX="27.0" translateY="362.0" scaleX="0.66" scaleY="0.664">
         <location>
           <axis tag="V000" value="0.33"/>
           <axis tag="V001" value="0.1"/>
@@ -1115,18 +1080,16 @@
     </TTGlyph>
 
     <TTGlyph name="uni0035.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0035_00" flags="0x2048" translateX="73.0">
+      <varComponent glyphName="DC_0035_00" flags="0x6048" translateX="73.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0036" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0036_00" flags="0x2048" translateX="20.0">
+      <varComponent glyphName="DC_0036_00" flags="0x6048" translateX="20.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
         </location>
@@ -1134,7 +1097,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0036.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0036_00" flags="0x20d8" translateX="20.0" translateY="-178.0" scaleX="0.65" scaleY="0.662">
+      <varComponent glyphName="DC_0036_00" flags="0x60d8" translateX="20.0" translateY="-178.0" scaleX="0.65" scaleY="0.662">
         <location>
           <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.346"/>
@@ -1144,9 +1107,8 @@
     </TTGlyph>
 
     <TTGlyph name="uni0036.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0036_00" flags="0x2048" translateX="20.0">
+      <varComponent glyphName="DC_0036_00" flags="0x6048" translateX="20.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
         </location>
@@ -1154,9 +1116,8 @@
     </TTGlyph>
 
     <TTGlyph name="uni0036.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0036_00" flags="0x20d8" translateX="18.0" translateY="-2.0" scaleX="0.84" scaleY="0.837">
+      <varComponent glyphName="DC_0036_00" flags="0x60d8" translateX="18.0" translateY="-2.0" scaleX="0.84" scaleY="0.837">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.204"/>
           <axis tag="V002" value="0.05"/>
         </location>
@@ -1164,7 +1125,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0036.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0036_00" flags="0x20d8" translateX="20.0" translateY="362.0" scaleX="0.65" scaleY="0.662">
+      <varComponent glyphName="DC_0036_00" flags="0x60d8" translateX="20.0" translateY="362.0" scaleX="0.65" scaleY="0.662">
         <location>
           <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.346"/>
@@ -1174,9 +1135,8 @@
     </TTGlyph>
 
     <TTGlyph name="uni0036.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0036_00" flags="0x2048" translateX="45.0">
+      <varComponent glyphName="DC_0036_00" flags="0x6048" translateX="45.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
         </location>
@@ -1184,82 +1144,65 @@
     </TTGlyph>
 
     <TTGlyph name="uni0037" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0037_00" flags="0x2048" translateX="-4.0">
+      <varComponent glyphName="DC_0037_00" flags="0x6048" translateX="-4.0">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
-          <axis tag="V003" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0037.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0037_00" flags="0x20d8" translateX="1.0" translateY="-180.0" scaleX="0.67" scaleY="0.667">
+      <varComponent glyphName="DC_0037_00" flags="0x60d8" translateX="1.0" translateY="-180.0" scaleX="0.67" scaleY="0.667">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.284"/>
-          <axis tag="V003" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0037.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0037_00" flags="0x2058" translateX="-4.0" translateY="-140.0">
+      <varComponent glyphName="DC_0037_00" flags="0x6058" translateX="-4.0" translateY="-140.0">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
-          <axis tag="V003" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0037.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0037_00" flags="0x20c0" scaleX="0.82" scaleY="0.834">
+      <varComponent glyphName="DC_0037_00" flags="0x60c0" scaleX="0.82" scaleY="0.834">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.18"/>
-          <axis tag="V003" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0037.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0037_00" flags="0x20d8" translateX="1.0" translateY="360.0" scaleX="0.67" scaleY="0.667">
+      <varComponent glyphName="DC_0037_00" flags="0x60d8" translateX="1.0" translateY="360.0" scaleX="0.67" scaleY="0.667">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.284"/>
-          <axis tag="V003" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0037.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0037_00" flags="0x2048" translateX="31.0">
+      <varComponent glyphName="DC_0037_00" flags="0x6048" translateX="31.0">
         <location>
-          <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
           <axis tag="V002" value="0.0"/>
-          <axis tag="V003" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0038" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0038_00" flags="0x2048" translateX="22.0">
+      <varComponent glyphName="DC_0038_00" flags="0x6048" translateX="22.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0038.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0038_00" flags="0x20d8" translateX="29.0" translateY="-178.0" scaleX="0.6" scaleY="0.66">
+      <varComponent glyphName="DC_0038_00" flags="0x60d8" translateX="29.0" translateY="-178.0" scaleX="0.6" scaleY="0.66">
         <location>
           <axis tag="V000" value="0.43"/>
           <axis tag="V001" value="0.225"/>
@@ -1268,16 +1211,15 @@
     </TTGlyph>
 
     <TTGlyph name="uni0038.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0038_00" flags="0x2048" translateX="22.0">
+      <varComponent glyphName="DC_0038_00" flags="0x6048" translateX="22.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0038.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0038_00" flags="0x20d8" translateX="21.0" translateY="-2.0" scaleX="0.82" scaleY="0.84">
+      <varComponent glyphName="DC_0038_00" flags="0x60d8" translateX="21.0" translateY="-2.0" scaleX="0.82" scaleY="0.84">
         <location>
           <axis tag="V000" value="0.13"/>
           <axis tag="V001" value="0.03"/>
@@ -1286,7 +1228,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0038.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0038_00" flags="0x20d8" translateX="29.0" translateY="362.0" scaleX="0.6" scaleY="0.66">
+      <varComponent glyphName="DC_0038_00" flags="0x60d8" translateX="29.0" translateY="362.0" scaleX="0.6" scaleY="0.66">
         <location>
           <axis tag="V000" value="0.43"/>
           <axis tag="V001" value="0.225"/>
@@ -1295,26 +1237,23 @@
     </TTGlyph>
 
     <TTGlyph name="uni0038.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0038_00" flags="0x2048" translateX="45.0">
+      <varComponent glyphName="DC_0038_00" flags="0x6048" translateX="45.0">
         <location>
           <axis tag="V000" value="0.0"/>
-          <axis tag="V001" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0039" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0039_00" flags="0x2048" translateX="19.0">
+      <varComponent glyphName="DC_0039_00" flags="0x6048" translateX="19.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
-          <axis tag="V002" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0039.inf" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0039_00" flags="0x20d8" translateX="19.0" translateY="-179.0" scaleX="0.65" scaleY="0.662">
+      <varComponent glyphName="DC_0039_00" flags="0x60d8" translateX="19.0" translateY="-179.0" scaleX="0.65" scaleY="0.662">
         <location>
           <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.35"/>
@@ -1324,19 +1263,16 @@
     </TTGlyph>
 
     <TTGlyph name="uni0039.of" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0039_00" flags="0x2058" translateX="19.0" translateY="-140.0">
+      <varComponent glyphName="DC_0039_00" flags="0x6058" translateX="19.0" translateY="-140.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
-          <axis tag="V002" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
 
     <TTGlyph name="uni0039.sc" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0039_00" flags="0x20c8" translateX="15.0" scaleX="0.84" scaleY="0.837">
+      <varComponent glyphName="DC_0039_00" flags="0x60c8" translateX="15.0" scaleX="0.84" scaleY="0.837">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.204"/>
           <axis tag="V002" value="0.05"/>
         </location>
@@ -1344,7 +1280,7 @@
     </TTGlyph>
 
     <TTGlyph name="uni0039.sup" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0039_00" flags="0x20d8" translateX="19.0" translateY="361.0" scaleX="0.65" scaleY="0.662">
+      <varComponent glyphName="DC_0039_00" flags="0x60d8" translateX="19.0" translateY="361.0" scaleX="0.65" scaleY="0.662">
         <location>
           <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.35"/>
@@ -1354,11 +1290,9 @@
     </TTGlyph>
 
     <TTGlyph name="uni0039.tab" xMin="0" yMin="0" xMax="0" yMax="0">
-      <varComponent glyphName="DC_0039_00" flags="0x2048" translateX="44.0">
+      <varComponent glyphName="DC_0039_00" flags="0x6048" translateX="44.0">
         <location>
-          <axis tag="V000" value="0.0"/>
           <axis tag="V001" value="0.0"/>
-          <axis tag="V002" value="0.0"/>
         </location>
       </varComponent>
     </TTGlyph>
@@ -2987,13 +2921,12 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-12" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-12" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0030.inf">
@@ -3052,26 +2985,24 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-12" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-12" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0031">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="-22" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="-22" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0031.inf">
@@ -3142,136 +3073,119 @@
     <glyphVariations glyph="uni0032">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
         <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="11469" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
-        <delta pt="6" x="-72" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
-        <delta pt="10" x="0" y="0"/>
+        <delta pt="6" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0032.inf">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="1065" y="0"/>
-        <delta pt="2" x="16384" y="0"/>
-        <delta pt="3" x="11600" y="0"/>
-        <delta pt="4" x="0" y="0"/>
-        <delta pt="5" x="-4" y="0"/>
-        <delta pt="6" x="-71" y="0"/>
+        <delta pt="0" x="1065" y="0"/>
+        <delta pt="1" x="16384" y="0"/>
+        <delta pt="2" x="11600" y="0"/>
+        <delta pt="3" x="0" y="0"/>
+        <delta pt="4" x="-4" y="0"/>
+        <delta pt="5" x="-71" y="0"/>
+        <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
-        <delta pt="10" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0032.of">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="-1474" y="0"/>
+        <delta pt="0" x="-1474" y="0"/>
+        <delta pt="1" x="11600" y="0"/>
         <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="11600" y="0"/>
+        <delta pt="3" x="-13" y="0"/>
         <delta pt="4" x="0" y="0"/>
-        <delta pt="5" x="-13" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
-        <delta pt="10" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0032.sc">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="655" y="0"/>
-        <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="11469" y="0"/>
-        <delta pt="4" x="-1639" y="0"/>
-        <delta pt="5" x="-18" y="0"/>
+        <delta pt="0" x="655" y="0"/>
+        <delta pt="1" x="11469" y="0"/>
+        <delta pt="2" x="-1639" y="0"/>
+        <delta pt="3" x="-18" y="0"/>
+        <delta pt="4" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
-        <delta pt="10" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0032.sup">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="1065" y="0"/>
-        <delta pt="2" x="16384" y="0"/>
-        <delta pt="3" x="11600" y="0"/>
-        <delta pt="4" x="0" y="0"/>
-        <delta pt="5" x="-4" y="0"/>
-        <delta pt="6" x="-71" y="0"/>
+        <delta pt="0" x="1065" y="0"/>
+        <delta pt="1" x="16384" y="0"/>
+        <delta pt="2" x="11600" y="0"/>
+        <delta pt="3" x="0" y="0"/>
+        <delta pt="4" x="-4" y="0"/>
+        <delta pt="5" x="-71" y="0"/>
+        <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
-        <delta pt="10" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0032.tab">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
         <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="11469" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
-        <delta pt="6" x="-72" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
-        <delta pt="10" x="0" y="0"/>
+        <delta pt="6" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0033">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-5" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-5" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0033.inf">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11731" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-6" y="0"/>
-        <delta pt="3" x="-31" y="0"/>
+        <delta pt="1" x="-6" y="0"/>
+        <delta pt="2" x="-31" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0033.of">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-5" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-5" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0033.sc">
@@ -3291,62 +3205,56 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11731" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-6" y="0"/>
-        <delta pt="3" x="-31" y="0"/>
+        <delta pt="1" x="-6" y="0"/>
+        <delta pt="2" x="-31" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0033.tab">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-6" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-6" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0034">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="1638" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="3457" y="0"/>
+        <delta pt="1" x="3457" y="0"/>
+        <delta pt="2" x="7373" y="0"/>
         <delta pt="3" x="7373" y="0"/>
         <delta pt="4" x="7373" y="0"/>
-        <delta pt="5" x="7373" y="0"/>
-        <delta pt="6" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
+        <delta pt="6" x="-26" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="-26" y="0"/>
+        <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
         <delta pt="10" x="0" y="0"/>
-        <delta pt="11" x="0" y="0"/>
-        <delta pt="12" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0034.inf">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="4211" y="0"/>
-        <delta pt="3" x="7045" y="0"/>
-        <delta pt="4" x="6505" y="0"/>
-        <delta pt="5" x="7258" y="0"/>
+        <delta pt="1" x="4211" y="0"/>
+        <delta pt="2" x="7045" y="0"/>
+        <delta pt="3" x="6505" y="0"/>
+        <delta pt="4" x="7258" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
         <delta pt="10" x="0" y="0"/>
-        <delta pt="11" x="0" y="0"/>
-        <delta pt="12" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0034.of">
@@ -3359,79 +3267,71 @@
         <delta pt="4" x="7373" y="0"/>
         <delta pt="5" x="7373" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="-26" y="0"/>
+        <delta pt="7" x="-26" y="0"/>
+        <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
         <delta pt="10" x="0" y="0"/>
         <delta pt="11" x="0" y="0"/>
-        <delta pt="12" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0034.sc">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="4178" y="0"/>
-        <delta pt="3" x="6799" y="0"/>
-        <delta pt="4" x="7127" y="0"/>
-        <delta pt="5" x="8192" y="0"/>
-        <delta pt="6" x="819" y="0"/>
-        <delta pt="7" x="-2" y="0"/>
+        <delta pt="0" x="4178" y="0"/>
+        <delta pt="1" x="6799" y="0"/>
+        <delta pt="2" x="7127" y="0"/>
+        <delta pt="3" x="8192" y="0"/>
+        <delta pt="4" x="819" y="0"/>
+        <delta pt="5" x="-2" y="0"/>
+        <delta pt="6" x="0" y="0"/>
+        <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
         <delta pt="10" x="0" y="0"/>
-        <delta pt="11" x="0" y="0"/>
-        <delta pt="12" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0034.sup">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="4211" y="0"/>
-        <delta pt="3" x="7045" y="0"/>
-        <delta pt="4" x="6505" y="0"/>
-        <delta pt="5" x="7258" y="0"/>
+        <delta pt="1" x="4211" y="0"/>
+        <delta pt="2" x="7045" y="0"/>
+        <delta pt="3" x="6505" y="0"/>
+        <delta pt="4" x="7258" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
         <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
         <delta pt="10" x="0" y="0"/>
-        <delta pt="11" x="0" y="0"/>
-        <delta pt="12" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0034.tab">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="1638" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="3457" y="0"/>
+        <delta pt="1" x="3457" y="0"/>
+        <delta pt="2" x="7373" y="0"/>
         <delta pt="3" x="7373" y="0"/>
         <delta pt="4" x="7373" y="0"/>
-        <delta pt="5" x="7373" y="0"/>
-        <delta pt="6" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
+        <delta pt="6" x="-26" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="-26" y="0"/>
+        <delta pt="8" x="0" y="0"/>
         <delta pt="9" x="0" y="0"/>
         <delta pt="10" x="0" y="0"/>
-        <delta pt="11" x="0" y="0"/>
-        <delta pt="12" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0035">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-8" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-8" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0035.inf">
@@ -3451,13 +3351,12 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-8" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-8" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0035.sc">
@@ -3490,27 +3389,25 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-8" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-8" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0036">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="492" y="0"/>
-        <delta pt="3" x="-21" y="0"/>
-        <delta pt="4" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="492" y="0"/>
+        <delta pt="2" x="-21" y="0"/>
+        <delta pt="3" x="-72" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0036.inf">
@@ -3530,29 +3427,27 @@
     <glyphVariations glyph="uni0036.of">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="492" y="0"/>
-        <delta pt="3" x="-21" y="0"/>
-        <delta pt="4" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="492" y="0"/>
+        <delta pt="2" x="-21" y="0"/>
+        <delta pt="3" x="-72" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0036.sc">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11404" y="0"/>
-        <delta pt="2" x="-819" y="0"/>
-        <delta pt="3" x="-17" y="0"/>
-        <delta pt="4" x="-41" y="0"/>
+        <delta pt="0" x="11404" y="0"/>
+        <delta pt="1" x="-819" y="0"/>
+        <delta pt="2" x="-17" y="0"/>
+        <delta pt="3" x="-41" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0036.sup">
@@ -3572,117 +3467,99 @@
     <glyphVariations glyph="uni0036.tab">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="492" y="0"/>
-        <delta pt="3" x="-21" y="0"/>
-        <delta pt="4" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="492" y="0"/>
+        <delta pt="2" x="-21" y="0"/>
+        <delta pt="3" x="-72" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0037">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="11469" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="6" y="0"/>
+        <delta pt="2" x="-82" y="0"/>
         <delta pt="3" x="0" y="0"/>
-        <delta pt="4" x="6" y="0"/>
-        <delta pt="5" x="-82" y="0"/>
+        <delta pt="4" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0037.inf">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="3539" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="10240" y="0"/>
-        <delta pt="3" x="0" y="0"/>
-        <delta pt="4" x="-4" y="0"/>
-        <delta pt="5" x="-51" y="0"/>
+        <delta pt="1" x="10240" y="0"/>
+        <delta pt="2" x="-4" y="0"/>
+        <delta pt="3" x="-51" y="0"/>
+        <delta pt="4" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0037.of">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="11469" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="6" y="0"/>
+        <delta pt="2" x="-82" y="0"/>
         <delta pt="3" x="0" y="0"/>
-        <delta pt="4" x="6" y="0"/>
-        <delta pt="5" x="-82" y="0"/>
+        <delta pt="4" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0037.sc">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="11797" y="0"/>
+        <delta pt="0" x="11797" y="0"/>
+        <delta pt="1" x="-62" y="0"/>
+        <delta pt="2" x="0" y="0"/>
         <delta pt="3" x="0" y="0"/>
-        <delta pt="4" x="-62" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
-        <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0037.sup">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="3539" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="10240" y="0"/>
-        <delta pt="3" x="0" y="0"/>
-        <delta pt="4" x="-4" y="0"/>
-        <delta pt="5" x="-51" y="0"/>
+        <delta pt="1" x="10240" y="0"/>
+        <delta pt="2" x="-4" y="0"/>
+        <delta pt="3" x="-51" y="0"/>
+        <delta pt="4" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0037.tab">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="11469" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="6" y="0"/>
+        <delta pt="2" x="-82" y="0"/>
         <delta pt="3" x="0" y="0"/>
-        <delta pt="4" x="6" y="0"/>
-        <delta pt="5" x="-82" y="0"/>
+        <delta pt="4" x="0" y="0"/>
+        <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
-        <delta pt="9" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0038">
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-12" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-12" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0038.inf">
@@ -3702,13 +3579,12 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-12" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-12" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0038.sc">
@@ -3741,27 +3617,24 @@
       <tuple>
         <coord axis="wght" value="1.0"/>
         <delta pt="0" x="11469" y="0"/>
-        <delta pt="1" x="0" y="0"/>
-        <delta pt="2" x="-12" y="0"/>
-        <delta pt="3" x="-72" y="0"/>
+        <delta pt="1" x="-12" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
         <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0039">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="-14" y="0"/>
-        <delta pt="4" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="-14" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0039.inf">
@@ -3781,29 +3654,26 @@
     <glyphVariations glyph="uni0039.of">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="-14" y="0"/>
-        <delta pt="4" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="-14" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0039.sc">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11404" y="0"/>
-        <delta pt="2" x="-819" y="0"/>
-        <delta pt="3" x="-12" y="0"/>
-        <delta pt="4" x="-41" y="0"/>
+        <delta pt="0" x="11404" y="0"/>
+        <delta pt="1" x="-819" y="0"/>
+        <delta pt="2" x="-12" y="0"/>
+        <delta pt="3" x="-41" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
         <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="uni0039.sup">
@@ -3823,15 +3693,13 @@
     <glyphVariations glyph="uni0039.tab">
       <tuple>
         <coord axis="wght" value="1.0"/>
-        <delta pt="0" x="0" y="0"/>
-        <delta pt="1" x="11469" y="0"/>
-        <delta pt="2" x="0" y="0"/>
-        <delta pt="3" x="-14" y="0"/>
-        <delta pt="4" x="-72" y="0"/>
+        <delta pt="0" x="11469" y="0"/>
+        <delta pt="1" x="-14" y="0"/>
+        <delta pt="2" x="-72" y="0"/>
+        <delta pt="3" x="0" y="0"/>
+        <delta pt="4" x="0" y="0"/>
         <delta pt="5" x="0" y="0"/>
         <delta pt="6" x="0" y="0"/>
-        <delta pt="7" x="0" y="0"/>
-        <delta pt="8" x="0" y="0"/>
       </tuple>
     </glyphVariations>
     <glyphVariations glyph="zero_00">
