@@ -1,5 +1,3 @@
-# Require fonttools main branch for now, as we need the fix from
-# https://github.com/fonttools/fonttools/pull/3183
-git+https://github.com/fonttools/fonttools.git
+fonttools==4.42.0
 git+https://github.com/googlefonts/fontra.git
 git+https://github.com/googlefonts/fontra-rcjk.git
