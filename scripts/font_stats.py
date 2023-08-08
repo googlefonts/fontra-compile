@@ -1,3 +1,4 @@
+import os
 import sys
 
 from fontTools.ttLib import TTFont
@@ -22,6 +23,7 @@ def getGvarSizes(font):
 
 header = [
     "file",
+    "file size",
     "num chars",
     "num glyphs",
     "num outline glyphs",
@@ -79,6 +81,7 @@ for fontPath in sys.argv[1:]:
 
     row = []
     row.append(fontPath)
+    row.append(os.stat(fontPath).st_size)
     row.append(len(cmap))
     row.append(len(font.getGlyphOrder()))
     row.append(len(regularGlyphs))
