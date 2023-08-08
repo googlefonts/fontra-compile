@@ -2,11 +2,16 @@ import pathlib
 import re
 import subprocess
 
-ignorePat = r"<(checkSumAdjustment|created|modified) value=\"([^\"]+)\"/>"
+ignorePatterns = [
+    (r"<(checkSumAdjustment|created|modified) value=\"([^\"]+)\"/>", "--------"),
+    (r"ttLibVersion=\"([^\"]+)\"", 'ttLibVersion="---"'),
+]
 
 
 def cleanupTTX(ttx):
-    return re.sub(ignorePat, "------------", ttx)
+    for ignorePattern, replaceString in ignorePatterns:
+        ttx = re.sub(ignorePattern, replaceString, ttx)
+    return ttx
 
 
 testDir = pathlib.Path(__file__).resolve().parent
