@@ -235,7 +235,8 @@ class Builder:
                     )
                 normLoc = normalizeLocation(compo.location, compoInfo.baseAxisDict)
                 for axisName, axisValue in normLoc.items():
-                    compoInfo.location[axisName].append(axisValue)
+                    if axisName in compoInfo.location:
+                        compoInfo.location[axisName].append(axisValue)
 
         for compoInfo in components:
             flags = VarComponentFlags.RESET_UNSPECIFIED_AXES
@@ -270,11 +271,6 @@ class Builder:
         baseGlyph = await self.reader.getGlyph(compo.name)
         baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
         baseAxisDict = {**self.globalAxisDict, **baseAxisDict}
-        baseAxisDict = {
-            name: values
-            for name, values in baseAxisDict.items()
-            if name in compo.location
-        }
         baseAxisTags = {
             **self.globalAxisTags,
             **makeLocalAxisTags(baseAxisDict, self.globalAxisDict),
