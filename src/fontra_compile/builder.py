@@ -306,15 +306,21 @@ class Builder:
         return baseInfo
 
     async def setupComponentBaseInfo(self, baseGlyphName):
-        # Ideally we need the full "made of" graph, so we can normalize
-        # nested var composites, but then again, our local axis name -> fvar tag name
-        # mechanism doesn't account for that, either.
         baseGlyph = await self.getSourceGlyph(baseGlyphName, True)
         localAxisNames = {axis.name for axis in baseGlyph.axes}
+
+        # To determine the `respondsToGlobalAxes` flag, we take this component and all
+        # its child components into account, recursively
         responsiveAxesNames = {
             axisName for source in baseGlyph.sources for axisName in source.location
         }
-        respondsToGlobalAxes = bool(responsiveAxesNames - localAxisNames)
+        respondsToGlobalAxes = bool(
+            responsiveAxesNames - localAxisNames
+        ) or await asyncAny(
+            (await self.getComponentBaseInfo(nestedCompoName))["respondsToGlobalAxes"]
+            for nestedCompoName in getComponentBaseNames(baseGlyph)
+        )
+
         baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
         baseAxisDict = {**self.globalAxisDict, **baseAxisDict}
         baseAxisTags = {
@@ -475,5 +481,18 @@ def getTransformCoords(transform, flags):
     return coords
 
 
+def getComponentBaseNames(glyph):
+    glyphSources = filterActiveSources(glyph.sources)
+    firstSourceGlyph = glyph.layers[glyphSources[0].layerName].glyph
+    return {compo.name for compo in firstSourceGlyph.components}
+
+
 def filterActiveSources(sources):
     return [source for source in sources if not source.inactive]
+
+
+async def asyncAny(aiterable):
+    async for item in aiterable:
+        if item:
+            return True
+    return False
