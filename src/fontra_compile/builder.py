@@ -46,6 +46,7 @@ class Builder:
         self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
         self.cachedSourceGlyphs = {}
+        self.cachedComponentBaseInfo = {}
 
         self.glyphs = {}
         self.cmap = {}
@@ -231,7 +232,7 @@ class Builder:
                     attrName: [] for attrName in VAR_COMPONENT_TRANSFORM_MAPPING
                 },
                 location={axisName: [] for axisName in axisNames},
-                **await self.setupComponentBaseInfo(compo.name),
+                **await self.getComponentBaseInfo(compo.name),
             )
             for compo, axisNames in zip(
                 firstSourceGlyph.components, allComponentAxisNames
@@ -296,6 +297,13 @@ class Builder:
             self.ensureGlyphDependency(compoInfo.name)
 
         return components
+
+    async def getComponentBaseInfo(self, baseGlyphName):
+        baseInfo = self.cachedComponentBaseInfo.get(baseGlyphName)
+        if baseInfo is None:
+            baseInfo = await self.setupComponentBaseInfo(baseGlyphName)
+            self.cachedComponentBaseInfo[baseGlyphName] = baseInfo
+        return baseInfo
 
     async def setupComponentBaseInfo(self, baseGlyphName):
         # Ideally we need the full "made of" graph, so we can normalize
