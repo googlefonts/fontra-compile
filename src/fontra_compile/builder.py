@@ -231,7 +231,7 @@ class Builder:
                     attrName: [] for attrName in VAR_COMPONENT_TRANSFORM_MAPPING
                 },
                 location={axisName: [] for axisName in axisNames},
-                **await self.setupComponentBaseInfo(compo),
+                **await self.setupComponentBaseInfo(compo.name),
             )
             for compo, axisNames in zip(
                 firstSourceGlyph.components, allComponentAxisNames
@@ -297,11 +297,11 @@ class Builder:
 
         return components
 
-    async def setupComponentBaseInfo(self, compo):
+    async def setupComponentBaseInfo(self, baseGlyphName):
         # Ideally we need the full "made of" graph, so we can normalize
         # nested var composites, but then again, our local axis name -> fvar tag name
         # mechanism doesn't account for that, either.
-        baseGlyph = await self.getSourceGlyph(compo.name, True)
+        baseGlyph = await self.getSourceGlyph(baseGlyphName, True)
         localAxisNames = {axis.name for axis in baseGlyph.axes}
         responsiveAxesNames = {
             axisName for source in baseGlyph.sources for axisName in source.location
