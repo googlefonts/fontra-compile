@@ -45,6 +45,8 @@ class Builder:
         self.globalAxisTags = {axis.name: axis.tag for axis in self.globalAxes}
         self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
+        self.cachedSourceGlyphs = {}
+
         self.glyphs = {}
         self.cmap = {}
         self.xAdvances = {}
@@ -54,6 +56,14 @@ class Builder:
     async def build(self):
         await self.buildGlyphs()
         return await self.buildFont()
+
+    async def getSourceGlyph(self, glyphName, storeInCache=False):
+        sourceGlyph = self.cachedSourceGlyphs.get(glyphName)
+        if sourceGlyph is None:
+            sourceGlyph = await self.reader.getGlyph(glyphName)
+            if storeInCache:
+                self.cachedSourceGlyphs[glyphName] = sourceGlyph
+        return sourceGlyph
 
     def ensureGlyphDependency(self, glyphName):
         if glyphName not in self.glyphs and glyphName not in self.glyphOrder:
@@ -88,7 +98,7 @@ class Builder:
                 self.glyphs[glyphName] = glyph
 
     async def buildOneGlyph(self, glyphName):
-        glyph = await self.reader.getGlyph(glyphName)
+        glyph = await self.getSourceGlyph(glyphName, False)
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
         defaultLocation = {**self.defaultLocation, **localDefaultLocation}
@@ -291,7 +301,7 @@ class Builder:
         # Ideally we need the full "made of" graph, so we can normalize
         # nested var composites, but then again, our local axis name -> fvar tag name
         # mechanism doesn't account for that, either.
-        baseGlyph = await self.reader.getGlyph(compo.name)
+        baseGlyph = await self.getSourceGlyph(compo.name, True)
         localAxisNames = {axis.name for axis in baseGlyph.axes}
         responsiveAxesNames = {
             axisName for source in baseGlyph.sources for axisName in source.location
