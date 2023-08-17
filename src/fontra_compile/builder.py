@@ -16,6 +16,7 @@ from fontTools.ttLib.tables._g_l_y_f import (
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.varLib.models import (
     VariationModel,
+    VariationModelError,
     normalizeLocation,
     piecewiseLinearMap,
 )
@@ -71,7 +72,7 @@ class Builder:
                     glyphInfo = await self.buildOneGlyph(glyphName)
                 except KeyboardInterrupt:
                     raise
-                except ValueError as e:  # InterpolationError
+                except (ValueError, VariationModelError) as e:  # InterpolationError
                     print("warning", glyphName, repr(e))  # TODO: use logging
                 else:
                     self.xAdvances[glyphName] = max(glyphInfo.xAdvance, 0)
@@ -102,7 +103,9 @@ class Builder:
         componentInfo = await self.collectComponentInfo(glyph)
         firstSourcePath = None
 
-        for sourceIndex, source in enumerate(glyph.sources):
+        glyphSources = filterActiveSources(glyph.sources)
+
+        for sourceIndex, source in enumerate(glyphSources):
             location = {**defaultLocation, **source.location}
             locations.append(normalizeLocation(location, axisDict))
             sourceGlyph = glyph.layers[source.layerName].glyph
@@ -197,8 +200,19 @@ class Builder:
         )
 
     async def collectComponentInfo(self, glyph):
-        firstSource = glyph.sources[0]
-        firstSourceGlyph = glyph.layers[firstSource.layerName].glyph
+        glyphSources = filterActiveSources(glyph.sources)
+        sourceGlyphs = [glyph.layers[source.layerName].glyph for source in glyphSources]
+
+        firstSourceGlyph = sourceGlyphs[0]
+
+        # Collect all used axis names across all sources, per component --
+        # we will use that below to ensure component locations are made compatible
+        allComponentAxisNames = [
+            {axisName for compo in compoSources for axisName in compo.location}
+            for compoSources in zip(
+                *(sourceGlyph.components for sourceGlyph in sourceGlyphs)
+            )
+        ]
 
         components = [
             SimpleNamespace(
@@ -206,28 +220,26 @@ class Builder:
                 transform={
                     attrName: [] for attrName in VAR_COMPONENT_TRANSFORM_MAPPING
                 },
-                location={axisName: [] for axisName in compo.location},
+                location={axisName: [] for axisName in axisNames},
                 **await self.setupComponentBaseAxes(compo),
             )
-            for compo in firstSourceGlyph.components
+            for compo, axisNames in zip(
+                firstSourceGlyph.components, allComponentAxisNames
+            )
         ]
 
-        for source in glyph.sources:
-            sourceGlyph = glyph.layers[source.layerName].glyph
-
+        for sourceGlyph in sourceGlyphs:
             if len(sourceGlyph.components) != len(components):
-                raise ValueError(f"components not compatible {glyph.name}")
+                raise ValueError(
+                    f"components not compatible {glyph.name}: "
+                    f"{len(sourceGlyph.components)} vs. {len(components)}"
+                )
 
             for compoInfo, compo in zip(components, sourceGlyph.components):
                 if compo.name != compoInfo.name:
                     raise ValueError(
                         f"components not compatible in {glyph.name}: "
                         f"{compo.name} vs. {compoInfo.name}"
-                    )
-                if sorted(compoInfo.location) != sorted(compo.location):
-                    raise ValueError(
-                        f"component locations not compatible in {glyph.name}: "
-                        f"{compo.name}"
                     )
                 for attrName in VAR_COMPONENT_TRANSFORM_MAPPING:
                     compoInfo.transform[attrName].append(
@@ -238,7 +250,7 @@ class Builder:
                     if axisName in compoInfo.location:
                         compoInfo.location[axisName].append(axisValue)
 
-        numSources = len(glyph.sources)
+        numSources = len(glyphSources)
 
         for compoInfo in components:
             flags = (
@@ -443,3 +455,7 @@ def getTransformCoords(transform, flags):
     if flags & (VarComponentFlags.HAVE_TCENTER_X | VarComponentFlags.HAVE_TCENTER_Y):
         coords.append((transform.tCenterX, transform.tCenterY))
     return coords
+
+
+def filterActiveSources(sources):
+    return [source for source in sources if not source.inactive]
