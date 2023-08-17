@@ -206,7 +206,7 @@ class Builder:
         firstSourceGlyph = sourceGlyphs[0]
 
         # Collect all used axis names across all sources, per component --
-        # we will use that below to ensure component locations are made compatible
+        # we will use that below to make component locations compatible
         allComponentAxisNames = [
             {axisName for compo in compoSources for axisName in compo.location}
             for compoSources in zip(
