@@ -238,8 +238,14 @@ class Builder:
                     if axisName in compoInfo.location:
                         compoInfo.location[axisName].append(axisValue)
 
+        numSources = len(glyph.sources)
+
         for compoInfo in components:
-            flags = VarComponentFlags.RESET_UNSPECIFIED_AXES
+            flags = (
+                0
+                if compoInfo.respondsToGlobalAxes
+                else VarComponentFlags.RESET_UNSPECIFIED_AXES
+            )
 
             for attrName, fieldInfo in VAR_COMPONENT_TRANSFORM_MAPPING.items():
                 values = compoInfo.transform[attrName]
@@ -255,8 +261,13 @@ class Builder:
                 elif firstValue == 0:
                     axesAtDefault.append(axisName)
 
-            for axisName in axesAtDefault:
-                del compoInfo.location[axisName]
+            if flags & VarComponentFlags.RESET_UNSPECIFIED_AXES:
+                for axisName in axesAtDefault:
+                    del compoInfo.location[axisName]
+            else:
+                for axisName in compoInfo.localAxisNames:
+                    if axisName not in compoInfo.location:
+                        compoInfo.location[axisName] = [0] * numSources
 
             compoInfo.flags = flags
 
@@ -269,13 +280,23 @@ class Builder:
         # nested var composites, but then again, our local axis name -> fvar tag name
         # mechanism doesn't account for that, either.
         baseGlyph = await self.reader.getGlyph(compo.name)
+        localAxisNames = {axis.name for axis in baseGlyph.axes}
+        responsiveAxesNames = {
+            axisName for source in baseGlyph.sources for axisName in source.location
+        }
+        respondsToGlobalAxes = bool(responsiveAxesNames - localAxisNames)
         baseAxisDict = {axis.name: axisTuple(axis) for axis in baseGlyph.axes}
         baseAxisDict = {**self.globalAxisDict, **baseAxisDict}
         baseAxisTags = {
             **self.globalAxisTags,
             **makeLocalAxisTags(baseAxisDict, self.globalAxisDict),
         }
-        return dict(baseAxisDict=baseAxisDict, baseAxisTags=baseAxisTags)
+        return dict(
+            localAxisNames=localAxisNames,
+            respondsToGlobalAxes=respondsToGlobalAxes,
+            baseAxisDict=baseAxisDict,
+            baseAxisTags=baseAxisTags,
+        )
 
     async def buildFont(self):
         builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
