@@ -276,6 +276,12 @@ class Builder:
                 if any(v != firstValue or v != fieldInfo.defaultValue for v in values):
                     flags |= fieldInfo.flag
 
+            # Filter out unknown/unused axes
+            compoInfo.location = {
+                axisName: values
+                for axisName, values in compoInfo.location.items()
+                if values
+            }
             axesAtDefault = []
             for axisName, values in compoInfo.location.items():
                 firstValue = values[0]

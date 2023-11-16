@@ -2,6 +2,8 @@ import pathlib
 import re
 import subprocess
 
+import pytest
+
 ignorePatterns = [
     (r"<(checkSumAdjustment|created|modified) value=\"([^\"]+)\"/>", "--------"),
     (r"ttLibVersion=\"([^\"]+)\"", 'ttLibVersion="---"'),
@@ -15,15 +17,17 @@ def cleanupTTX(ttx):
 
 
 testDir = pathlib.Path(__file__).resolve().parent
-rcjkPath = testDir / "data" / "figArnaud.rcjk"
-ttxPath = testDir / "data" / "figArnaud.ttx"
+dataDir = testDir / "data"
 
 
-def test_main(tmpdir):
+@pytest.mark.parametrize("sourceName", ["figArnaud.rcjk", "MutatorSans.fontra"])
+def test_main(tmpdir, sourceName):
     tmpdir = pathlib.Path(tmpdir)
-    outPath = tmpdir / "test.ttf"
-    outTTXPath = tmpdir / "test.ttx"
-    subprocess.run(["fontra-compile", rcjkPath, outPath], check=True)
+    sourcePath = dataDir / sourceName
+    ttxPath = dataDir / (sourcePath.stem + ".ttx")
+    outPath = tmpdir / (sourcePath.stem + ".ttf")
+    outTTXPath = tmpdir / (sourcePath.stem + ".ttx")
+    subprocess.run(["fontra-compile", sourcePath, outPath], check=True)
     subprocess.run(["ttx", outPath], check=True)
     ttxLines = cleanupTTX(outTTXPath.read_text())
     expectedLines = cleanupTTX(ttxPath.read_text())
