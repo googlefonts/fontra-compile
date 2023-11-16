@@ -20,7 +20,7 @@ testDir = pathlib.Path(__file__).resolve().parent
 dataDir = testDir / "data"
 
 
-@pytest.mark.parametrize("sourceName", ["figArnaud.rcjk"])
+@pytest.mark.parametrize("sourceName", ["figArnaud.rcjk", "MutatorSans.fontra"])
 def test_main(tmpdir, sourceName):
     tmpdir = pathlib.Path(tmpdir)
     sourcePath = dataDir / sourceName
