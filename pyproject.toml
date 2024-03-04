@@ -36,6 +36,10 @@ classifiers = [
 fontra-compile = "fontra_compile.__main__:main"
 
 
+[project.entry-points."fontra.workflow.actions"]
+fontra_compile = "fontra_compile.workflow_action"
+
+
 [tool.hatch.build.targets.wheel]
 packages = ["src/fontra_compile"]
 
