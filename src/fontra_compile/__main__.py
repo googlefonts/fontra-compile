@@ -1,7 +1,8 @@
 import argparse
 import asyncio
 import pathlib
-from importlib.metadata import entry_points
+
+from fontra.backends import getFileSystemBackend
 
 from .builder import Builder
 
@@ -23,11 +24,7 @@ async def main_async():
         args.glyph_names.replace(",", " ").split() if args.glyph_names else None
     )
 
-    fileType = sourceFontPath.suffix.lstrip(".").lower()
-    backendEntryPoints = entry_points(group="fontra.filesystem.backends")
-    entryPoint = backendEntryPoints[fileType]
-    backendClass = entryPoint.load()
-    reader = backendClass.fromPath(sourceFontPath)
+    reader = getFileSystemBackend(sourceFontPath)
     builder = Builder(reader, glyphNames)
     await builder.setup()
     ttFont = await builder.build()
