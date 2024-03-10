@@ -39,4 +39,4 @@ jobs:
 
       - name: Run mypy
         run: |
-          mypy src/fontra/ test-py/
+          mypy src/fontra_compile/ tests/
