@@ -1,5 +1,7 @@
 from types import SimpleNamespace
 
+from fontra.core.classes import VariableGlyph
+from fontra.core.path import PackedPath
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
@@ -27,7 +29,7 @@ class Builder:
         self.reader = reader  # a Fontra Backend, such as DesignspaceBackend
         self.requestedGlyphNames = requestedGlyphNames
 
-    async def setup(self):
+    async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
         glyphOrder = (
             self.requestedGlyphNames
@@ -45,20 +47,22 @@ class Builder:
         self.globalAxisTags = {axis.name: axis.tag for axis in self.globalAxes}
         self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
-        self.cachedSourceGlyphs = {}
-        self.cachedComponentBaseInfo = {}
+        self.cachedSourceGlyphs: dict[str, VariableGlyph] = {}
+        self.cachedComponentBaseInfo: dict = {}
 
-        self.glyphs = {}
-        self.cmap = {}
-        self.xAdvances = {}
-        self.variations = {}
-        self.localAxisTags = set()
+        self.glyphs: dict[str, Glyph] = {}
+        self.cmap: dict[int, str] = {}
+        self.xAdvances: dict[str, int] = {}
+        self.variations: dict[str, list[TupleVariation]] = {}
+        self.localAxisTags: set[str] = set()
 
     async def build(self):
         await self.buildGlyphs()
         return await self.buildFont()
 
-    async def getSourceGlyph(self, glyphName, storeInCache=False):
+    async def getSourceGlyph(
+        self, glyphName: str, storeInCache: bool = False
+    ) -> VariableGlyph:
         sourceGlyph = self.cachedSourceGlyphs.get(glyphName)
         if sourceGlyph is None:
             sourceGlyph = await self.reader.getGlyph(glyphName)
@@ -66,11 +70,11 @@ class Builder:
                 self.cachedSourceGlyphs[glyphName] = sourceGlyph
         return sourceGlyph
 
-    def ensureGlyphDependency(self, glyphName):
+    def ensureGlyphDependency(self, glyphName: str):
         if glyphName not in self.glyphs and glyphName not in self.glyphOrder:
             self.glyphOrder.append(glyphName)
 
-    async def buildGlyphs(self):
+    async def buildGlyphs(self) -> None:
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
             self.xAdvances[glyphName] = 500
@@ -98,7 +102,7 @@ class Builder:
                 self.xAdvances[glyphName] = 500
                 self.glyphs[glyphName] = glyph
 
-    async def buildOneGlyph(self, glyphName):
+    async def buildOneGlyph(self, glyphName: str):
         glyph = await self.getSourceGlyph(glyphName, False)
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
@@ -147,6 +151,7 @@ class Builder:
                     transform = DecomposedTransform(**transform)
                     coordinates.extend(getTransformCoords(transform, compoInfo.flags))
             else:
+                assert isinstance(sourceGlyph.path, PackedPath)
                 coordinates.array.extend(
                     sourceGlyph.path.coordinates
                 )  # shortcut via ._a array
@@ -181,6 +186,8 @@ class Builder:
         supports = [mapDictKeys(s, axisTags) for s in supports]
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
+
+        assert defaultGlyph is not None
 
         if componentInfo:
             ttGlyph = Glyph()
