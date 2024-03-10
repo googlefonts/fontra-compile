@@ -8,6 +8,7 @@ from fontTools.misc.fixedTools import floatToFixed as fl2fi
 from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
+from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables._g_l_y_f import (
     VAR_COMPONENT_TRANSFORM_MAPPING,
     Glyph,
@@ -56,7 +57,7 @@ class Builder:
         self.variations: dict[str, list[TupleVariation]] = {}
         self.localAxisTags: set[str] = set()
 
-    async def build(self):
+    async def build(self) -> TTFont:
         await self.buildGlyphs()
         return await self.buildFont()
 
@@ -70,7 +71,7 @@ class Builder:
                 self.cachedSourceGlyphs[glyphName] = sourceGlyph
         return sourceGlyph
 
-    def ensureGlyphDependency(self, glyphName: str):
+    def ensureGlyphDependency(self, glyphName: str) -> None:
         if glyphName not in self.glyphs and glyphName not in self.glyphOrder:
             self.glyphOrder.append(glyphName)
 
@@ -102,7 +103,7 @@ class Builder:
                 self.xAdvances[glyphName] = 500
                 self.glyphs[glyphName] = glyph
 
-    async def buildOneGlyph(self, glyphName: str):
+    async def buildOneGlyph(self, glyphName: str) -> SimpleNamespace:
         glyph = await self.getSourceGlyph(glyphName, False)
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
@@ -347,7 +348,7 @@ class Builder:
             baseAxisTags=baseAxisTags,
         )
 
-    async def buildFont(self):
+    async def buildFont(self) -> TTFont:
         builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
 
         builder.updateHead(created=timestampNow(), modified=timestampNow())
