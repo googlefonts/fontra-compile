@@ -1,11 +1,15 @@
 from types import SimpleNamespace
+from typing import Any
 
+from fontra.core.classes import VariableGlyph
+from fontra.core.path import PackedPath
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
 from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
+from fontTools.ttLib import TTFont
 from fontTools.ttLib.tables._g_l_y_f import (
     VAR_COMPONENT_TRANSFORM_MAPPING,
     Glyph,
@@ -27,7 +31,7 @@ class Builder:
         self.reader = reader  # a Fontra Backend, such as DesignspaceBackend
         self.requestedGlyphNames = requestedGlyphNames
 
-    async def setup(self):
+    async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
         glyphOrder = (
             self.requestedGlyphNames
@@ -45,20 +49,22 @@ class Builder:
         self.globalAxisTags = {axis.name: axis.tag for axis in self.globalAxes}
         self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
-        self.cachedSourceGlyphs = {}
-        self.cachedComponentBaseInfo = {}
+        self.cachedSourceGlyphs: dict[str, VariableGlyph] = {}
+        self.cachedComponentBaseInfo: dict = {}
 
-        self.glyphs = {}
-        self.cmap = {}
-        self.xAdvances = {}
-        self.variations = {}
-        self.localAxisTags = set()
+        self.glyphs: dict[str, Glyph] = {}
+        self.cmap: dict[int, str] = {}
+        self.xAdvances: dict[str, int] = {}
+        self.variations: dict[str, list[TupleVariation]] = {}
+        self.localAxisTags: set[str] = set()
 
-    async def build(self):
+    async def build(self) -> TTFont:
         await self.buildGlyphs()
         return await self.buildFont()
 
-    async def getSourceGlyph(self, glyphName, storeInCache=False):
+    async def getSourceGlyph(
+        self, glyphName: str, storeInCache: bool = False
+    ) -> VariableGlyph:
         sourceGlyph = self.cachedSourceGlyphs.get(glyphName)
         if sourceGlyph is None:
             sourceGlyph = await self.reader.getGlyph(glyphName)
@@ -66,11 +72,11 @@ class Builder:
                 self.cachedSourceGlyphs[glyphName] = sourceGlyph
         return sourceGlyph
 
-    def ensureGlyphDependency(self, glyphName):
+    def ensureGlyphDependency(self, glyphName: str) -> None:
         if glyphName not in self.glyphs and glyphName not in self.glyphOrder:
             self.glyphOrder.append(glyphName)
 
-    async def buildGlyphs(self):
+    async def buildGlyphs(self) -> None:
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
             self.xAdvances[glyphName] = 500
@@ -98,7 +104,7 @@ class Builder:
                 self.xAdvances[glyphName] = 500
                 self.glyphs[glyphName] = glyph
 
-    async def buildOneGlyph(self, glyphName):
+    async def buildOneGlyph(self, glyphName: str) -> SimpleNamespace:
         glyph = await self.getSourceGlyph(glyphName, False)
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
@@ -147,6 +153,7 @@ class Builder:
                     transform = DecomposedTransform(**transform)
                     coordinates.extend(getTransformCoords(transform, compoInfo.flags))
             else:
+                assert isinstance(sourceGlyph.path, PackedPath)
                 coordinates.array.extend(
                     sourceGlyph.path.coordinates
                 )  # shortcut via ._a array
@@ -182,6 +189,8 @@ class Builder:
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
 
+        assert defaultGlyph is not None
+
         if componentInfo:
             ttGlyph = Glyph()
             ttGlyph.numberOfContours = -2
@@ -210,7 +219,7 @@ class Builder:
             localAxisTags=set(localAxisTags.values()),
         )
 
-    async def collectComponentInfo(self, glyph):
+    async def collectComponentInfo(self, glyph: VariableGlyph) -> list[SimpleNamespace]:
         glyphSources = filterActiveSources(glyph.sources)
         sourceGlyphs = [glyph.layers[source.layerName].glyph for source in glyphSources]
 
@@ -304,14 +313,14 @@ class Builder:
 
         return components
 
-    async def getComponentBaseInfo(self, baseGlyphName):
+    async def getComponentBaseInfo(self, baseGlyphName: str) -> dict[str, Any]:
         baseInfo = self.cachedComponentBaseInfo.get(baseGlyphName)
         if baseInfo is None:
             baseInfo = await self.setupComponentBaseInfo(baseGlyphName)
             self.cachedComponentBaseInfo[baseGlyphName] = baseInfo
         return baseInfo
 
-    async def setupComponentBaseInfo(self, baseGlyphName):
+    async def setupComponentBaseInfo(self, baseGlyphName: str) -> dict[str, Any]:
         baseGlyph = await self.getSourceGlyph(baseGlyphName, True)
         localAxisNames = {axis.name for axis in baseGlyph.axes}
 
@@ -340,7 +349,7 @@ class Builder:
             baseAxisTags=baseAxisTags,
         )
 
-    async def buildFont(self):
+    async def buildFont(self) -> TTFont:
         builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
 
         builder.updateHead(created=timestampNow(), modified=timestampNow())
@@ -363,14 +372,14 @@ class Builder:
         return builder.font
 
 
-def addLSB(glyfTable, metrics):
+def addLSB(glyfTable, metrics: dict[str, int]) -> dict[str, tuple[int, int]]:
     return {
         glyphName: (xAdvance, glyfTable[glyphName].xMin)
         for glyphName, xAdvance in metrics.items()
     }
 
 
-def applyAxisMapToAxisValues(axis):
+def applyAxisMapToAxisValues(axis) -> tuple[float, float, float]:
     mappingDict = {k: v for k, v in axis.mapping}
     minValue = piecewiseLinearMap(axis.minValue, mappingDict)
     defaultValue = piecewiseLinearMap(axis.defaultValue, mappingDict)
@@ -378,13 +387,13 @@ def applyAxisMapToAxisValues(axis):
     return (minValue, defaultValue, maxValue)
 
 
-def axisTuple(axis):
+def axisTuple(axis) -> tuple[float, float, float]:
     return (axis.minValue, axis.defaultValue, axis.maxValue)
 
 
 def newAxisDescriptor(
     *, name, tag, minValue, defaultValue, maxValue, mapping=(), hidden=False
-):
+) -> AxisDescriptor:
     dsAxis = AxisDescriptor()
     dsAxis.minimum = minValue
     dsAxis.default = defaultValue
@@ -397,7 +406,7 @@ def newAxisDescriptor(
     return dsAxis
 
 
-def makeDSAxes(axes, localAxisTags):
+def makeDSAxes(axes, localAxisTags) -> list[AxisDescriptor]:
     return [
         newAxisDescriptor(
             name=axis.name,
