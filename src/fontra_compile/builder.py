@@ -1,4 +1,5 @@
 from types import SimpleNamespace
+from typing import Any
 
 from fontra.core.classes import VariableGlyph
 from fontra.core.path import PackedPath
@@ -218,7 +219,7 @@ class Builder:
             localAxisTags=set(localAxisTags.values()),
         )
 
-    async def collectComponentInfo(self, glyph):
+    async def collectComponentInfo(self, glyph: VariableGlyph) -> list[SimpleNamespace]:
         glyphSources = filterActiveSources(glyph.sources)
         sourceGlyphs = [glyph.layers[source.layerName].glyph for source in glyphSources]
 
@@ -312,14 +313,14 @@ class Builder:
 
         return components
 
-    async def getComponentBaseInfo(self, baseGlyphName):
+    async def getComponentBaseInfo(self, baseGlyphName: str) -> dict[str, Any]:
         baseInfo = self.cachedComponentBaseInfo.get(baseGlyphName)
         if baseInfo is None:
             baseInfo = await self.setupComponentBaseInfo(baseGlyphName)
             self.cachedComponentBaseInfo[baseGlyphName] = baseInfo
         return baseInfo
 
-    async def setupComponentBaseInfo(self, baseGlyphName):
+    async def setupComponentBaseInfo(self, baseGlyphName: str) -> dict[str, Any]:
         baseGlyph = await self.getSourceGlyph(baseGlyphName, True)
         localAxisNames = {axis.name for axis in baseGlyph.axes}
 
@@ -371,14 +372,14 @@ class Builder:
         return builder.font
 
 
-def addLSB(glyfTable, metrics):
+def addLSB(glyfTable, metrics: dict[str, int]) -> dict[str, tuple[int, int]]:
     return {
         glyphName: (xAdvance, glyfTable[glyphName].xMin)
         for glyphName, xAdvance in metrics.items()
     }
 
 
-def applyAxisMapToAxisValues(axis):
+def applyAxisMapToAxisValues(axis) -> tuple[float, float, float]:
     mappingDict = {k: v for k, v in axis.mapping}
     minValue = piecewiseLinearMap(axis.minValue, mappingDict)
     defaultValue = piecewiseLinearMap(axis.defaultValue, mappingDict)
@@ -386,13 +387,13 @@ def applyAxisMapToAxisValues(axis):
     return (minValue, defaultValue, maxValue)
 
 
-def axisTuple(axis):
+def axisTuple(axis) -> tuple[float, float, float]:
     return (axis.minValue, axis.defaultValue, axis.maxValue)
 
 
 def newAxisDescriptor(
     *, name, tag, minValue, defaultValue, maxValue, mapping=(), hidden=False
-):
+) -> AxisDescriptor:
     dsAxis = AxisDescriptor()
     dsAxis.minimum = minValue
     dsAxis.default = defaultValue
@@ -405,7 +406,7 @@ def newAxisDescriptor(
     return dsAxis
 
 
-def makeDSAxes(axes, localAxisTags):
+def makeDSAxes(axes, localAxisTags) -> list[AxisDescriptor]:
     return [
         newAxisDescriptor(
             name=axis.name,
