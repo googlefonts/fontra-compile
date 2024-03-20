@@ -13,7 +13,7 @@ testWorkFlow = """
 steps:
 - action: input
   source: "tests/data/MutatorSans.fontra"
-- action: fontra-compile
+- action: compile-varc
   destination: "output1.ttf"
 """
 
