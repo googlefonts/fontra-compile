@@ -20,7 +20,17 @@ steps:
   destination: "output1.ttf"
 """,
         "MutatorSans.ttx",
-    )
+    ),
+    (
+        """
+steps:
+- action: input
+  source: "tests/data/MutatorSans.fontra"
+- action: compile-fontmake
+  destination: "output-fontmake.ttf"
+""",
+        "MutatorSans-fontmake.ttx",
+    ),
 ]
 
 
@@ -38,8 +48,9 @@ async def test_workflow(tmpdir, workflowSource, ttxFileName):
             await output.process(tmpdir)
             ttxPath = dataDir / ttxFileName
             outPath = tmpdir / output.destination
+            assert outPath.exists(), outPath
             outTTXPath = tmpdir / (outPath.stem + ".ttx")
-            subprocess.run(["ttx", outPath], check=True)
+            subprocess.run(["ttx", "-o", outTTXPath, outPath], check=True)
 
             ttxLines = cleanupTTX(outTTXPath.read_text())
             expectedLines = cleanupTTX(ttxPath.read_text())
