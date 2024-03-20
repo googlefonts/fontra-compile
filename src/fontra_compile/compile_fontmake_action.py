@@ -30,6 +30,7 @@ class CompileFontMakeAction:
             self.input = None
 
     async def process(self, outputDir: os.PathLike = pathlib.Path()) -> None:
+        assert self.input is not None
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
 
@@ -47,7 +48,7 @@ class CompileFontMakeAction:
             command = [
                 "fontmake",
                 "-m",
-                designspacePath,
+                os.fspath(designspacePath),
                 "-o",
                 "variable",
                 "--output-path",
