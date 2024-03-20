@@ -12,7 +12,7 @@ authors = [
 ]
 keywords = ["font", "fonts"]
 license = {text = "GNU General Public License v3"}
-dependencies = ["fontra"]
+dependencies = ["fontra", "fontmake"]
 dynamic = ["version"]
 requires-python = ">=3.10"
 classifiers = [
