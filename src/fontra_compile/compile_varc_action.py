@@ -10,7 +10,7 @@ from fontra.workflow.actions import OutputActionProtocol, registerActionClass
 from .builder import Builder
 
 
-@registerActionClass("fontra-compile")
+@registerActionClass("compile-varc")
 @dataclass(kw_only=True)
 class FontraCompileAction:
     destination: str
