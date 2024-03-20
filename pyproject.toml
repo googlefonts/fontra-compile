@@ -37,7 +37,8 @@ fontra-compile = "fontra_compile.__main__:main"
 
 
 [project.entry-points."fontra.workflow.actions"]
-fontra_compile = "fontra_compile.compile_varc_action"
+compile_varc = "fontra_compile.compile_varc_action"
+compile_fontmake = "fontra_compile.compile_fontmake_action"
 
 
 [tool.hatch.build.targets.wheel]
