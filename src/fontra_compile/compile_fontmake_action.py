@@ -16,6 +16,7 @@ from fontra.workflow.actions import OutputActionProtocol, registerActionClass
 @dataclass(kw_only=True)
 class CompileFontMakeAction:
     destination: str
+    options: dict[str, str] = field(default_factory=dict)
     input: ReadableFontBackend | None = field(init=False, default=None)
 
     @asynccontextmanager
@@ -52,4 +53,10 @@ class CompileFontMakeAction:
                 "--output-path",
                 os.fspath(outputFontPath),
             ]
+
+            for option, value in self.options.items():
+                command.append(f"--{option}")
+                if value:
+                    command.append(value)
+
             subprocess.run(command, check=True)

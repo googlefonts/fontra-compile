@@ -27,6 +27,8 @@ steps:
 - action: input
   source: "tests/data/MutatorSans.fontra"
 - action: compile-fontmake
+  options:
+    flatten-components:  # no value
   destination: "output-fontmake.ttf"
 """,
         "MutatorSans-fontmake.ttx",
@@ -54,4 +56,4 @@ async def test_workflow(tmpdir, workflowSource, ttxFileName):
 
             ttxLines = cleanupTTX(outTTXPath.read_text())
             expectedLines = cleanupTTX(ttxPath.read_text())
-            assert expectedLines == ttxLines
+            assert expectedLines == ttxLines, outTTXPath
