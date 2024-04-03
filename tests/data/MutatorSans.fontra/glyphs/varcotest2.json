@@ -19,8 +19,8 @@
 "name": "LightCondensed",
 "layerName": "MutatorSansLightCondensed/foreground",
 "location": {
-"width": 0.0,
-"weight": 150.0
+"weight": 150,
+"width": 0
 }
 },
 {
