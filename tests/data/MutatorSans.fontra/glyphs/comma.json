@@ -5,82 +5,36 @@
 "name": "LightCondensed",
 "layerName": "MutatorSansLightCondensed/foreground",
 "location": {
-"width": 0.0,
-"weight": 150.0
+"weight": 150,
+"width": 0
 }
 },
 {
 "name": "BoldCondensed",
 "layerName": "MutatorSansBoldCondensed/foreground",
 "location": {
-"width": 0.0,
-"weight": 850.0
+"weight": 850,
+"width": 0
 }
 },
 {
 "name": "LightWide",
 "layerName": "MutatorSansLightWide/foreground",
 "location": {
-"width": 1000.0,
-"weight": 150.0
+"weight": 150,
+"width": 1000
 }
 },
 {
 "name": "BoldWide",
 "layerName": "MutatorSansBoldWide/foreground",
 "location": {
-"width": 1000.0,
-"weight": 850.0
+"weight": 850,
+"width": 1000
 }
 }
 ],
 "layers": {
-"MutatorSansLightCondensed/foreground": {
-"glyph": {
-"path": {
-"contours": [
-{
-"points": [
-{
-"x": 111,
-"y": 0
-},
-{
-"x": 111,
-"y": 120
-},
-{
-"x": 61,
-"y": 120
-},
-{
-"x": 61,
-"y": 0
-},
-{
-"x": 93,
-"y": -8
-},
-{
-"x": 82,
-"y": 12
-},
-{
-"x": 60,
-"y": -93
-},
-{
-"x": 72,
-"y": -95
-}
-],
-"isClosed": true
-}
-]
-},
-"xAdvance": 171
-}
-},
 "MutatorSansBoldCondensed/foreground": {
 "glyph": {
 "path": {
@@ -127,52 +81,6 @@
 "xAdvance": 250
 }
 },
-"MutatorSansLightWide/foreground": {
-"glyph": {
-"path": {
-"contours": [
-{
-"points": [
-{
-"x": 171,
-"y": 0
-},
-{
-"x": 171,
-"y": 220
-},
-{
-"x": 121,
-"y": 220
-},
-{
-"x": 121,
-"y": 0
-},
-{
-"x": 153,
-"y": -8
-},
-{
-"x": 142,
-"y": 12
-},
-{
-"x": 120,
-"y": -93
-},
-{
-"x": 132,
-"y": -95
-}
-],
-"isClosed": true
-}
-]
-},
-"xAdvance": 291
-}
-},
 "MutatorSansBoldWide/foreground": {
 "glyph": {
 "path": {
@@ -217,6 +125,98 @@
 ]
 },
 "xAdvance": 310
+}
+},
+"MutatorSansLightCondensed/foreground": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 111,
+"y": 0
+},
+{
+"x": 111,
+"y": 120
+},
+{
+"x": 61,
+"y": 120
+},
+{
+"x": 61,
+"y": 0
+},
+{
+"x": 93,
+"y": -8
+},
+{
+"x": 82,
+"y": 12
+},
+{
+"x": 60,
+"y": -93
+},
+{
+"x": 72,
+"y": -95
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 171
+}
+},
+"MutatorSansLightWide/foreground": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 171,
+"y": 0
+},
+{
+"x": 171,
+"y": 220
+},
+{
+"x": 121,
+"y": 220
+},
+{
+"x": 121,
+"y": 0
+},
+{
+"x": 153,
+"y": -8
+},
+{
+"x": 142,
+"y": 12
+},
+{
+"x": 120,
+"y": -93
+},
+{
+"x": 132,
+"y": -95
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 291
 }
 }
 }
