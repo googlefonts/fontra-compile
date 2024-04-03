@@ -44,7 +44,6 @@ class CompileFontMakeAction:
             async with aclosing(dsBackend):
                 await copyFont(self.input, dsBackend)
 
-            # assert 0, [p.name for p in tmpDir.iterdir()]
             command = [
                 "fontmake",
                 "-m",
