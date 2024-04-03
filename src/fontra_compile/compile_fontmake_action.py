@@ -29,7 +29,9 @@ class CompileFontMakeAction:
         finally:
             self.input = None
 
-    async def process(self, outputDir: os.PathLike = pathlib.Path()) -> None:
+    async def process(
+        self, outputDir: os.PathLike = pathlib.Path(), *, continueOnError=False
+    ) -> None:
         assert self.input is not None
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
@@ -42,7 +44,7 @@ class CompileFontMakeAction:
             dsBackend = newFileSystemBackend(designspacePath)
 
             async with aclosing(dsBackend):
-                await copyFont(self.input, dsBackend)
+                await copyFont(self.input, dsBackend, continueOnError=continueOnError)
 
             command = [
                 "fontmake",

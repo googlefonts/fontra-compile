@@ -26,7 +26,9 @@ class FontraCompileAction:
         finally:
             self.input = None
 
-    async def process(self, outputDir: os.PathLike = pathlib.Path()) -> None:
+    async def process(
+        self, outputDir: os.PathLike = pathlib.Path(), *, continueOnError=False
+    ) -> None:
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
         builder = Builder(self.input)
