@@ -1,4 +1,4 @@
-fonttools==4.50.0
+fonttools==4.51.0
 fontmake==3.9.0
 git+https://github.com/googlefonts/fontra.git
 git+https://github.com/googlefonts/fontra-rcjk.git
