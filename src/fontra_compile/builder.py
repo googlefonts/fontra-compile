@@ -42,7 +42,8 @@ class Builder:
             glyphOrder.insert(0, ".notdef")
         self.glyphOrder = glyphOrder
 
-        self.globalAxes = await self.reader.getGlobalAxes()
+        self.axes = await self.reader.getAxes()
+        self.globalAxes = self.axes.axes
         self.globalAxisDict = {
             axis.name: applyAxisMapToAxisValues(axis) for axis in self.globalAxes
         }
