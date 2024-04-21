@@ -431,20 +431,21 @@ class Builder:
 
                 if compoInfo.flags & VarComponentFlags.HAVE_AXES:
                     assert compoInfo.location
-                    location = mapDictKeys(compoInfo.location, compoInfo.baseAxisTags)
-                    axisIndices = tuple(axisTags.index(k) for k in location)
+                    location = sorted(
+                        mapDictKeys(compoInfo.location, compoInfo.baseAxisTags).items()
+                    )
+                    axisIndices = tuple(axisTags.index(k) for k, v in location)
                     axisIndicesIndex = axisIndicesMapping.get(axisIndices)
                     if axisIndicesIndex is None:
                         axisIndicesIndex = len(axisIndicesMapping)
                         axisIndicesMapping[axisIndices] = axisIndicesIndex
 
                     compo.axisIndicesIndex = axisIndicesIndex
-                    compo.axisValues = [v[0] for v in location.values()]
+                    compo.axisValues = [v[0] for k, v in location]
 
                     if compoInfo.flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
                         locationValues = [
-                            [fl2fi(v, 14) for v in values]
-                            for values in location.values()
+                            [fl2fi(v, 14) for v in values] for k, values in location
                         ]
                         masterValues = [Vector(vec) for vec in zip(*locationValues)]
                         _, varIdx = storeBuilder.storeMasters(masterValues)
