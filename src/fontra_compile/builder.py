@@ -412,19 +412,17 @@ class Builder:
                 )
 
                 if compoInfo.flags & VarComponentFlags.TRANSFORM_HAS_VARIATION:
-                    transformValues = []
-                    for fieldName, fieldMappingValues in VAR_TRANSFORM_MAPPING.items():
-                        if fieldMappingValues.flag & compoInfo.flags:
-
-                            transformValues.append(
-                                [
-                                    fl2fi(
-                                        v / fieldMappingValues.scale,
-                                        fieldMappingValues.fractionalBits,
-                                    )
-                                    for v in compoInfo.transform[fieldName]
-                                ]
+                    transformValues = [
+                        [
+                            fl2fi(
+                                v / fieldMappingValues.scale,
+                                fieldMappingValues.fractionalBits,
                             )
+                            for v in compoInfo.transform[fieldName]
+                        ]
+                        for fieldName, fieldMappingValues in VAR_TRANSFORM_MAPPING.items()
+                        if fieldMappingValues.flag & compoInfo.flags
+                    ]
 
                     masterValues = [Vector(vec) for vec in zip(*transformValues)]
                     assert masterValues
