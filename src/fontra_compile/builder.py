@@ -1,3 +1,4 @@
+from dataclasses import dataclass, field
 from types import SimpleNamespace
 from typing import Any
 
@@ -8,22 +9,43 @@ from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
 from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
+from fontTools.misc.vector import Vector
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
-from fontTools.ttLib import TTFont
-from fontTools.ttLib.tables._g_l_y_f import (
-    VAR_COMPONENT_TRANSFORM_MAPPING,
-    Glyph,
-    GlyphCoordinates,
-    GlyphVarComponent,
-    VarComponentFlags,
-)
+from fontTools.ttLib import TTFont, newTable
+from fontTools.ttLib.tables import otTables as ot
+from fontTools.ttLib.tables._g_l_y_f import Glyph, GlyphCoordinates
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
+from fontTools.ttLib.tables.otTables import VAR_TRANSFORM_MAPPING, VarComponentFlags
 from fontTools.varLib.models import (
     VariationModel,
     VariationModelError,
     normalizeLocation,
     piecewiseLinearMap,
 )
+from fontTools.varLib.multiVarStore import OnlineMultiVarStoreBuilder
+
+# If a component transformation has variations in any of the following fields, the
+# component can not be a classic component, and should be compiled as a variable
+# component, even if there are no axis variations
+VARCO_IF_VARYING = {
+    "rotation",
+    "scaleX",
+    "scaleY",
+    "skewX",
+    "skewY",
+    "tCenterX",
+    "tCenterY",
+}
+
+
+@dataclass
+class GlyphInfo:
+    glyph: Glyph
+    xAdvance: int = 500
+    variations: list = field(default_factory=list)
+    variableComponents: list = field(default_factory=list)
+    localAxisTags: set = field(default_factory=set)
+    model: VariationModel | None = None
 
 
 class Builder:
@@ -53,11 +75,8 @@ class Builder:
         self.cachedSourceGlyphs: dict[str, VariableGlyph] = {}
         self.cachedComponentBaseInfo: dict = {}
 
-        self.glyphs: dict[str, Glyph] = {}
+        self.glyphInfos: dict[str, Glyph] = {}
         self.cmap: dict[int, str] = {}
-        self.xAdvances: dict[str, int] = {}
-        self.variations: dict[str, list[TupleVariation]] = {}
-        self.localAxisTags: set[str] = set()
 
     async def build(self) -> TTFont:
         await self.buildGlyphs()
@@ -74,13 +93,12 @@ class Builder:
         return sourceGlyph
 
     def ensureGlyphDependency(self, glyphName: str) -> None:
-        if glyphName not in self.glyphs and glyphName not in self.glyphOrder:
+        if glyphName not in self.glyphInfos and glyphName not in self.glyphOrder:
             self.glyphOrder.append(glyphName)
 
     async def buildGlyphs(self) -> None:
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
-            self.xAdvances[glyphName] = 500
 
             glyphInfo = None
 
@@ -92,18 +110,12 @@ class Builder:
                     raise
                 except (ValueError, VariationModelError) as e:  # InterpolationError
                     print("warning", glyphName, repr(e))  # TODO: use logging
-                else:
-                    self.xAdvances[glyphName] = max(glyphInfo.xAdvance, 0)
-                    if glyphInfo.variations:
-                        self.variations[glyphName] = glyphInfo.variations
-                    self.glyphs[glyphName] = glyphInfo.glyph
-                    self.localAxisTags.update(glyphInfo.localAxisTags)
 
             if glyphInfo is None:
                 # make .notdef based on UPM
-                glyph = TTGlyphPointPen(None).glyph()
-                self.xAdvances[glyphName] = 500
-                self.glyphs[glyphName] = glyph
+                glyphInfo = GlyphInfo(glyph=TTGlyphPointPen(None).glyph(), xAdvance=500)
+
+            self.glyphInfos[glyphName] = glyphInfo
 
     async def buildOneGlyph(self, glyphName: str) -> SimpleNamespace:
         glyph = await self.getSourceGlyph(glyphName, False)
@@ -119,6 +131,7 @@ class Builder:
         defaultGlyph = None
 
         componentInfo = await self.collectComponentInfo(glyph)
+
         firstSourcePath = None
 
         glyphSources = filterActiveSources(glyph.sources)
@@ -134,43 +147,25 @@ class Builder:
 
             coordinates = GlyphCoordinates()
 
-            if componentInfo:
-                for compoInfo in componentInfo:
-                    location = sortedDict(
-                        mapDictKeys(
-                            {
-                                axisName: values[sourceIndex]
-                                for axisName, values in compoInfo.location.items()
-                            },
-                            compoInfo.baseAxisTags,
-                        )
-                    )
-                    coordinates.extend(getLocationCoords(location, compoInfo.flags))
-
-                    transform = {
-                        attrName: values[sourceIndex]
-                        for attrName, values in compoInfo.transform.items()
-                    }
-                    transform = DecomposedTransform(**transform)
-                    coordinates.extend(getTransformCoords(transform, compoInfo.flags))
+            assert isinstance(sourceGlyph.path, PackedPath)
+            coordinates.array.extend(
+                sourceGlyph.path.coordinates
+            )  # shortcut via ._a array
+            if firstSourcePath is None:
+                firstSourcePath = sourceGlyph.path
             else:
-                assert isinstance(sourceGlyph.path, PackedPath)
-                coordinates.array.extend(
-                    sourceGlyph.path.coordinates
-                )  # shortcut via ._a array
-                if firstSourcePath is None:
-                    firstSourcePath = sourceGlyph.path
-                else:
-                    if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
-                        raise ValueError(
-                            f"contours for source {source.name} of {glyphName} are not compatible"
-                        )
+                if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
+                    raise ValueError(
+                        f"contours for source {source.name} of {glyphName} are not compatible"
+                    )
             # phantom points
             coordinates.append((0, 0))
             coordinates.append((sourceGlyph.xAdvance, 0))
             coordinates.append((0, 0))
             coordinates.append((0, 0))
             sourceCoordinates.append(coordinates)
+
+        locations = [mapDictKeys(s, axisTags) for s in locations]
 
         model = VariationModel(locations)  # XXX axis order!
 
@@ -186,38 +181,23 @@ class Builder:
         for d in deltas:
             d.toInt()
             ensureWordRange(d)
-        supports = [mapDictKeys(s, axisTags) for s in supports]
+        # supports = [mapDictKeys(s, axisTags) for s in supports]
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
 
         assert defaultGlyph is not None
 
-        if componentInfo:
-            ttGlyph = Glyph()
-            ttGlyph.numberOfContours = -2
-            ttGlyph.components = []
-            ttGlyph.xMin = ttGlyph.yMin = ttGlyph.xMax = ttGlyph.yMax = 0
-            for compo, compoInfo in zip(defaultGlyph.components, componentInfo):
-                ttCompo = GlyphVarComponent()
-                ttCompo.flags = compoInfo.flags
-                ttCompo.glyphName = compo.name
-                ttCompo.transform = compo.transformation
-                normLoc = normalizeLocation(compo.location, compoInfo.baseAxisDict)
-                normLoc = filterDict(normLoc, compoInfo.location)
-                ttCompo.location = sortedDict(
-                    mapDictKeys(normLoc, compoInfo.baseAxisTags)
-                )
-                ttGlyph.components.append(ttCompo)
-        else:
-            ttGlyphPen = TTGlyphPointPen(None)
-            defaultGlyph.path.drawPoints(ttGlyphPen)
-            ttGlyph = ttGlyphPen.glyph()
+        ttGlyphPen = TTGlyphPointPen(None)
+        defaultGlyph.path.drawPoints(ttGlyphPen)
+        ttGlyph = ttGlyphPen.glyph()
 
-        return SimpleNamespace(
+        return GlyphInfo(
             glyph=ttGlyph,
-            xAdvance=defaultGlyph.xAdvance,
+            xAdvance=max(defaultGlyph.xAdvance, 0),
             variations=variations,
+            variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
+            model=model,
         )
 
     async def collectComponentInfo(self, glyph: VariableGlyph) -> list[SimpleNamespace]:
@@ -238,9 +218,7 @@ class Builder:
         components = [
             SimpleNamespace(
                 name=compo.name,
-                transform={
-                    attrName: [] for attrName in VAR_COMPONENT_TRANSFORM_MAPPING
-                },
+                transform={attrName: [] for attrName in VAR_TRANSFORM_MAPPING},
                 location={axisName: [] for axisName in axisNames},
                 **await self.getComponentBaseInfo(compo.name),
             )
@@ -262,7 +240,7 @@ class Builder:
                         f"components not compatible in {glyph.name}: "
                         f"{compo.name} vs. {compoInfo.name}"
                     )
-                for attrName in VAR_COMPONENT_TRANSFORM_MAPPING:
+                for attrName in VAR_TRANSFORM_MAPPING:
                     compoInfo.transform[attrName].append(
                         getattr(compo.transformation, attrName)
                     )
@@ -274,17 +252,25 @@ class Builder:
         numSources = len(glyphSources)
 
         for compoInfo in components:
-            flags = (
-                0
-                if compoInfo.respondsToGlobalAxes
-                else VarComponentFlags.RESET_UNSPECIFIED_AXES
-            )
+            isVariableComponent = bool(compoInfo.location)
 
-            for attrName, fieldInfo in VAR_COMPONENT_TRANSFORM_MAPPING.items():
+            flags = 0
+
+            if not compoInfo.respondsToGlobalAxes:
+                flags |= VarComponentFlags.RESET_UNSPECIFIED_AXES
+
+            if isVariableComponent:
+                flags |= VarComponentFlags.HAVE_AXES
+
+            for attrName, fieldInfo in VAR_TRANSFORM_MAPPING.items():
                 values = compoInfo.transform[attrName]
-                firstValue = values[0]
-                if any(v != firstValue or v != fieldInfo.defaultValue for v in values):
+                if any(v != fieldInfo.defaultValue for v in values):
                     flags |= fieldInfo.flag
+                    firstValue = values[0]
+                    if any(v != firstValue for v in values[1:]):
+                        flags |= VarComponentFlags.TRANSFORM_HAS_VARIATION
+                        if attrName in VARCO_IF_VARYING:
+                            isVariableComponent = True
 
             # Filter out unknown/unused axes
             compoInfo.location = {
@@ -292,11 +278,12 @@ class Builder:
                 for axisName, values in compoInfo.location.items()
                 if values
             }
+
             axesAtDefault = []
             for axisName, values in compoInfo.location.items():
                 firstValue = values[0]
                 if any(v != firstValue for v in values[1:]):
-                    flags |= VarComponentFlags.AXES_HAVE_VARIATION
+                    flags |= VarComponentFlags.AXIS_VALUES_HAVE_VARIATION
                 elif firstValue == 0:
                     axesAtDefault.append(axisName)
 
@@ -309,6 +296,7 @@ class Builder:
                         compoInfo.location[axisName] = [0] * numSources
 
             compoInfo.flags = flags
+            compoInfo.isVariableComponent = isVariableComponent
 
             self.ensureGlyphDependency(compoInfo.name)
 
@@ -356,21 +344,133 @@ class Builder:
         builder.updateHead(created=timestampNow(), modified=timestampNow())
         builder.setupGlyphOrder(self.glyphOrder)
         builder.setupNameTable(dict())
-        builder.setupGlyf(self.glyphs)
-        if self.globalAxes or self.localAxisTags:
-            dsAxes = makeDSAxes(self.globalAxes, sorted(self.localAxisTags))
+        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "glyph"))
+
+        localAxisTags = set()
+        for glyphInfo in self.glyphInfos.values():
+            localAxisTags.update(glyphInfo.localAxisTags)
+
+        axisTags = []
+
+        if self.globalAxes or localAxisTags:
+            dsAxes = makeDSAxes(self.globalAxes, sorted(localAxisTags))
+            axisTags = [axis.tag for axis in dsAxes]
             builder.setupFvar(dsAxes, [])
             if any(axis.map for axis in dsAxes):
                 builder.setupAvar(dsAxes)
-        if self.variations:
-            builder.setupGvar(self.variations)
+
+        variations = getGlyphInfoAttributes(self.glyphInfos, "variations")
+        if variations:
+            builder.setupGvar(variations)
+
+        if any(glyphInfo.variableComponents for glyphInfo in self.glyphInfos.values()):
+            varcTable = self.buildVARC(axisTags)
+            builder.font["VARC"] = varcTable
+
         builder.setupHorizontalHeader()
-        builder.setupHorizontalMetrics(addLSB(builder.font["glyf"], self.xAdvances))
+        builder.setupHorizontalMetrics(
+            addLSB(
+                builder.font["glyf"],
+                getGlyphInfoAttributes(self.glyphInfos, "xAdvance"),
+            )
+        )
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
 
         return builder.font
+
+    def buildVARC(self, axisTags):
+        axisIndicesMapping = {}
+        storeBuilder = OnlineMultiVarStoreBuilder(axisTags)
+
+        glyphNames = [
+            glyphName
+            for glyphName in self.glyphOrder
+            if self.glyphInfos[glyphName].variableComponents
+        ]
+        coverage = ot.Coverage()
+        coverage.glyphs = glyphNames
+
+        varcSubtable = ot.VARC()
+        varcSubtable.Version = 0x00010000
+        varcSubtable.Coverage = coverage
+
+        variableComposites = []
+
+        for glyphName in varcSubtable.Coverage.glyphs:
+            components = []
+            model = self.glyphInfos[glyphName].model
+            storeBuilder.setModel(model)
+
+            for compoInfo in self.glyphInfos[glyphName].variableComponents:
+                compo = ot.VarComponent()
+                compo.flags = compoInfo.flags
+                compo.glyphName = compoInfo.name
+                compo.transform = DecomposedTransform(
+                    **{k: v[0] for k, v in compoInfo.transform.items()}
+                )
+
+                if compoInfo.flags & VarComponentFlags.TRANSFORM_HAS_VARIATION:
+                    transformValues = []
+                    for fieldName, fieldMappingValues in VAR_TRANSFORM_MAPPING.items():
+                        if fieldMappingValues.flag & compoInfo.flags:
+
+                            transformValues.append(
+                                [
+                                    fl2fi(
+                                        v / fieldMappingValues.scale,
+                                        fieldMappingValues.fractionalBits,
+                                    )
+                                    for v in compoInfo.transform[fieldName]
+                                ]
+                            )
+
+                    masterValues = [Vector(vec) for vec in zip(*transformValues)]
+                    assert masterValues
+
+                    _, varIdx = storeBuilder.storeMasters(masterValues)
+                    compo.transformVarIndex = varIdx
+
+                if compoInfo.flags & VarComponentFlags.HAVE_AXES:
+                    assert compoInfo.location
+                    location = mapDictKeys(compoInfo.location, compoInfo.baseAxisTags)
+                    axisIndices = tuple(axisTags.index(k) for k in location)
+                    axisIndicesIndex = axisIndicesMapping.get(axisIndices)
+                    if axisIndicesIndex is None:
+                        axisIndicesIndex = len(axisIndicesMapping)
+                        axisIndicesMapping[axisIndices] = axisIndicesIndex
+
+                    compo.axisIndicesIndex = axisIndicesIndex
+                    compo.axisValues = [v[0] for v in location.values()]
+
+                    if compoInfo.flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
+                        locationValues = [
+                            [fl2fi(v, 14) for v in values]
+                            for values in location.values()
+                        ]
+                        masterValues = [Vector(vec) for vec in zip(*locationValues)]
+                        _, varIdx = storeBuilder.storeMasters(masterValues)
+                        compo.axisValuesVarIndex = varIdx
+
+                components.append(compo)
+
+            compositeGlyph = ot.VarCompositeGlyph(components)
+            variableComposites.append(compositeGlyph)
+
+        compoGlyphs = ot.VarCompositeGlyphs()
+        compoGlyphs.VarCompositeGlyph = variableComposites
+        varcSubtable.VarCompositeGlyphs = compoGlyphs
+
+        axisIndicesList = ot.AxisIndicesList()
+        axisIndicesList.Item = [list(k) for k in axisIndicesMapping.keys()]
+        varcSubtable.AxisIndicesList = axisIndicesList
+
+        varcSubtable.MultiVarStore = storeBuilder.finish()
+
+        varcTable = newTable("VARC")
+        varcTable.table = varcSubtable
+        return varcTable
 
 
 def addLSB(glyfTable, metrics: dict[str, int]) -> dict[str, tuple[int, int]]:
@@ -439,7 +539,7 @@ def makeLocalAxisTags(axisDict, globalAxes):
     axisTags = {}
     for name in axisDict:
         # Sort axis names, to match current Fontra and RoboCJK behavior.
-        # TOD: This should be changed to something more controllable.
+        # TODO: This should be changed to something more controllable.
         if name in globalAxes:
             continue
         numNames = len(axisTags)
@@ -461,7 +561,7 @@ def filterDict(d, keys):
 
 def getLocationCoords(location, flags):
     coords = []
-    if flags & VarComponentFlags.AXES_HAVE_VARIATION:
+    if flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
         for tag, value in location.items():
             coords.append((fl2fi(value, 14), 0))
     return coords
@@ -512,3 +612,10 @@ async def asyncAny(aiterable):
         if item:
             return True
     return False
+
+
+def getGlyphInfoAttributes(glyphInfos, attrName):
+    return {
+        glyphName: getattr(glyphInfo, attrName)
+        for glyphName, glyphInfo in glyphInfos.items()
+    }
