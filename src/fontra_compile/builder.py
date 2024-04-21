@@ -181,7 +181,6 @@ class Builder:
         for d in deltas:
             d.toInt()
             ensureWordRange(d)
-        # supports = [mapDictKeys(s, axisTags) for s in supports]
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
 
@@ -549,50 +548,10 @@ def mapDictKeys(d, mapping):
     return {mapping[k]: v for k, v in d.items()}
 
 
-def sortedDict(d):
-    return dict(sorted(d.items()))
-
-
-def filterDict(d, keys):
-    return {k: v for k, v in d.items() if k in keys}
-
-
-def getLocationCoords(location, flags):
-    coords = []
-    if flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
-        for tag, value in location.items():
-            coords.append((fl2fi(value, 14), 0))
-    return coords
-
-
 def ensureWordRange(d):
     for v in d.array:
         if not (-0x8000 <= v < 0x8000):
             raise ValueError("delta value out of range")
-
-
-def getTransformCoords(transform, flags):
-    # This is mostly taken from _g_l_y_f.py, would be nice if we could
-    # reuse that code somehow.
-    coords = []
-    if flags & (
-        VarComponentFlags.HAVE_TRANSLATE_X | VarComponentFlags.HAVE_TRANSLATE_Y
-    ):
-        coords.append((transform.translateX, transform.translateY))
-    if flags & VarComponentFlags.HAVE_ROTATION:
-        coords.append((fl2fi(transform.rotation / 180, 12), 0))
-    if flags & (VarComponentFlags.HAVE_SCALE_X | VarComponentFlags.HAVE_SCALE_Y):
-        coords.append((fl2fi(transform.scaleX, 10), fl2fi(transform.scaleY, 10)))
-    if flags & (VarComponentFlags.HAVE_SKEW_X | VarComponentFlags.HAVE_SKEW_Y):
-        coords.append(
-            (
-                fl2fi(transform.skewX / -180, 12),
-                fl2fi(transform.skewY / 180, 12),
-            )
-        )
-    if flags & (VarComponentFlags.HAVE_TCENTER_X | VarComponentFlags.HAVE_TCENTER_Y):
-        coords.append((transform.tCenterX, transform.tCenterY))
-    return coords
 
 
 def getComponentBaseNames(glyph):
