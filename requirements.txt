@@ -1,4 +1,6 @@
-fonttools==4.51.0
+# for now, use the VARC wip branch from https://github.com/fonttools/fonttools/pull/3395
+https://github.com/fonttools/fonttools.git@varc-table
+# fonttools==4.51.0
 fontmake==3.9.0
 git+https://github.com/googlefonts/fontra.git
 git+https://github.com/googlefonts/fontra-rcjk.git
