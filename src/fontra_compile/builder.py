@@ -23,6 +23,15 @@ from fontTools.varLib.models import (
 )
 from fontTools.varLib.multiVarStore import OnlineMultiVarStoreBuilder
 
+
+class InterpolationError(Exception):
+    pass
+
+
+class MissingBaseGlyphError(Exception):
+    pass
+
+
 # If a component transformation has variations in any of the following fields, the
 # component can not be a classic component, and should be compiled as a variable
 # component, even if there are no axis variations
@@ -167,7 +176,11 @@ class Builder:
                     glyphInfo = await self.prepareOneGlyph(glyphName)
                 except KeyboardInterrupt:
                     raise
-                except (ValueError, VariationModelError) as e:  # InterpolationError
+                except (
+                    InterpolationError,
+                    MissingBaseGlyphError,
+                    VariationModelError,
+                ) as e:
                     print("warning", glyphName, repr(e))  # TODO: use logging
 
             if glyphInfo is None:
@@ -248,14 +261,14 @@ class Builder:
 
         for sourceGlyph in sourceGlyphs:
             if len(sourceGlyph.components) != len(components):
-                raise ValueError(
+                raise InterpolationError(
                     f"components not compatible {glyph.name}: "
                     f"{len(sourceGlyph.components)} vs. {len(components)}"
                 )
 
             for compoInfo, compo in zip(components, sourceGlyph.components):
                 if compo.name != compoInfo.name:
-                    raise ValueError(
+                    raise InterpolationError(
                         f"components not compatible in {glyph.name}: "
                         f"{compo.name} vs. {compoInfo.name}"
                     )
@@ -331,7 +344,7 @@ class Builder:
     async def setupComponentBaseInfo(self, baseGlyphName: str) -> dict[str, Any]:
         baseGlyph = await self.getSourceGlyph(baseGlyphName, True)
         if baseGlyph is None:
-            raise ValueError(
+            raise MissingBaseGlyphError(
                 f"a required base glyph is not available: {baseGlyphName!r}"
             )
 
@@ -499,7 +512,7 @@ def prepareSourceCoordinates(
             firstSourcePath = sourceGlyph.path
         else:
             if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
-                raise ValueError(
+                raise InterpolationError(
                     f"contours for source {source.name} of {glyph.name} are not compatible"
                 )
         # phantom points
