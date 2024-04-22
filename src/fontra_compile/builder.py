@@ -330,6 +330,11 @@ class Builder:
 
     async def setupComponentBaseInfo(self, baseGlyphName: str) -> dict[str, Any]:
         baseGlyph = await self.getSourceGlyph(baseGlyphName, True)
+        if baseGlyph is None:
+            raise ValueError(
+                f"a required base glyph is not available: {baseGlyphName!r}"
+            )
+
         localAxisNames = {axis.name for axis in baseGlyph.axes}
 
         # To determine the `respondsToGlobalAxes` flag, we take this component and all
