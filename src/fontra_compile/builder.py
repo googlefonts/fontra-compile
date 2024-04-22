@@ -1,5 +1,4 @@
 from dataclasses import dataclass, field
-from types import SimpleNamespace
 from typing import Any
 
 from fontra.core.classes import VariableGlyph
@@ -46,6 +45,19 @@ class GlyphInfo:
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
     model: VariationModel | None = None
+
+
+@dataclass
+class ComponentInfo:
+    name: str
+    transform: dict[str, list[float]]
+    location: dict[str, list[float]]
+    localAxisNames: list
+    respondsToGlobalAxes: bool
+    baseAxisDict: dict
+    baseAxisTags: dict
+    isVariableComponent: bool = False
+    flags: int = 0
 
 
 class Builder:
@@ -199,7 +211,7 @@ class Builder:
             model=model,
         )
 
-    async def collectComponentInfo(self, glyph: VariableGlyph) -> list[SimpleNamespace]:
+    async def collectComponentInfo(self, glyph: VariableGlyph) -> list[ComponentInfo]:
         glyphSources = filterActiveSources(glyph.sources)
         sourceGlyphs = [glyph.layers[source.layerName].glyph for source in glyphSources]
 
@@ -215,7 +227,7 @@ class Builder:
         ]
 
         components = [
-            SimpleNamespace(
+            ComponentInfo(
                 name=compo.name,
                 transform={attrName: [] for attrName in VAR_TRANSFORM_MAPPING},
                 location={axisName: [] for axisName in axisNames},
