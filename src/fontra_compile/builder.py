@@ -454,6 +454,8 @@ class Builder:
                 components.append(compo)
 
             if self.glyphInfos[glyphName].glyph.numberOfContours:
+                # Add a component for the outline section, so we can effectively
+                # mix outlines and components. This is a special case in the spec.
                 compo = ot.VarComponent()
                 compo.glyphName = glyphName
                 components.append(compo)
