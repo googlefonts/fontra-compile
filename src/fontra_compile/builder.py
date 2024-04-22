@@ -284,6 +284,13 @@ class Builder:
         numSources = len(glyphSources)
 
         for compoInfo in components:
+            # Filter out unknown/unused axes
+            compoInfo.location = {
+                axisName: values
+                for axisName, values in compoInfo.location.items()
+                if values
+            }
+
             isVariableComponent = bool(compoInfo.location)
 
             flags = 0
@@ -303,13 +310,6 @@ class Builder:
                         flags |= VarComponentFlags.TRANSFORM_HAS_VARIATION
                         if attrName in VARCO_IF_VARYING:
                             isVariableComponent = True
-
-            # Filter out unknown/unused axes
-            compoInfo.location = {
-                axisName: values
-                for axisName, values in compoInfo.location.items()
-                if values
-            }
 
             axesAtDefault = []
             for axisName, values in compoInfo.location.items():
