@@ -203,11 +203,9 @@ class Builder:
 
         glyphSources = filterActiveSources(glyph.sources)
 
-        sourceCoordinates, locations, defaultGlyph = prepareSourceCoordinates(
+        sourceCoordinates, locations = prepareSourceCoordinates(
             glyph, glyphSources, defaultLocation, axisDict
         )
-
-        assert defaultGlyph is not None
 
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
@@ -219,11 +217,13 @@ class Builder:
             prepareGvarVariations(sourceCoordinates, model) if model is not None else []
         )
 
+        defaultSourceIndex = model.reverseMapping[0] if model is not None else 0
+        defaultGlyph = glyph.layers[glyphSources[defaultSourceIndex].layerName].glyph
+
         ttGlyphPen = TTGlyphPointPen(None)
         defaultGlyph.path.drawPoints(ttGlyphPen)
         ttGlyph = ttGlyphPen.glyph()
 
-        defaultSourceIndex = model.reverseMapping[0]
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
         return GlyphInfo(
@@ -498,17 +498,12 @@ def prepareSourceCoordinates(
 ):
     sourceCoordinates = []
     locations = []
-    defaultGlyph = None
     firstSourcePath = None
 
     for sourceIndex, source in enumerate(glyphSources):
         location = {**defaultLocation, **source.location}
         locations.append(normalizeLocation(location, axisDict))
         sourceGlyph = glyph.layers[source.layerName].glyph
-
-        if location == defaultLocation:
-            # This is the fefault glyph
-            defaultGlyph = sourceGlyph
 
         coordinates = GlyphCoordinates()
 
@@ -528,7 +523,7 @@ def prepareSourceCoordinates(
         coordinates.append((0, 0))
         sourceCoordinates.append(coordinates)
 
-    return sourceCoordinates, locations, defaultGlyph
+    return sourceCoordinates, locations
 
 
 def prepareGvarVariations(sourceCoordinates, model):
