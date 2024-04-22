@@ -151,20 +151,7 @@ class Builder:
 
         model = VariationModel(locations)  # XXX axis order!
 
-        numPoints = len(sourceCoordinates[0])
-        for coords in sourceCoordinates[1:]:
-            assert len(coords) == numPoints
-
-        deltas, supports = model.getDeltasAndSupports(sourceCoordinates)
-        assert len(supports) == len(deltas)
-
-        deltas.pop(0)  # pop the default
-        supports.pop(0)  # pop the default
-        for d in deltas:
-            d.toInt()
-            ensureWordRange(d)
-
-        variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
+        variations = prepareGvarVariations(sourceCoordinates, model)
 
         ttGlyphPen = TTGlyphPointPen(None)
         defaultGlyph.path.drawPoints(ttGlyphPen)
@@ -496,6 +483,23 @@ def prepareSourceCoordinates(
         sourceCoordinates.append(coordinates)
 
     return sourceCoordinates, locations, defaultGlyph
+
+
+def prepareGvarVariations(sourceCoordinates, model):
+    numPoints = len(sourceCoordinates[0])
+    for coords in sourceCoordinates[1:]:
+        assert len(coords) == numPoints
+
+    deltas, supports = model.getDeltasAndSupports(sourceCoordinates)
+    assert len(supports) == len(deltas)
+
+    deltas.pop(0)  # pop the default
+    supports.pop(0)  # pop the default
+    for d in deltas:
+        d.toInt()
+        ensureWordRange(d)
+
+    return [TupleVariation(s, d) for s, d in zip(supports, deltas)]
 
 
 def addLSB(glyfTable, metrics: dict[str, int]) -> dict[str, tuple[int, int]]:
