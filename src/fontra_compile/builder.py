@@ -138,44 +138,13 @@ class Builder:
         localAxisTags = makeLocalAxisTags(axisDict, self.globalAxisDict)
         axisTags = {**self.globalAxisTags, **localAxisTags}
 
-        locations = []
-        sourceCoordinates = []
-        defaultGlyph = None
-
         componentInfo = await self.collectComponentInfo(glyph)
-
-        firstSourcePath = None
 
         glyphSources = filterActiveSources(glyph.sources)
 
-        for sourceIndex, source in enumerate(glyphSources):
-            location = {**defaultLocation, **source.location}
-            locations.append(normalizeLocation(location, axisDict))
-            sourceGlyph = glyph.layers[source.layerName].glyph
-
-            if location == defaultLocation:
-                # This is the fefault glyph
-                defaultGlyph = sourceGlyph
-
-            coordinates = GlyphCoordinates()
-
-            assert isinstance(sourceGlyph.path, PackedPath)
-            coordinates.array.extend(
-                sourceGlyph.path.coordinates
-            )  # shortcut via ._a array
-            if firstSourcePath is None:
-                firstSourcePath = sourceGlyph.path
-            else:
-                if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
-                    raise ValueError(
-                        f"contours for source {source.name} of {glyphName} are not compatible"
-                    )
-            # phantom points
-            coordinates.append((0, 0))
-            coordinates.append((sourceGlyph.xAdvance, 0))
-            coordinates.append((0, 0))
-            coordinates.append((0, 0))
-            sourceCoordinates.append(coordinates)
+        sourceCoordinates, locations, defaultGlyph = prepareSourceCoordinates(
+            glyph, glyphSources, defaultLocation, axisDict
+        )
 
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
@@ -488,6 +457,44 @@ class Builder:
         varcTable = newTable("VARC")
         varcTable.table = varcSubtable
         return varcTable
+
+
+def prepareSourceCoordinates(
+    glyph: VariableGlyph, glyphSources, defaultLocation, axisDict
+):
+    sourceCoordinates = []
+    locations = []
+    defaultGlyph = None
+    firstSourcePath = None
+
+    for sourceIndex, source in enumerate(glyphSources):
+        location = {**defaultLocation, **source.location}
+        locations.append(normalizeLocation(location, axisDict))
+        sourceGlyph = glyph.layers[source.layerName].glyph
+
+        if location == defaultLocation:
+            # This is the fefault glyph
+            defaultGlyph = sourceGlyph
+
+        coordinates = GlyphCoordinates()
+
+        assert isinstance(sourceGlyph.path, PackedPath)
+        coordinates.array.extend(sourceGlyph.path.coordinates)  # shortcut via ._a array
+        if firstSourcePath is None:
+            firstSourcePath = sourceGlyph.path
+        else:
+            if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
+                raise ValueError(
+                    f"contours for source {source.name} of {glyph.name} are not compatible"
+                )
+        # phantom points
+        coordinates.append((0, 0))
+        coordinates.append((sourceGlyph.xAdvance, 0))
+        coordinates.append((0, 0))
+        coordinates.append((0, 0))
+        sourceCoordinates.append(coordinates)
+
+    return sourceCoordinates, locations, defaultGlyph
 
 
 def addLSB(glyfTable, metrics: dict[str, int]) -> dict[str, tuple[int, int]]:
