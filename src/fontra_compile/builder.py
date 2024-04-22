@@ -41,7 +41,7 @@ VARCO_IF_VARYING = {
 @dataclass
 class GlyphInfo:
     glyph: Glyph
-    xAdvance: int = 500
+    xAdvance: float = 500
     variations: list = field(default_factory=list)
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
@@ -75,7 +75,7 @@ class Builder:
         self.cachedSourceGlyphs: dict[str, VariableGlyph] = {}
         self.cachedComponentBaseInfo: dict = {}
 
-        self.glyphInfos: dict[str, Glyph] = {}
+        self.glyphInfos: dict[str, GlyphInfo] = {}
         self.cmap: dict[int, str] = {}
 
     async def build(self) -> TTFont:
@@ -117,7 +117,7 @@ class Builder:
 
             self.glyphInfos[glyphName] = glyphInfo
 
-    async def buildOneGlyph(self, glyphName: str) -> SimpleNamespace:
+    async def buildOneGlyph(self, glyphName: str) -> GlyphInfo:
         glyph = await self.getSourceGlyph(glyphName, False)
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
@@ -192,7 +192,7 @@ class Builder:
 
         return GlyphInfo(
             glyph=ttGlyph,
-            xAdvance=max(defaultGlyph.xAdvance, 0),
+            xAdvance=max(defaultGlyph.xAdvance or 0, 0),
             variations=variations,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
