@@ -196,9 +196,13 @@ class Builder:
 
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
-        model = VariationModel(locations)  # XXX axis order!
+        model = (
+            VariationModel(locations) if len(locations) >= 2 else None
+        )  # XXX axis order!
 
-        variations = prepareGvarVariations(sourceCoordinates, model)
+        variations = (
+            prepareGvarVariations(sourceCoordinates, model) if model is not None else []
+        )
 
         ttGlyphPen = TTGlyphPointPen(None)
         defaultGlyph.path.drawPoints(ttGlyphPen)
@@ -416,9 +420,19 @@ class Builder:
         for glyphName in varcSubtable.Coverage.glyphs:
             components = []
             model = self.glyphInfos[glyphName].model
-            storeBuilder.setModel(model)
+            if model is not None:
+                storeBuilder.setModel(model)
 
             for compoInfo in self.glyphInfos[glyphName].variableComponents:
+                if model is None:
+                    assert (
+                        not compoInfo.flags & VarComponentFlags.TRANSFORM_HAS_VARIATION
+                    )
+                    assert (
+                        not compoInfo.flags
+                        & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION
+                    )
+
                 compo = ot.VarComponent()
                 compo.flags = compoInfo.flags
                 compo.glyphName = compoInfo.name
