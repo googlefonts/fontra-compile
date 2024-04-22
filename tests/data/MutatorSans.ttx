@@ -63,12 +63,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.0"/>
-    <checkSumAdjustment value="0x6920f457"/>
+    <checkSumAdjustment value="0x754ed4a8"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Sun Apr 21 20:45:09 2024"/>
-    <modified value="Sun Apr 21 20:45:09 2024"/>
+    <created value="Mon Apr 22 07:01:35 2024"/>
+    <modified value="Mon Apr 22 07:01:35 2024"/>
     <xMin value="0"/>
     <yMin value="-130"/>
     <xMax value="559"/>
@@ -1587,6 +1587,9 @@
       <VarCompositeGlyph index="2">
         <VarComponent index="0">
           <glyphName value="O"/>
+        </VarComponent>
+        <VarComponent index="1">
+          <glyphName value="Q"/>
         </VarComponent>
       </VarCompositeGlyph>
       <VarCompositeGlyph index="3">

@@ -453,6 +453,11 @@ class Builder:
 
                 components.append(compo)
 
+            if self.glyphInfos[glyphName].glyph.numberOfContours:
+                compo = ot.VarComponent()
+                compo.glyphName = glyphName
+                components.append(compo)
+
             compositeGlyph = ot.VarCompositeGlyph(components)
             variableComposites.append(compositeGlyph)
 
