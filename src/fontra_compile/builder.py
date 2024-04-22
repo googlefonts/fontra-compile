@@ -67,10 +67,11 @@ class ComponentInfo:
     baseAxisTags: dict
     isVariableComponent: bool = False
     flags: int = 0
+    defaultSourceIndex: int = 0
 
     def addTransformationToComponent(self, compo, storeBuilder):
         compo.transform = DecomposedTransform(
-            **{k: v[0] for k, v in self.transform.items()}
+            **{k: v[self.defaultSourceIndex] for k, v in self.transform.items()}
         )
 
         if not self.flags & VarComponentFlags.TRANSFORM_HAS_VARIATION:
@@ -99,6 +100,7 @@ class ComponentInfo:
             return
 
         assert self.location
+
         location = sorted(mapDictKeys(self.location, self.baseAxisTags).items())
         axisIndices = tuple(axisTags.index(k) for k, v in location)
         axisIndicesIndex = axisIndicesMapping.get(axisIndices)
@@ -107,7 +109,7 @@ class ComponentInfo:
             axisIndicesMapping[axisIndices] = axisIndicesIndex
 
         compo.axisIndicesIndex = axisIndicesIndex
-        compo.axisValues = [v[0] for k, v in location]
+        compo.axisValues = [v[self.defaultSourceIndex] for k, v in location]
 
         if self.flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
             locationValues = [[fl2fi(v, 14) for v in values] for k, values in location]
@@ -221,7 +223,8 @@ class Builder:
         defaultGlyph.path.drawPoints(ttGlyphPen)
         ttGlyph = ttGlyphPen.glyph()
 
-        componentInfo = await self.collectComponentInfo(glyph)
+        defaultSourceIndex = model.reverseMapping[0]
+        componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
         return GlyphInfo(
             glyph=ttGlyph,
@@ -232,7 +235,9 @@ class Builder:
             model=model,
         )
 
-    async def collectComponentInfo(self, glyph: VariableGlyph) -> list[ComponentInfo]:
+    async def collectComponentInfo(
+        self, glyph: VariableGlyph, defaultSourceIndex: int
+    ) -> list[ComponentInfo]:
         glyphSources = filterActiveSources(glyph.sources)
         sourceGlyphs = [glyph.layers[source.layerName].glyph for source in glyphSources]
 
@@ -253,6 +258,7 @@ class Builder:
                 transform={attrName: [] for attrName in VAR_TRANSFORM_MAPPING},
                 location={axisName: [] for axisName in axisNames},
                 **await self.getComponentBaseInfo(compo.name),
+                defaultSourceIndex=defaultSourceIndex,
             )
             for compo, axisNames in zip(
                 firstSourceGlyph.components, allComponentAxisNames
