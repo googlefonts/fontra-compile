@@ -145,6 +145,8 @@ class Builder:
             glyph, glyphSources, defaultLocation, axisDict
         )
 
+        assert defaultGlyph is not None
+
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
         model = VariationModel(locations)  # XXX axis order!
@@ -163,8 +165,6 @@ class Builder:
             ensureWordRange(d)
 
         variations = [TupleVariation(s, d) for s, d in zip(supports, deltas)]
-
-        assert defaultGlyph is not None
 
         ttGlyphPen = TTGlyphPointPen(None)
         defaultGlyph.path.drawPoints(ttGlyphPen)
