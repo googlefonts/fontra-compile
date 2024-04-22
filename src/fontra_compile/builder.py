@@ -131,14 +131,13 @@ class Builder:
 
     async def prepareOneGlyph(self, glyphName: str) -> GlyphInfo:
         glyph = await self.getSourceGlyph(glyphName, False)
+
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
         defaultLocation = {**self.defaultLocation, **localDefaultLocation}
         axisDict = {**self.globalAxisDict, **localAxisDict}
         localAxisTags = makeLocalAxisTags(axisDict, self.globalAxisDict)
         axisTags = {**self.globalAxisTags, **localAxisTags}
-
-        componentInfo = await self.collectComponentInfo(glyph)
 
         glyphSources = filterActiveSources(glyph.sources)
 
@@ -170,6 +169,8 @@ class Builder:
         ttGlyphPen = TTGlyphPointPen(None)
         defaultGlyph.path.drawPoints(ttGlyphPen)
         ttGlyph = ttGlyphPen.glyph()
+
+        componentInfo = await self.collectComponentInfo(glyph)
 
         return GlyphInfo(
             glyph=ttGlyph,
