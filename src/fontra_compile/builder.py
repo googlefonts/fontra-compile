@@ -59,6 +59,53 @@ class ComponentInfo:
     isVariableComponent: bool = False
     flags: int = 0
 
+    def addTransformationToComponent(self, compo, storeBuilder):
+        compo.transform = DecomposedTransform(
+            **{k: v[0] for k, v in self.transform.items()}
+        )
+
+        if not self.flags & VarComponentFlags.TRANSFORM_HAS_VARIATION:
+            return
+
+        transformValues = [
+            [
+                fl2fi(
+                    v / fieldMappingValues.scale,
+                    fieldMappingValues.fractionalBits,
+                )
+                for v in self.transform[fieldName]
+            ]
+            for fieldName, fieldMappingValues in VAR_TRANSFORM_MAPPING.items()
+            if fieldMappingValues.flag & self.flags
+        ]
+
+        masterValues = [Vector(vec) for vec in zip(*transformValues)]
+        assert masterValues
+
+        _, varIdx = storeBuilder.storeMasters(masterValues)
+        compo.transformVarIndex = varIdx
+
+    def addLocationToComponent(self, compo, axisIndicesMapping, axisTags, storeBuilder):
+        if not self.flags & VarComponentFlags.HAVE_AXES:
+            return
+
+        assert self.location
+        location = sorted(mapDictKeys(self.location, self.baseAxisTags).items())
+        axisIndices = tuple(axisTags.index(k) for k, v in location)
+        axisIndicesIndex = axisIndicesMapping.get(axisIndices)
+        if axisIndicesIndex is None:
+            axisIndicesIndex = len(axisIndicesMapping)
+            axisIndicesMapping[axisIndices] = axisIndicesIndex
+
+        compo.axisIndicesIndex = axisIndicesIndex
+        compo.axisValues = [v[0] for k, v in location]
+
+        if self.flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
+            locationValues = [[fl2fi(v, 14) for v in values] for k, values in location]
+            masterValues = [Vector(vec) for vec in zip(*locationValues)]
+            _, varIdx = storeBuilder.storeMasters(masterValues)
+            compo.axisValuesVarIndex = varIdx
+
 
 class Builder:
     def __init__(self, reader, requestedGlyphNames=None):
@@ -375,50 +422,11 @@ class Builder:
                 compo = ot.VarComponent()
                 compo.flags = compoInfo.flags
                 compo.glyphName = compoInfo.name
-                compo.transform = DecomposedTransform(
-                    **{k: v[0] for k, v in compoInfo.transform.items()}
+
+                compoInfo.addTransformationToComponent(compo, storeBuilder)
+                compoInfo.addLocationToComponent(
+                    compo, axisIndicesMapping, axisTags, storeBuilder
                 )
-
-                if compoInfo.flags & VarComponentFlags.TRANSFORM_HAS_VARIATION:
-                    transformValues = [
-                        [
-                            fl2fi(
-                                v / fieldMappingValues.scale,
-                                fieldMappingValues.fractionalBits,
-                            )
-                            for v in compoInfo.transform[fieldName]
-                        ]
-                        for fieldName, fieldMappingValues in VAR_TRANSFORM_MAPPING.items()
-                        if fieldMappingValues.flag & compoInfo.flags
-                    ]
-
-                    masterValues = [Vector(vec) for vec in zip(*transformValues)]
-                    assert masterValues
-
-                    _, varIdx = storeBuilder.storeMasters(masterValues)
-                    compo.transformVarIndex = varIdx
-
-                if compoInfo.flags & VarComponentFlags.HAVE_AXES:
-                    assert compoInfo.location
-                    location = sorted(
-                        mapDictKeys(compoInfo.location, compoInfo.baseAxisTags).items()
-                    )
-                    axisIndices = tuple(axisTags.index(k) for k, v in location)
-                    axisIndicesIndex = axisIndicesMapping.get(axisIndices)
-                    if axisIndicesIndex is None:
-                        axisIndicesIndex = len(axisIndicesMapping)
-                        axisIndicesMapping[axisIndices] = axisIndicesIndex
-
-                    compo.axisIndicesIndex = axisIndicesIndex
-                    compo.axisValues = [v[0] for k, v in location]
-
-                    if compoInfo.flags & VarComponentFlags.AXIS_VALUES_HAVE_VARIATION:
-                        locationValues = [
-                            [fl2fi(v, 14) for v in values] for k, values in location
-                        ]
-                        masterValues = [Vector(vec) for vec in zip(*locationValues)]
-                        _, varIdx = storeBuilder.storeMasters(masterValues)
-                        compo.axisValuesVarIndex = varIdx
 
                 components.append(compo)
 
