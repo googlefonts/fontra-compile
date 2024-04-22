@@ -91,7 +91,7 @@ class Builder:
         self.cmap: dict[int, str] = {}
 
     async def build(self) -> TTFont:
-        await self.buildGlyphs()
+        await self.prepareGlyphs()
         return await self.buildFont()
 
     async def getSourceGlyph(
@@ -108,7 +108,7 @@ class Builder:
         if glyphName not in self.glyphInfos and glyphName not in self.glyphOrder:
             self.glyphOrder.append(glyphName)
 
-    async def buildGlyphs(self) -> None:
+    async def prepareGlyphs(self) -> None:
         for glyphName in self.glyphOrder:
             codePoints = self.glyphMap.get(glyphName)
 
@@ -117,7 +117,7 @@ class Builder:
             if codePoints is not None:
                 self.cmap.update((codePoint, glyphName) for codePoint in codePoints)
                 try:
-                    glyphInfo = await self.buildOneGlyph(glyphName)
+                    glyphInfo = await self.prepareOneGlyph(glyphName)
                 except KeyboardInterrupt:
                     raise
                 except (ValueError, VariationModelError) as e:  # InterpolationError
@@ -129,7 +129,7 @@ class Builder:
 
             self.glyphInfos[glyphName] = glyphInfo
 
-    async def buildOneGlyph(self, glyphName: str) -> GlyphInfo:
+    async def prepareOneGlyph(self, glyphName: str) -> GlyphInfo:
         glyph = await self.getSourceGlyph(glyphName, False)
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
