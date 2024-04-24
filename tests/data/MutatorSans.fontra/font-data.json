@@ -7,15 +7,8 @@
 "copyright": "License same as MutatorMath. BSD 3-clause. [test-token: C]",
 "licenseDescription": "License same as MutatorMath. BSD 3-clause. [test-token: C]"
 },
+"axes": {
 "axes": [
-{
-"name": "width",
-"label": "width",
-"tag": "wdth",
-"minValue": 0,
-"defaultValue": 0,
-"maxValue": 1000
-},
 {
 "name": "weight",
 "label": "weight",
@@ -32,9 +25,52 @@
 900,
 850
 ]
+],
+"valueLabels": [
+{
+"name": "Light",
+"value": 100
+},
+{
+"name": "Regular",
+"value": 400,
+"elidable": true
+},
+{
+"name": "Medium",
+"value": 600
+},
+{
+"name": "Black",
+"value": 900
+}
+]
+},
+{
+"name": "width",
+"label": "width",
+"tag": "wdth",
+"minValue": 0,
+"defaultValue": 0,
+"maxValue": 1000,
+"valueLabels": [
+{
+"name": "Condensed",
+"value": 0
+},
+{
+"name": "Normal",
+"value": 400,
+"elidable": true
+},
+{
+"name": "Wide",
+"value": 1000
+}
 ]
 }
-],
+]
+},
 "sources": {},
 "customData": {}
 }

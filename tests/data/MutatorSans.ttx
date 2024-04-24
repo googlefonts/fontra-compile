@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.43">
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.51">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -63,12 +63,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.0"/>
-    <checkSumAdjustment value="0x709b9468"/>
+    <checkSumAdjustment value="0x12ac19c6"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Thu Nov 16 10:48:15 2023"/>
-    <modified value="Thu Nov 16 10:48:15 2023"/>
+    <created value="Wed Apr 24 15:26:59 2024"/>
+    <modified value="Wed Apr 24 15:26:59 2024"/>
     <xMin value="0"/>
     <yMin value="-95"/>
     <xMax value="559"/>
@@ -1502,10 +1502,10 @@
 
   <name>
     <namerecord nameID="256" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      width
+      weight
     </namerecord>
     <namerecord nameID="257" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      weight
+      width
     </namerecord>
     <namerecord nameID="258" platformID="1" platEncID="0" langID="0x0" unicode="True">
       V000
@@ -1514,10 +1514,10 @@
       V001
     </namerecord>
     <namerecord nameID="256" platformID="3" platEncID="1" langID="0x409">
-      width
+      weight
     </namerecord>
     <namerecord nameID="257" platformID="3" platEncID="1" langID="0x409">
-      weight
+      width
     </namerecord>
     <namerecord nameID="258" platformID="3" platEncID="1" langID="0x409">
       V000
@@ -1567,16 +1567,6 @@
 
   <fvar>
 
-    <!-- width -->
-    <Axis>
-      <AxisTag>wdth</AxisTag>
-      <Flags>0x0</Flags>
-      <MinValue>0.0</MinValue>
-      <DefaultValue>0.0</DefaultValue>
-      <MaxValue>1000.0</MaxValue>
-      <AxisNameID>256</AxisNameID>
-    </Axis>
-
     <!-- weight -->
     <Axis>
       <AxisTag>wght</AxisTag>
@@ -1584,6 +1574,16 @@
       <MinValue>100.0</MinValue>
       <DefaultValue>100.0</DefaultValue>
       <MaxValue>900.0</MaxValue>
+      <AxisNameID>256</AxisNameID>
+    </Axis>
+
+    <!-- width -->
+    <Axis>
+      <AxisTag>wdth</AxisTag>
+      <Flags>0x0</Flags>
+      <MinValue>0.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1000.0</MaxValue>
       <AxisNameID>257</AxisNameID>
     </Axis>
 
@@ -1659,8 +1659,8 @@
         <delta pt="19" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="63" y="0"/>
         <delta pt="2" x="-106" y="0"/>
@@ -1701,8 +1701,8 @@
         <delta pt="4" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-115" y="20"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="-244" y="0"/>
@@ -1730,8 +1730,8 @@
         <delta pt="5" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-20" y="0"/>
         <delta pt="1" x="-90" y="20"/>
         <delta pt="2" x="0" y="0"/>
@@ -1877,8 +1877,8 @@
         <delta pt="41" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="80" y="0"/>
         <delta pt="2" x="80" y="1"/>
@@ -1999,8 +1999,8 @@
         <delta pt="33" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-379" y="-29"/>
         <delta pt="1" x="-366" y="-15"/>
         <delta pt="2" x="-273" y="0"/>
@@ -2097,8 +2097,8 @@
         <delta pt="25" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="101" y="0"/>
         <delta pt="2" x="101" y="0"/>
@@ -2198,8 +2198,8 @@
         <delta pt="19" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-40" y="0"/>
         <delta pt="1" x="90" y="0"/>
         <delta pt="2" x="90" y="0"/>
@@ -2281,8 +2281,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="70" y="0"/>
         <delta pt="2" x="70" y="0"/>
@@ -2435,8 +2435,8 @@
         <delta pt="40" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="10"/>
         <delta pt="1" x="-500" y="10"/>
         <delta pt="2" x="-500" y="0"/>
@@ -2520,8 +2520,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="70" y="0"/>
         <delta pt="2" x="70" y="0"/>
@@ -2580,8 +2580,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-130" y="0"/>
         <delta pt="1" x="-30" y="0"/>
         <delta pt="2" x="-30" y="0"/>
@@ -2624,8 +2624,8 @@
         <delta pt="7" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="70" y="0"/>
         <delta pt="2" x="70" y="0"/>
@@ -2696,8 +2696,8 @@
         <delta pt="25" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="112" y="-30"/>
         <delta pt="1" x="112" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -2778,8 +2778,8 @@
         <delta pt="21" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-102" y="0"/>
         <delta pt="1" x="-146" y="0"/>
         <delta pt="2" x="-117" y="-39"/>
@@ -2852,8 +2852,8 @@
         <delta pt="19" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-164" y="0"/>
         <delta pt="1" x="-208" y="0"/>
         <delta pt="2" x="-232" y="-31"/>
@@ -2922,8 +2922,8 @@
         <delta pt="18" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="70" y="0"/>
         <delta pt="2" x="70" y="0"/>
@@ -2977,8 +2977,8 @@
         <delta pt="11" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="70" y="0"/>
         <delta pt="2" x="70" y="0"/>
@@ -3041,8 +3041,8 @@
         <delta pt="19" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="40" y="0"/>
         <delta pt="2" x="40" y="0"/>
@@ -3105,8 +3105,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="35" y="0"/>
         <delta pt="2" x="35" y="0"/>
@@ -3197,8 +3197,8 @@
         <delta pt="31" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-203" y="0"/>
         <delta pt="1" x="-77" y="0"/>
         <delta pt="2" x="-196" y="0"/>
@@ -3293,8 +3293,8 @@
         <delta pt="25" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="70" y="0"/>
         <delta pt="2" x="70" y="0"/>
@@ -3339,8 +3339,8 @@
         <delta pt="3" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="-281" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -3421,8 +3421,8 @@
         <delta pt="32" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-215" y="0"/>
         <delta pt="1" x="-128" y="0"/>
         <delta pt="2" x="-105" y="-94"/>
@@ -3532,8 +3532,8 @@
         <delta pt="32" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-215" y="0"/>
         <delta pt="1" x="-128" y="0"/>
         <delta pt="2" x="-105" y="-94"/>
@@ -3673,8 +3673,8 @@
         <delta pt="47" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-219" y="-34"/>
         <delta pt="1" x="-220" y="-79"/>
         <delta pt="2" x="-204" y="-68"/>
@@ -3725,8 +3725,8 @@
         <delta pt="47" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" min="0.0" value="0.63574" max="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="70" y="22"/>
         <delta pt="1" x="70" y="52"/>
         <delta pt="2" x="55" y="54"/>
@@ -3881,8 +3881,8 @@
         <delta pt="47" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-180" y="-34"/>
         <delta pt="1" x="-181" y="-100"/>
         <delta pt="2" x="-131" y="-76"/>
@@ -3933,8 +3933,8 @@
         <delta pt="47" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" min="0.0" value="0.63574" max="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-22" y="12"/>
         <delta pt="1" x="-22" y="46"/>
         <delta pt="2" x="-48" y="52"/>
@@ -3985,8 +3985,8 @@
         <delta pt="47" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" min="0.0" value="0.5691" max="1.0"/>
         <coord axis="wght" min="0.0" value="0.63574" max="1.0"/>
+        <coord axis="wdth" min="0.0" value="0.5691" max="1.0"/>
         <delta pt="0" x="11" y="3"/>
         <delta pt="1" x="11" y="-5"/>
         <delta pt="2" x="10" y="24"/>
@@ -4069,8 +4069,8 @@
         <delta pt="11" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-80" y="0"/>
         <delta pt="1" x="20" y="0"/>
         <delta pt="2" x="20" y="0"/>
@@ -4137,8 +4137,8 @@
         <delta pt="21" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-72" y="0"/>
         <delta pt="1" x="-153" y="0"/>
         <delta pt="2" x="-147" y="-41"/>
@@ -4203,8 +4203,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-182" y="0"/>
         <delta pt="1" x="-257" y="0"/>
         <delta pt="2" x="-132" y="0"/>
@@ -4271,8 +4271,8 @@
         <delta pt="19" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-352" y="0"/>
         <delta pt="1" x="-471" y="0"/>
         <delta pt="2" x="-287" y="0"/>
@@ -4339,8 +4339,8 @@
         <delta pt="17" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-173" y="0"/>
         <delta pt="1" x="-78" y="0"/>
         <delta pt="2" x="1" y="-1"/>
@@ -4401,8 +4401,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-100" y="0"/>
         <delta pt="1" x="-211" y="0"/>
         <delta pt="2" x="-84" y="20"/>
@@ -4461,8 +4461,8 @@
         <delta pt="15" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="30"/>
         <delta pt="1" x="140" y="-40"/>
         <delta pt="2" x="-90" y="-30"/>
@@ -4505,8 +4505,8 @@
         <delta pt="7" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="20" y="0"/>
         <delta pt="1" x="60" y="0"/>
         <delta pt="2" x="60" y="0"/>
@@ -4547,8 +4547,8 @@
         <delta pt="10" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="-25"/>
         <delta pt="1" x="0" y="-25"/>
         <delta pt="2" x="0" y="15"/>
@@ -4592,8 +4592,8 @@
         <delta pt="10" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-75" y="-38"/>
         <delta pt="1" x="-75" y="57"/>
         <delta pt="2" x="350" y="57"/>
@@ -4637,8 +4637,8 @@
         <delta pt="10" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="300" y="38"/>
         <delta pt="1" x="300" y="-57"/>
         <delta pt="2" x="0" y="-57"/>
@@ -4682,8 +4682,8 @@
         <delta pt="10" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="-30"/>
         <delta pt="1" x="0" y="-30"/>
         <delta pt="2" x="0" y="-70"/>
@@ -4717,8 +4717,8 @@
         <delta pt="5" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -4759,8 +4759,8 @@
         <delta pt="11" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="-30" y="-100"/>
         <delta pt="2" x="-30" y="-100"/>
@@ -4795,8 +4795,8 @@
         <delta pt="5" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="10" y="0"/>
         <delta pt="1" x="-95" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -4829,8 +4829,8 @@
         <delta pt="7" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -4843,8 +4843,8 @@
     </glyphVariations>
     <glyphVariations glyph="em">
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="-500" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -4911,8 +4911,8 @@
         <delta pt="7" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-30" y="0"/>
         <delta pt="1" x="-30" y="0"/>
         <delta pt="2" x="-30" y="-100"/>
@@ -4943,8 +4943,8 @@
         <delta pt="5" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="1"/>
         <delta pt="1" x="20" y="1"/>
         <delta pt="2" x="0" y="0"/>
@@ -4977,8 +4977,8 @@
         <delta pt="7" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="-60" y="0"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="-60" y="0"/>
@@ -5009,8 +5009,8 @@
         <delta pt="5" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="100"/>
         <delta pt="1" x="0" y="100"/>
         <delta pt="2" x="0" y="0"/>
@@ -5037,8 +5037,8 @@
         <delta pt="4" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="2"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="-60" y="0"/>
@@ -5066,8 +5066,8 @@
         <delta pt="5" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="0" y="0"/>
@@ -5092,8 +5092,8 @@
         <delta pt="3" x="0" y="0"/>
       </tuple>
       <tuple>
-        <coord axis="wdth" value="1.0"/>
         <coord axis="wght" value="1.0"/>
+        <coord axis="wdth" value="1.0"/>
         <delta pt="0" x="0" y="0"/>
         <delta pt="1" x="0" y="0"/>
         <delta pt="2" x="0" y="0"/>
