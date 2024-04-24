@@ -1,3 +1,4 @@
+import itertools
 import os
 import pathlib
 import subprocess
@@ -10,6 +11,7 @@ from fontra.backends import newFileSystemBackend
 from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
 from fontra.workflow.actions import OutputActionProtocol, registerActionClass
+from fontTools.designspaceLib import DesignSpaceDocument
 
 
 @registerActionClass("compile-fontmake")
@@ -46,6 +48,8 @@ class CompileFontMakeAction:
             async with aclosing(dsBackend):
                 await copyFont(self.input, dsBackend, continueOnError=continueOnError)
 
+            addInstances(designspacePath)
+
             command = [
                 "fontmake",
                 "-m",
@@ -62,3 +66,44 @@ class CompileFontMakeAction:
                     command.append(value)
 
             subprocess.run(command, check=True)
+
+
+def addInstances(designspacePath):
+    dsDoc = DesignSpaceDocument.fromfile(designspacePath)
+    if dsDoc.instances:
+        # There are instances
+        return
+
+    # We will make up instances based on the axis value labels
+
+    sortOrder = {
+        "wght": 0,
+        "wdth": 1,
+        "ital": 2,
+        "slnt": 3,
+    }
+    axes = sorted(dsDoc.axes, key=lambda axis: sortOrder.get(axis.tag, 100))
+
+    elidedFallbackName = dsDoc.elidedFallbackName or "Regular"
+    dsDoc.elidedFallbackName = elidedFallbackName
+
+    axisLabels = [
+        [
+            (axis.name, label.name if not label.elidable else None, label.userValue)
+            for label in axis.axisLabels
+        ]
+        for axis in axes
+    ]
+
+    for items in itertools.product(*axisLabels):
+        location = {name: value for (name, valueLabel, value) in items}
+        nameParts = [valueLabel for (name, valueLabel, value) in items if valueLabel]
+        if not nameParts:
+            nameParts = [elidedFallbackName]
+        styleName = " ".join(nameParts)
+
+        # TODO: styleName seems to be ignored, and the instance names are derived
+        # from axis labels elsewhere. Figure out where this happens.
+        dsDoc.addInstanceDescriptor(styleName=styleName, userLocation=location)
+
+    dsDoc.write(designspacePath)

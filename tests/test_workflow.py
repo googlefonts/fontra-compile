@@ -54,6 +54,9 @@ async def test_workflow(tmpdir, workflowSource, ttxFileName):
             outTTXPath = tmpdir / (outPath.stem + ".ttx")
             subprocess.run(["ttx", "-o", outTTXPath, outPath], check=True)
 
+            # # Write expected
+            # ttxPath.write_text(outTTXPath.read_text())
+
             ttxLines = cleanupTTX(outTTXPath.read_text())
             expectedLines = cleanupTTX(ttxPath.read_text())
             assert expectedLines == ttxLines, outTTXPath
