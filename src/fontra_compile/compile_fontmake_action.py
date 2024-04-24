@@ -101,6 +101,9 @@ def addInstances(designspacePath):
         if not nameParts:
             nameParts = [elidedFallbackName]
         styleName = " ".join(nameParts)
+
+        # TODO: styleName seems to be ignored, and the instance names are derived
+        # from axis labels elsewhere. Figure out where this happens.
         dsDoc.addInstanceDescriptor(styleName=styleName, userLocation=location)
 
     dsDoc.write(designspacePath)
