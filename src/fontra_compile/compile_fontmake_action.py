@@ -1,12 +1,12 @@
 import itertools
 import os
 import pathlib
-import subprocess
 import tempfile
 from contextlib import aclosing, asynccontextmanager
 from dataclasses import dataclass, field
 from typing import AsyncGenerator
 
+from fontmake.__main__ import main as fontmake_main
 from fontra.backends import newFileSystemBackend
 from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
@@ -50,8 +50,7 @@ class CompileFontMakeAction:
 
             addInstances(designspacePath)
 
-            command = [
-                "fontmake",
+            arguments = [
                 "-m",
                 os.fspath(designspacePath),
                 "-o",
@@ -61,11 +60,11 @@ class CompileFontMakeAction:
             ]
 
             for option, value in self.options.items():
-                command.append(f"--{option}")
+                arguments.append(f"--{option}")
                 if value:
-                    command.append(value)
+                    arguments.append(value)
 
-            subprocess.run(command, check=True)
+            fontmake_main(arguments)
 
 
 def addInstances(designspacePath):
