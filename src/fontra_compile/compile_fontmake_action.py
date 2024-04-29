@@ -24,7 +24,7 @@ class CompileFontMakeAction:
     @asynccontextmanager
     async def connect(
         self, input: ReadableFontBackend
-    ) -> AsyncGenerator[ReadableFontBackend | OutputActionProtocol, None]:
+    ) -> AsyncGenerator[OutputActionProtocol, None]:
         self.input = input
         try:
             yield self
