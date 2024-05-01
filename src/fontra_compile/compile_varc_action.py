@@ -5,12 +5,12 @@ from dataclasses import dataclass, field
 from typing import AsyncGenerator
 
 from fontra.core.protocols import ReadableFontBackend
-from fontra.workflow.actions import OutputActionProtocol, registerActionClass
+from fontra.workflow.actions import OutputActionProtocol, registerOutputAction
 
 from .builder import Builder
 
 
-@registerActionClass("compile-varc")
+@registerOutputAction("compile-varc")
 @dataclass(kw_only=True)
 class FontraCompileAction:
     destination: str
