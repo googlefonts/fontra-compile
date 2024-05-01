@@ -10,11 +10,11 @@ from fontmake.__main__ import main as fontmake_main
 from fontra.backends import newFileSystemBackend
 from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
-from fontra.workflow.actions import OutputActionProtocol, registerActionClass
+from fontra.workflow.actions import OutputActionProtocol, registerOutputAction
 from fontTools.designspaceLib import DesignSpaceDocument
 
 
-@registerActionClass("compile-fontmake")
+@registerOutputAction("compile-fontmake")
 @dataclass(kw_only=True)
 class CompileFontMakeAction:
     destination: str

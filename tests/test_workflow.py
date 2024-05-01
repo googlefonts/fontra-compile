@@ -14,9 +14,9 @@ testData = [
     (
         """
 steps:
-- action: input
+- input: fontra-read
   source: "tests/data/MutatorSans.fontra"
-- action: compile-varc
+- output: compile-varc
   destination: "output1.ttf"
 """,
         "MutatorSans.ttx",
@@ -24,9 +24,9 @@ steps:
     (
         """
 steps:
-- action: input
+- input: fontra-read
   source: "tests/data/MutatorSans.fontra"
-- action: compile-fontmake
+- output: compile-fontmake
   options:
     flatten-components:  # no value
   destination: "output-fontmake.ttf"
