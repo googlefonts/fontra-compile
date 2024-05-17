@@ -12,7 +12,7 @@ authors = [
 ]
 keywords = ["font", "fonts"]
 license = {text = "GNU General Public License v3"}
-dependencies = ["fontra", "fontmake"]
+dependencies = ["fontra", "fontmake", "fontc"]
 dynamic = ["version"]
 requires-python = ">=3.10"
 classifiers = [
@@ -39,6 +39,7 @@ fontra-compile = "fontra_compile.__main__:main"
 [project.entry-points."fontra.workflow.actions"]
 compile_varc = "fontra_compile.compile_varc_action"
 compile_fontmake = "fontra_compile.compile_fontmake_action"
+compile_fontc = "fontra_compile.compile_fontc_action"
 
 
 [tool.hatch.build.targets.wheel]
