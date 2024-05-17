@@ -12,6 +12,7 @@ from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
 from fontra.workflow.actions import OutputActionProtocol, registerOutputAction
 from fontTools.designspaceLib import DesignSpaceDocument
+from fontTools.ufoLib import UFOReaderWriter
 
 
 @registerOutputAction("compile-fontmake")
@@ -49,22 +50,27 @@ class CompileFontMakeAction:
                 await copyFont(self.input, dsBackend, continueOnError=continueOnError)
 
             addInstances(designspacePath)
+            addGlyphOrder(designspacePath)
 
-            arguments = [
-                "-m",
-                os.fspath(designspacePath),
-                "-o",
-                "variable",
-                "--output-path",
-                os.fspath(outputFontPath),
-            ]
-
+            extraArguments = []
             for option, value in self.options.items():
-                arguments.append(f"--{option}")
+                extraArguments.append(f"--{option}")
                 if value:
-                    arguments.append(value)
+                    extraArguments.append(value)
 
-            fontmake_main(arguments)
+            self.compileFromDesignspace(designspacePath, outputFontPath, extraArguments)
+
+    def compileFromDesignspace(self, designspacePath, outputFontPath, extraArguments):
+        arguments = [
+            "-m",
+            os.fspath(designspacePath),
+            "-o",
+            "variable",
+            "--output-path",
+            os.fspath(outputFontPath),
+        ]
+
+        fontmake_main(arguments + extraArguments)
 
 
 def addInstances(designspacePath):
@@ -94,6 +100,8 @@ def addInstances(designspacePath):
         for axis in axes
     ]
 
+    axesByName = {axis.name: axis for axis in dsDoc.axes}
+
     for items in itertools.product(*axisLabels):
         location = {name: value for (name, valueLabel, value) in items}
         nameParts = [valueLabel for (name, valueLabel, value) in items if valueLabel]
@@ -103,6 +111,24 @@ def addInstances(designspacePath):
 
         # TODO: styleName seems to be ignored, and the instance names are derived
         # from axis labels elsewhere. Figure out where this happens.
-        dsDoc.addInstanceDescriptor(styleName=styleName, userLocation=location)
+        location = mapLocationForward(location, axesByName)
+        dsDoc.addInstanceDescriptor(
+            familyName="Testing", styleName=styleName, location=location
+        )
 
     dsDoc.write(designspacePath)
+
+
+def mapLocationForward(location, axes):
+    return {name: axes[name].map_forward(value) for name, value in location.items()}
+
+
+def addGlyphOrder(designspacePath):
+    dsDoc = DesignSpaceDocument.fromfile(designspacePath)
+    defaultSource = dsDoc.findDefault()
+    ufo = UFOReaderWriter(defaultSource.path)
+    lib = ufo.readLib()
+    if "public.glyphOrder" not in lib:
+        glyphSet = ufo.getGlyphSet()
+        lib["public.glyphOrder"] = sorted(glyphSet.keys())
+        ufo.writeLib(lib)
