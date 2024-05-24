@@ -33,6 +33,16 @@ steps:
 """,
         "MutatorSans-fontmake.ttx",
     ),
+    (
+        """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
+- output: compile-fontc
+  destination: "output-fontc.ttf"
+""",
+        "MutatorSans-fontc.ttx",
+    ),
 ]
 
 
