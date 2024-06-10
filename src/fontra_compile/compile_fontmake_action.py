@@ -20,6 +20,7 @@ from fontTools.ufoLib import UFOReaderWriter
 class CompileFontMakeAction:
     destination: str
     options: dict[str, str] = field(default_factory=dict)
+    setOverlapSimpleFlag: bool = False
     input: ReadableFontBackend | None = field(init=False, default=None)
 
     @asynccontextmanager
@@ -45,6 +46,10 @@ class CompileFontMakeAction:
             designspacePath = tmpDir / "temp.designspace"
 
             dsBackend = newFileSystemBackend(designspacePath)
+
+            if self.setOverlapSimpleFlag:
+                assert hasattr(dsBackend, "setOverlapSimpleFlag")
+                dsBackend.setOverlapSimpleFlag = True
 
             async with aclosing(dsBackend):
                 await copyFont(self.input, dsBackend, continueOnError=continueOnError)
