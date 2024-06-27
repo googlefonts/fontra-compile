@@ -2,9 +2,9 @@ import itertools
 import os
 import pathlib
 import tempfile
-from contextlib import aclosing, asynccontextmanager
+from contextlib import aclosing, asynccontextmanager, nullcontext
 from dataclasses import dataclass, field
-from typing import AsyncGenerator
+from typing import AsyncGenerator, ContextManager
 
 from fontmake.__main__ import main as fontmake_main
 from fontra.backends import newFileSystemBackend
@@ -21,6 +21,7 @@ class CompileFontMakeAction:
     destination: str
     options: dict[str, str] = field(default_factory=dict)
     setOverlapSimpleFlag: bool = False
+    ufoTempDir: str | None = None
     input: ReadableFontBackend | None = field(init=False, default=None)
 
     @asynccontextmanager
@@ -40,7 +41,14 @@ class CompileFontMakeAction:
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
 
-        with tempfile.TemporaryDirectory() as tmpDirName:
+        tempDirContext: ContextManager
+
+        if self.ufoTempDir:
+            tempDirContext = nullcontext(enter_result=self.ufoTempDir)
+        else:
+            tempDirContext = tempfile.TemporaryDirectory()
+
+        with tempDirContext as tmpDirName:
             tmpDir = pathlib.Path(tmpDirName)
 
             designspacePath = tmpDir / "temp.designspace"

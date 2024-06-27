@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.51">
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.53">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -67,10 +67,10 @@
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Fri May 17 19:40:47 2024"/>
-    <modified value="Fri May 17 19:40:47 2024"/>
+    <created value="Thu Jun 27 04:57:21 2024"/>
+    <modified value="Thu Jun 27 04:57:21 2024"/>
     <xMin value="0"/>
-    <yMin value="-250"/>
+    <yMin value="-200"/>
     <xMax value="559"/>
     <yMax value="800"/>
     <macStyle value="00000000 00000000"/>
@@ -82,8 +82,8 @@
 
   <hhea>
     <tableVersion value="0x00010000"/>
-    <ascent value="950"/>
-    <descent value="-250"/>
+    <ascent value="1000"/>
+    <descent value="-200"/>
     <lineGap value="0"/>
     <advanceWidthMax value="750"/>
     <minLeftSideBearing value="0"/>
@@ -158,15 +158,15 @@
     <fsSelection value="00000000 01000000"/>
     <usFirstCharIndex value="32"/>
     <usLastCharIndex value="57345"/>
-    <sTypoAscender value="750"/>
-    <sTypoDescender value="-250"/>
+    <sTypoAscender value="800"/>
+    <sTypoDescender value="-200"/>
     <sTypoLineGap value="200"/>
-    <usWinAscent value="950"/>
-    <usWinDescent value="250"/>
+    <usWinAscent value="1000"/>
+    <usWinDescent value="200"/>
     <ulCodePageRange1 value="00000000 00000000 00000000 00000001"/>
     <ulCodePageRange2 value="00000000 00000000 00000000 00000000"/>
     <sxHeight value="500"/>
-    <sCapHeight value="750"/>
+    <sCapHeight value="700"/>
     <usDefaultChar value="0"/>
     <usBreakChar value="32"/>
     <usMaxContext value="0"/>
@@ -394,18 +394,18 @@
     <!-- The xMin, yMin, xMax and yMax values
          will be recalculated by the compiler. -->
 
-    <TTGlyph name=".notdef" xMin="50" yMin="-250" xMax="450" yMax="750">
+    <TTGlyph name=".notdef" xMin="50" yMin="-200" xMax="450" yMax="800">
       <contour>
-        <pt x="50" y="-250" on="1"/>
-        <pt x="50" y="750" on="1"/>
-        <pt x="450" y="750" on="1"/>
-        <pt x="450" y="-250" on="1"/>
+        <pt x="50" y="-200" on="1"/>
+        <pt x="50" y="800" on="1"/>
+        <pt x="450" y="800" on="1"/>
+        <pt x="450" y="-200" on="1"/>
       </contour>
       <contour>
-        <pt x="100" y="-200" on="1"/>
-        <pt x="400" y="-200" on="1"/>
-        <pt x="400" y="700" on="1"/>
-        <pt x="100" y="700" on="1"/>
+        <pt x="100" y="-150" on="1"/>
+        <pt x="400" y="-150" on="1"/>
+        <pt x="400" y="750" on="1"/>
+        <pt x="100" y="750" on="1"/>
       </contour>
       <instructions/>
     </TTGlyph>
@@ -1922,87 +1922,6 @@
       <Map glyph="varcotest2" outer="0" inner="0"/>
     </AdvWidthMap>
   </HVAR>
-
-  <MVAR>
-    <Version value="0x00010000"/>
-    <Reserved value="0"/>
-    <ValueRecordSize value="8"/>
-    <!-- ValueRecordCount=5 -->
-    <VarStore Format="1">
-      <Format value="1"/>
-      <VarRegionList>
-        <!-- RegionAxisCount=2 -->
-        <!-- RegionCount=3 -->
-        <Region index="0">
-          <VarRegionAxis index="0">
-            <StartCoord value="0.0"/>
-            <PeakCoord value="1.0"/>
-            <EndCoord value="1.0"/>
-          </VarRegionAxis>
-          <VarRegionAxis index="1">
-            <StartCoord value="0.0"/>
-            <PeakCoord value="0.0"/>
-            <EndCoord value="0.0"/>
-          </VarRegionAxis>
-        </Region>
-        <Region index="1">
-          <VarRegionAxis index="0">
-            <StartCoord value="0.0"/>
-            <PeakCoord value="0.0"/>
-            <EndCoord value="0.0"/>
-          </VarRegionAxis>
-          <VarRegionAxis index="1">
-            <StartCoord value="0.0"/>
-            <PeakCoord value="1.0"/>
-            <EndCoord value="1.0"/>
-          </VarRegionAxis>
-        </Region>
-        <Region index="2">
-          <VarRegionAxis index="0">
-            <StartCoord value="0.0"/>
-            <PeakCoord value="1.0"/>
-            <EndCoord value="1.0"/>
-          </VarRegionAxis>
-          <VarRegionAxis index="1">
-            <StartCoord value="0.0"/>
-            <PeakCoord value="1.0"/>
-            <EndCoord value="1.0"/>
-          </VarRegionAxis>
-        </Region>
-      </VarRegionList>
-      <!-- VarDataCount=1 -->
-      <VarData index="0">
-        <!-- ItemCount=2 -->
-        <NumShorts value="0"/>
-        <!-- VarRegionCount=3 -->
-        <VarRegionIndex index="0" value="0"/>
-        <VarRegionIndex index="1" value="1"/>
-        <VarRegionIndex index="2" value="2"/>
-        <Item index="0" value="[-50, -50, 50]"/>
-        <Item index="1" value="[50, 50, -50]"/>
-      </VarData>
-    </VarStore>
-    <ValueRecord index="0">
-      <ValueTag value="cpht"/>
-      <VarIdx value="0"/>
-    </ValueRecord>
-    <ValueRecord index="1">
-      <ValueTag value="hasc"/>
-      <VarIdx value="1"/>
-    </ValueRecord>
-    <ValueRecord index="2">
-      <ValueTag value="hcla"/>
-      <VarIdx value="1"/>
-    </ValueRecord>
-    <ValueRecord index="3">
-      <ValueTag value="hcld"/>
-      <VarIdx value="0"/>
-    </ValueRecord>
-    <ValueRecord index="4">
-      <ValueTag value="hdsc"/>
-      <VarIdx value="1"/>
-    </ValueRecord>
-  </MVAR>
 
   <STAT>
     <Version value="0x00010002"/>
