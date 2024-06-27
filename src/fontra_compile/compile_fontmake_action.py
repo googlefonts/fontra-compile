@@ -4,7 +4,7 @@ import pathlib
 import tempfile
 from contextlib import aclosing, asynccontextmanager, nullcontext
 from dataclasses import dataclass, field
-from typing import AsyncGenerator
+from typing import AsyncGenerator, ContextManager
 
 from fontmake.__main__ import main as fontmake_main
 from fontra.backends import newFileSystemBackend
@@ -40,6 +40,8 @@ class CompileFontMakeAction:
         assert self.input is not None
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
+
+        tempDirContext: ContextManager
 
         if self.ufoTempDir:
             tempDirContext = nullcontext(enter_result=self.ufoTempDir)
