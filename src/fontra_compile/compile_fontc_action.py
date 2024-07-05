@@ -11,9 +11,7 @@ from .compile_fontmake_action import CompileFontMakeAction
 @dataclass(kw_only=True)
 class CompileFontCAction(CompileFontMakeAction):
 
-    def compileFromDesignspace(
-        self, designspacePath, outputFontPath, isVariable, extraArguments
-    ):
+    def compileFromDesignspace(self, designspacePath, outputFontPath, extraArguments):
         arguments = [
             "fontc",
             "--output-file",

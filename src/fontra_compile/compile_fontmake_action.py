@@ -76,13 +76,10 @@ class CompileFontMakeAction:
                 if value:
                     extraArguments.append(value)
 
-            self.compileFromDesignspace(
-                sourcePath, outputFontPath, isVariable, extraArguments
-            )
+            self.compileFromDesignspace(sourcePath, outputFontPath, extraArguments)
 
-    def compileFromDesignspace(
-        self, sourcePath, outputFontPath, isVariable, extraArguments
-    ):
+    def compileFromDesignspace(self, sourcePath, outputFontPath, extraArguments):
+        isVariable = sourcePath.suffix == ".designspace"
         outputType = (
             ("variable-cff2" if isVariable else "otf")
             if outputFontPath.suffix.lower() != ".ttf"
