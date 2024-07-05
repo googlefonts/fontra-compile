@@ -83,6 +83,18 @@ steps:
 """,
         "MutatorSans-fontc.ttx",
     ),
+    (
+        """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
+- filter: subset-axes
+  axisNames: []
+- output: compile-fontc
+  destination: "output-fontc.ttf"
+""",
+        "MutatorSans-fontc-static.ttx",
+    ),
 ]
 
 
