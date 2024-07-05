@@ -7,7 +7,7 @@ from dataclasses import dataclass, field
 from typing import AsyncGenerator, ContextManager
 
 from fontmake.__main__ import main as fontmake_main
-from fontra.backends import newFileSystemBackend
+from fontra.backends import getFileSystemBackend, newFileSystemBackend
 from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
 from fontra.workflow.actions import OutputActionProtocol, registerOutputAction
@@ -41,6 +41,9 @@ class CompileFontMakeAction:
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
 
+        axes = await self.input.getAxes()
+        isVariable = bool(axes.axes)
+
         tempDirContext: ContextManager
 
         if self.ufoTempDir:
@@ -51,9 +54,10 @@ class CompileFontMakeAction:
         with tempDirContext as tmpDirName:
             tmpDir = pathlib.Path(tmpDirName)
 
-            designspacePath = tmpDir / "temp.designspace"
+            fileName = "temp." + ("designspace" if isVariable else "ufo")
+            sourcePath = tmpDir / fileName
 
-            dsBackend = newFileSystemBackend(designspacePath)
+            dsBackend = newFileSystemBackend(sourcePath)
 
             if self.setOverlapSimpleFlag:
                 assert hasattr(dsBackend, "setOverlapSimpleFlag")
@@ -62,8 +66,9 @@ class CompileFontMakeAction:
             async with aclosing(dsBackend):
                 await copyFont(self.input, dsBackend, continueOnError=continueOnError)
 
-            addInstances(designspacePath)
-            addGlyphOrder(designspacePath)
+            if isVariable:
+                addInstances(sourcePath)
+            addGlyphOrder(sourcePath)
 
             extraArguments = []
             for option, value in self.options.items():
@@ -71,14 +76,23 @@ class CompileFontMakeAction:
                 if value:
                     extraArguments.append(value)
 
-            self.compileFromDesignspace(designspacePath, outputFontPath, extraArguments)
+            self.compileFromDesignspace(
+                sourcePath, outputFontPath, isVariable, extraArguments
+            )
 
-    def compileFromDesignspace(self, designspacePath, outputFontPath, extraArguments):
+    def compileFromDesignspace(
+        self, sourcePath, outputFontPath, isVariable, extraArguments
+    ):
+        outputType = (
+            ("variable-cff2" if isVariable else "otf")
+            if outputFontPath.suffix.lower() != ".ttf"
+            else ("variable" if isVariable else "ttf")
+        )
         arguments = [
-            "-m",
-            os.fspath(designspacePath),
+            "-u" if sourcePath.suffix == ".ufo" else "-m",
+            os.fspath(sourcePath),
             "-o",
-            "variable",
+            outputType,
             "--output-path",
             os.fspath(outputFontPath),
         ]
@@ -137,7 +151,8 @@ def mapLocationForward(location, axes):
 
 
 def addGlyphOrder(designspacePath):
-    dsDoc = DesignSpaceDocument.fromfile(designspacePath)
+    backend = getFileSystemBackend(designspacePath)
+    dsDoc = backend.dsDoc
     defaultSource = dsDoc.findDefault()
     ufo = UFOReaderWriter(defaultSource.path)
     lib = ufo.readLib()

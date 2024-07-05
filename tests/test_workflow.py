@@ -38,6 +38,46 @@ steps:
 steps:
 - input: fontra-read
   source: "tests/data/MutatorSans.fontra"
+- output: compile-fontmake
+  options:
+    flatten-components:  # no value
+  destination: "output-fontmake.otf"
+""",
+        "MutatorSans-fontmake-cff2.ttx",
+    ),
+    (
+        """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
+- filter: subset-axes
+  axisNames: []
+- output: compile-fontmake
+  options:
+    flatten-components:  # no value
+  destination: "output-fontmake-static.ttf"
+""",
+        "MutatorSans-fontmake-static.ttx",
+    ),
+    (
+        """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
+- filter: subset-axes
+  axisNames: []
+- output: compile-fontmake
+  options:
+    flatten-components:  # no value
+  destination: "output-fontmake-static.otf"
+""",
+        "MutatorSans-fontmake-static-cff.ttx",
+    ),
+    (
+        """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
 - output: compile-fontc
   destination: "output-fontc.ttf"
 """,
