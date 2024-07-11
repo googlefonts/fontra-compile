@@ -91,7 +91,7 @@ steps:
 - filter: subset-axes
   axisNames: []
 - output: compile-fontc
-  destination: "output-fontc.ttf"
+  destination: "output-fontc-static.ttf"
 """,
         "MutatorSans-fontc-static.ttx",
     ),

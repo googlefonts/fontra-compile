@@ -4,56 +4,56 @@
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
     <GlyphID id="0" name=".notdef"/>
-    <GlyphID id="1" name="A"/>
-    <GlyphID id="2" name="Aacute"/>
-    <GlyphID id="3" name="Adieresis"/>
-    <GlyphID id="4" name="B"/>
-    <GlyphID id="5" name="C"/>
-    <GlyphID id="6" name="D"/>
-    <GlyphID id="7" name="E"/>
-    <GlyphID id="8" name="F"/>
-    <GlyphID id="9" name="G"/>
-    <GlyphID id="10" name="H"/>
-    <GlyphID id="11" name="I"/>
-    <GlyphID id="12" name="I.narrow"/>
-    <GlyphID id="13" name="IJ"/>
-    <GlyphID id="14" name="J"/>
-    <GlyphID id="15" name="J.narrow"/>
-    <GlyphID id="16" name="K"/>
-    <GlyphID id="17" name="L"/>
-    <GlyphID id="18" name="M"/>
-    <GlyphID id="19" name="N"/>
-    <GlyphID id="20" name="O"/>
-    <GlyphID id="21" name="P"/>
-    <GlyphID id="22" name="Q"/>
-    <GlyphID id="23" name="R"/>
-    <GlyphID id="24" name="S"/>
-    <GlyphID id="25" name="S.closed"/>
-    <GlyphID id="26" name="T"/>
-    <GlyphID id="27" name="U"/>
-    <GlyphID id="28" name="V"/>
-    <GlyphID id="29" name="W"/>
-    <GlyphID id="30" name="X"/>
-    <GlyphID id="31" name="Y"/>
-    <GlyphID id="32" name="Z"/>
-    <GlyphID id="33" name="acute"/>
-    <GlyphID id="34" name="arrowdown"/>
-    <GlyphID id="35" name="arrowleft"/>
-    <GlyphID id="36" name="arrowright"/>
-    <GlyphID id="37" name="arrowup"/>
-    <GlyphID id="38" name="colon"/>
-    <GlyphID id="39" name="comma"/>
-    <GlyphID id="40" name="dieresis"/>
-    <GlyphID id="41" name="dot"/>
-    <GlyphID id="42" name="em"/>
-    <GlyphID id="43" name="nlitest"/>
-    <GlyphID id="44" name="period"/>
-    <GlyphID id="45" name="quotedblbase"/>
-    <GlyphID id="46" name="quotedblleft"/>
-    <GlyphID id="47" name="quotedblright"/>
-    <GlyphID id="48" name="quotesinglbase"/>
-    <GlyphID id="49" name="semicolon"/>
-    <GlyphID id="50" name="space"/>
+    <GlyphID id="1" name="space"/>
+    <GlyphID id="2" name="A"/>
+    <GlyphID id="3" name="Aacute"/>
+    <GlyphID id="4" name="Adieresis"/>
+    <GlyphID id="5" name="B"/>
+    <GlyphID id="6" name="C"/>
+    <GlyphID id="7" name="D"/>
+    <GlyphID id="8" name="E"/>
+    <GlyphID id="9" name="F"/>
+    <GlyphID id="10" name="G"/>
+    <GlyphID id="11" name="H"/>
+    <GlyphID id="12" name="I"/>
+    <GlyphID id="13" name="I.narrow"/>
+    <GlyphID id="14" name="IJ"/>
+    <GlyphID id="15" name="J"/>
+    <GlyphID id="16" name="J.narrow"/>
+    <GlyphID id="17" name="K"/>
+    <GlyphID id="18" name="L"/>
+    <GlyphID id="19" name="M"/>
+    <GlyphID id="20" name="N"/>
+    <GlyphID id="21" name="O"/>
+    <GlyphID id="22" name="P"/>
+    <GlyphID id="23" name="Q"/>
+    <GlyphID id="24" name="R"/>
+    <GlyphID id="25" name="S"/>
+    <GlyphID id="26" name="S.closed"/>
+    <GlyphID id="27" name="T"/>
+    <GlyphID id="28" name="U"/>
+    <GlyphID id="29" name="V"/>
+    <GlyphID id="30" name="W"/>
+    <GlyphID id="31" name="X"/>
+    <GlyphID id="32" name="Y"/>
+    <GlyphID id="33" name="Z"/>
+    <GlyphID id="34" name="acute"/>
+    <GlyphID id="35" name="arrowdown"/>
+    <GlyphID id="36" name="arrowleft"/>
+    <GlyphID id="37" name="arrowright"/>
+    <GlyphID id="38" name="arrowup"/>
+    <GlyphID id="39" name="colon"/>
+    <GlyphID id="40" name="comma"/>
+    <GlyphID id="41" name="dieresis"/>
+    <GlyphID id="42" name="dot"/>
+    <GlyphID id="43" name="em"/>
+    <GlyphID id="44" name="nlitest"/>
+    <GlyphID id="45" name="period"/>
+    <GlyphID id="46" name="quotedblbase"/>
+    <GlyphID id="47" name="quotedblleft"/>
+    <GlyphID id="48" name="quotedblright"/>
+    <GlyphID id="49" name="quotesinglbase"/>
+    <GlyphID id="50" name="semicolon"/>
     <GlyphID id="51" name="varcotest1"/>
     <GlyphID id="52" name="varcotest2"/>
   </GlyphOrder>
@@ -66,8 +66,8 @@
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Fri Jul  5 13:51:52 2024"/>
-    <modified value="Fri Jul  5 13:51:52 2024"/>
+    <created value="Thu Jul 11 09:05:40 2024"/>
+    <modified value="Thu Jul 11 09:05:40 2024"/>
     <xMin value="0"/>
     <yMin value="-250"/>
     <xMax value="559"/>
