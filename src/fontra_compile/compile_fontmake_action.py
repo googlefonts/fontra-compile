@@ -147,6 +147,14 @@ def mapLocationForward(location, axes):
     return {name: axes[name].map_forward(value) for name, value in location.items()}
 
 
+_firstFourGIDS = {gn: gid for gid, gn in enumerate([".notdef", ".null", "CR", "space"])}
+_nextGID = len(_firstFourGIDS)
+
+
+def _glyphSortKeyFunc(glyphName):
+    return (_firstFourGIDS.get(glyphName, _nextGID), glyphName)
+
+
 def addGlyphOrder(designspacePath):
     backend = getFileSystemBackend(designspacePath)
     dsDoc = backend.dsDoc
@@ -155,5 +163,5 @@ def addGlyphOrder(designspacePath):
     lib = ufo.readLib()
     if "public.glyphOrder" not in lib:
         glyphSet = ufo.getGlyphSet()
-        lib["public.glyphOrder"] = sorted(glyphSet.keys())
+        lib["public.glyphOrder"] = sorted(glyphSet.keys(), key=_glyphSortKeyFunc)
         ufo.writeLib(lib)
