@@ -203,9 +203,8 @@ class Builder:
 
         glyphSources = filterActiveSources(glyph.sources)
 
-        sourceCoordinates, locations = prepareSourceCoordinates(
-            glyph, glyphSources, defaultLocation, axisDict
-        )
+        locations = prepareLocations(glyph, glyphSources, defaultLocation, axisDict)
+        sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
 
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
@@ -493,16 +492,18 @@ class Builder:
         return varcTable
 
 
-def prepareSourceCoordinates(
-    glyph: VariableGlyph, glyphSources, defaultLocation, axisDict
-):
+def prepareLocations(glyph, glyphSources, defaultLocation, axisDict):
+    return [
+        normalizeLocation({**defaultLocation, **source.location}, axisDict)
+        for source in glyphSources
+    ]
+
+
+def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
     sourceCoordinates = []
-    locations = []
     firstSourcePath = None
 
     for source in glyphSources:
-        location = {**defaultLocation, **source.location}
-        locations.append(normalizeLocation(location, axisDict))
         sourceGlyph = glyph.layers[source.layerName].glyph
 
         coordinates = GlyphCoordinates()
@@ -523,7 +524,7 @@ def prepareSourceCoordinates(
         coordinates.append((0, 0))
         sourceCoordinates.append(coordinates)
 
-    return sourceCoordinates, locations
+    return sourceCoordinates
 
 
 def prepareGvarVariations(sourceCoordinates, model):
