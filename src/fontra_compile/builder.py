@@ -76,6 +76,9 @@ class GlyphInfo:
             assert self.charString is not None
         else:
             assert self.charString is None
+            assert self.charStringSupports is None
+            if self.gvarVariations is None:
+                self.gvarVariations = []
 
 
 @dataclass
@@ -224,7 +227,7 @@ class Builder:
                     xAdvance=500,
                     leftSideBearing=0,  # TODO: fix when actual notdef shape is added
                     xAdvanceVariations=[500],
-                    gvarVariations=None if self.buildCFF2 else [],
+                    gvarVariations=None,
                 )
 
             self.glyphInfos[glyphName] = glyphInfo
