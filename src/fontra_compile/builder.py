@@ -50,6 +50,7 @@ VARCO_IF_VARYING = {
 @dataclass
 class GlyphInfo:
     ttGlyph: TTGlyph
+    hasContours: bool
     xAdvance: float = 500
     xAdvanceVariations: list = field(default_factory=list)
     variations: list = field(default_factory=list)
@@ -190,7 +191,9 @@ class Builder:
             if glyphInfo is None:
                 # make .notdef based on UPM
                 glyphInfo = GlyphInfo(
-                    ttGlyph=TTGlyphPointPen(None).glyph(), xAdvance=500
+                    ttGlyph=TTGlyphPointPen(None).glyph(),
+                    hasContours=False,
+                    xAdvance=500,
                 )
 
             self.glyphInfos[glyphName] = glyphInfo
@@ -232,6 +235,7 @@ class Builder:
 
         return GlyphInfo(
             ttGlyph=ttGlyph,
+            hasContours=not defaultGlyph.path.isEmpty(),
             xAdvance=max(defaultGlyph.xAdvance or 0, 0),
             xAdvanceVariations=xAdvanceVariations,
             variations=variations,
@@ -473,7 +477,7 @@ class Builder:
 
                 components.append(compo)
 
-            if self.glyphInfos[glyphName].ttGlyph.numberOfContours:
+            if self.glyphInfos[glyphName].hasContours:
                 # Add a component for the outline section, so we can effectively
                 # mix outlines and components. This is a special case in the spec.
                 compo = ot.VarComponent()
