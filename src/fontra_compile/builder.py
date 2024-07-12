@@ -474,33 +474,7 @@ class Builder:
                 self.glyphInfos, "charStringSupports"
             )
 
-            vsindexMap = {}
-            for supports in charStringSupports.values():
-                if supports and supports not in vsindexMap:
-                    vsindexMap[supports] = len(vsindexMap)
-
-            for glyphName, charString in charStrings.items():
-                supports = charStringSupports.get(glyphName)
-                if supports is not None:
-                    assert "vsindex" not in charString.program
-                    vsindex = vsindexMap[supports]
-                    if vsindex != 0:
-                        charString.program[:0] = [vsindex, "vsindex"]
-
-            assert list(vsindexMap.values()) == list(range(len(vsindexMap)))
-
-            regionMap = {}
-            for supports in vsindexMap.keys():
-                for region in supports:
-                    if region not in regionMap:
-                        regionMap[region] = len(regionMap)
-            assert list(regionMap.values()) == list(range(len(regionMap)))
-            regionList = [dict(region) for region in regionMap.keys()]
-
-            varDataList = []
-            for supports in vsindexMap.keys():
-                varTupleIndexes = [regionMap[region] for region in supports]
-                varDataList.append(buildVarData(varTupleIndexes, None, False))
+            varDataList, regionList = prepareCFFVarData(charStrings, charStringSupports)
 
             builder.setupCFF2(charStrings)
             addCFFVarStore(builder.font, None, varDataList, regionList)
@@ -793,6 +767,38 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
         charString = pen.getCharString(var_model=model)
 
     return charString
+
+
+def prepareCFFVarData(charStrings, charStringSupports):
+    vsindexMap = {}
+    for supports in charStringSupports.values():
+        if supports and supports not in vsindexMap:
+            vsindexMap[supports] = len(vsindexMap)
+
+    for glyphName, charString in charStrings.items():
+        supports = charStringSupports.get(glyphName)
+        if supports is not None:
+            assert "vsindex" not in charString.program
+            vsindex = vsindexMap[supports]
+            if vsindex != 0:
+                charString.program[:0] = [vsindex, "vsindex"]
+
+    assert list(vsindexMap.values()) == list(range(len(vsindexMap)))
+
+    regionMap = {}
+    for supports in vsindexMap.keys():
+        for region in supports:
+            if region not in regionMap:
+                regionMap[region] = len(regionMap)
+    assert list(regionMap.values()) == list(range(len(regionMap)))
+    regionList = [dict(region) for region in regionMap.keys()]
+
+    varDataList = []
+    for supports in vsindexMap.keys():
+        varTupleIndexes = [regionMap[region] for region in supports]
+        varDataList.append(buildVarData(varTupleIndexes, None, False))
+
+    return varDataList, regionList
 
 
 def addLSB(
