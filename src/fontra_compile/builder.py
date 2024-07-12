@@ -57,7 +57,7 @@ class GlyphInfo:
     hasContours: bool
     xAdvance: float = 500
     xAdvanceVariations: list = field(default_factory=list)
-    variations: list = field(default_factory=list)
+    gvarVariations: list = field(default_factory=list)
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
     model: VariationModel | None = None
@@ -226,7 +226,7 @@ class Builder:
         xAdvanceVariations = prepareXAdvanceVariations(glyph, glyphSources)
 
         sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
-        variations = (
+        gvarVariations = (
             prepareGvarVariations(sourceCoordinates, model) if model is not None else []
         )
 
@@ -244,7 +244,7 @@ class Builder:
             hasContours=not defaultGlyph.path.isEmpty(),
             xAdvance=max(defaultGlyph.xAdvance or 0, 0),
             xAdvanceVariations=xAdvanceVariations,
-            variations=variations,
+            gvarVariations=gvarVariations,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
             model=model,
@@ -417,9 +417,9 @@ class Builder:
             if any(axis.map for axis in dsAxes):
                 builder.setupAvar(dsAxes)
 
-        variations = getGlyphInfoAttributes(self.glyphInfos, "variations")
-        if variations:
-            builder.setupGvar(variations)
+        gvarVariations = getGlyphInfoAttributes(self.glyphInfos, "gvarVariations")
+        if gvarVariations:
+            builder.setupGvar(gvarVariations)
 
         if any(glyphInfo.variableComponents for glyphInfo in self.glyphInfos.values()):
             varcTable = self.buildVARC(axisTags)
