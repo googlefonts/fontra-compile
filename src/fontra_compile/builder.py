@@ -204,7 +204,6 @@ class Builder:
         glyphSources = filterActiveSources(glyph.sources)
 
         locations = prepareLocations(glyphSources, defaultLocation, axisDict)
-        sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
 
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
@@ -212,6 +211,7 @@ class Builder:
             VariationModel(locations) if len(locations) >= 2 else None
         )  # XXX axis order!
 
+        sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
         variations = (
             prepareGvarVariations(sourceCoordinates, model) if model is not None else []
         )
