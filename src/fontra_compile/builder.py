@@ -473,9 +473,7 @@ class Builder:
             charStringSupports = getGlyphInfoAttributes(
                 self.glyphInfos, "charStringSupports"
             )
-
             varDataList, regionList = prepareCFFVarData(charStrings, charStringSupports)
-
             builder.setupCFF2(charStrings)
             addCFFVarStore(builder.font, None, varDataList, regionList)
 
