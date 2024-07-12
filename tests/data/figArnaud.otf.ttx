@@ -1,0 +1,2893 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ttFont sfntVersion="OTTO" ttLibVersion="4.53">
+
+  <GlyphOrder>
+    <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
+    <GlyphID id="0" name=".notdef"/>
+    <GlyphID id="1" name="DC_0030_00"/>
+    <GlyphID id="2" name="DC_0031_00"/>
+    <GlyphID id="3" name="DC_0032_00"/>
+    <GlyphID id="4" name="DC_0033_00"/>
+    <GlyphID id="5" name="DC_0034_00"/>
+    <GlyphID id="6" name="DC_0035_00"/>
+    <GlyphID id="7" name="DC_0036_00"/>
+    <GlyphID id="8" name="DC_0037_00"/>
+    <GlyphID id="9" name="DC_0038_00"/>
+    <GlyphID id="10" name="DC_0039_00"/>
+    <GlyphID id="11" name="eight_00"/>
+    <GlyphID id="12" name="five_00"/>
+    <GlyphID id="13" name="four_00"/>
+    <GlyphID id="14" name="nine_00"/>
+    <GlyphID id="15" name="one_00"/>
+    <GlyphID id="16" name="seven_00"/>
+    <GlyphID id="17" name="six_00"/>
+    <GlyphID id="18" name="three_00"/>
+    <GlyphID id="19" name="two_00"/>
+    <GlyphID id="20" name="uni0030"/>
+    <GlyphID id="21" name="uni0030.inf"/>
+    <GlyphID id="22" name="uni0030.of"/>
+    <GlyphID id="23" name="uni0030.sc"/>
+    <GlyphID id="24" name="uni0030.sup"/>
+    <GlyphID id="25" name="uni0030.tab"/>
+    <GlyphID id="26" name="uni0031"/>
+    <GlyphID id="27" name="uni0031.inf"/>
+    <GlyphID id="28" name="uni0031.of"/>
+    <GlyphID id="29" name="uni0031.sc"/>
+    <GlyphID id="30" name="uni0031.sup"/>
+    <GlyphID id="31" name="uni0031.tab"/>
+    <GlyphID id="32" name="uni0032"/>
+    <GlyphID id="33" name="uni0032.inf"/>
+    <GlyphID id="34" name="uni0032.of"/>
+    <GlyphID id="35" name="uni0032.sc"/>
+    <GlyphID id="36" name="uni0032.sup"/>
+    <GlyphID id="37" name="uni0032.tab"/>
+    <GlyphID id="38" name="uni0033"/>
+    <GlyphID id="39" name="uni0033.inf"/>
+    <GlyphID id="40" name="uni0033.of"/>
+    <GlyphID id="41" name="uni0033.sc"/>
+    <GlyphID id="42" name="uni0033.sup"/>
+    <GlyphID id="43" name="uni0033.tab"/>
+    <GlyphID id="44" name="uni0034"/>
+    <GlyphID id="45" name="uni0034.inf"/>
+    <GlyphID id="46" name="uni0034.of"/>
+    <GlyphID id="47" name="uni0034.sc"/>
+    <GlyphID id="48" name="uni0034.sup"/>
+    <GlyphID id="49" name="uni0034.tab"/>
+    <GlyphID id="50" name="uni0035"/>
+    <GlyphID id="51" name="uni0035.inf"/>
+    <GlyphID id="52" name="uni0035.of"/>
+    <GlyphID id="53" name="uni0035.sc"/>
+    <GlyphID id="54" name="uni0035.sup"/>
+    <GlyphID id="55" name="uni0035.tab"/>
+    <GlyphID id="56" name="uni0036"/>
+    <GlyphID id="57" name="uni0036.inf"/>
+    <GlyphID id="58" name="uni0036.of"/>
+    <GlyphID id="59" name="uni0036.sc"/>
+    <GlyphID id="60" name="uni0036.sup"/>
+    <GlyphID id="61" name="uni0036.tab"/>
+    <GlyphID id="62" name="uni0037"/>
+    <GlyphID id="63" name="uni0037.inf"/>
+    <GlyphID id="64" name="uni0037.of"/>
+    <GlyphID id="65" name="uni0037.sc"/>
+    <GlyphID id="66" name="uni0037.sup"/>
+    <GlyphID id="67" name="uni0037.tab"/>
+    <GlyphID id="68" name="uni0038"/>
+    <GlyphID id="69" name="uni0038.inf"/>
+    <GlyphID id="70" name="uni0038.of"/>
+    <GlyphID id="71" name="uni0038.sc"/>
+    <GlyphID id="72" name="uni0038.sup"/>
+    <GlyphID id="73" name="uni0038.tab"/>
+    <GlyphID id="74" name="uni0039"/>
+    <GlyphID id="75" name="uni0039.inf"/>
+    <GlyphID id="76" name="uni0039.of"/>
+    <GlyphID id="77" name="uni0039.sc"/>
+    <GlyphID id="78" name="uni0039.sup"/>
+    <GlyphID id="79" name="uni0039.tab"/>
+    <GlyphID id="80" name="zero_00"/>
+  </GlyphOrder>
+
+  <head>
+    <!-- Most of this table will be recalculated by the compiler -->
+    <tableVersion value="1.0"/>
+    <fontRevision value="1.0"/>
+    <checkSumAdjustment value="0x826aef4a"/>
+    <magicNumber value="0x5f0f3cf5"/>
+    <flags value="00000000 00000011"/>
+    <unitsPerEm value="1000"/>
+    <created value="Fri Jul 12 20:47:10 2024"/>
+    <modified value="Fri Jul 12 20:47:10 2024"/>
+    <xMin value="15"/>
+    <yMin value="-20"/>
+    <xMax value="327"/>
+    <yMax value="620"/>
+    <macStyle value="00000000 00000000"/>
+    <lowestRecPPEM value="3"/>
+    <fontDirectionHint value="2"/>
+    <indexToLocFormat value="0"/>
+    <glyphDataFormat value="1"/>
+  </head>
+
+  <hhea>
+    <tableVersion value="0x00010000"/>
+    <ascent value="0"/>
+    <descent value="0"/>
+    <lineGap value="0"/>
+    <advanceWidthMax value="1000"/>
+    <minLeftSideBearing value="15"/>
+    <minRightSideBearing value="25"/>
+    <xMaxExtent value="327"/>
+    <caretSlopeRise value="1"/>
+    <caretSlopeRun value="0"/>
+    <caretOffset value="0"/>
+    <reserved0 value="0"/>
+    <reserved1 value="0"/>
+    <reserved2 value="0"/>
+    <reserved3 value="0"/>
+    <metricDataFormat value="0"/>
+    <numberOfHMetrics value="81"/>
+  </hhea>
+
+  <maxp>
+    <tableVersion value="0x5000"/>
+    <numGlyphs value="81"/>
+  </maxp>
+
+  <OS_2>
+    <!-- The fields 'usFirstCharIndex' and 'usLastCharIndex'
+         will be recalculated by the compiler -->
+    <version value="3"/>
+    <xAvgCharWidth value="509"/>
+    <usWeightClass value="400"/>
+    <usWidthClass value="5"/>
+    <fsType value="00000000 00000100"/>
+    <ySubscriptXSize value="0"/>
+    <ySubscriptYSize value="0"/>
+    <ySubscriptXOffset value="0"/>
+    <ySubscriptYOffset value="0"/>
+    <ySuperscriptXSize value="0"/>
+    <ySuperscriptYSize value="0"/>
+    <ySuperscriptXOffset value="0"/>
+    <ySuperscriptYOffset value="0"/>
+    <yStrikeoutSize value="0"/>
+    <yStrikeoutPosition value="0"/>
+    <sFamilyClass value="0"/>
+    <panose>
+      <bFamilyType value="0"/>
+      <bSerifStyle value="0"/>
+      <bWeight value="0"/>
+      <bProportion value="0"/>
+      <bContrast value="0"/>
+      <bStrokeVariation value="0"/>
+      <bArmStyle value="0"/>
+      <bLetterForm value="0"/>
+      <bMidline value="0"/>
+      <bXHeight value="0"/>
+    </panose>
+    <ulUnicodeRange1 value="00000000 00000000 00000000 00000001"/>
+    <ulUnicodeRange2 value="00000000 00000000 00000000 00000000"/>
+    <ulUnicodeRange3 value="00000000 00000000 00000000 00000000"/>
+    <ulUnicodeRange4 value="00000000 00000000 00000000 00000000"/>
+    <achVendID value="????"/>
+    <fsSelection value="00000000 00000000"/>
+    <usFirstCharIndex value="48"/>
+    <usLastCharIndex value="57"/>
+    <sTypoAscender value="0"/>
+    <sTypoDescender value="0"/>
+    <sTypoLineGap value="0"/>
+    <usWinAscent value="0"/>
+    <usWinDescent value="0"/>
+    <ulCodePageRange1 value="00000000 00000000 00000000 00000000"/>
+    <ulCodePageRange2 value="00000000 00000000 00000000 00000000"/>
+    <sxHeight value="0"/>
+    <sCapHeight value="0"/>
+    <usDefaultChar value="0"/>
+    <usBreakChar value="32"/>
+    <usMaxContext value="0"/>
+  </OS_2>
+
+  <hmtx>
+    <mtx name=".notdef" width="500" lsb="0"/>
+    <mtx name="DC_0030_00" width="600" lsb="0"/>
+    <mtx name="DC_0031_00" width="1000" lsb="0"/>
+    <mtx name="DC_0032_00" width="530" lsb="0"/>
+    <mtx name="DC_0033_00" width="1000" lsb="0"/>
+    <mtx name="DC_0034_00" width="511" lsb="0"/>
+    <mtx name="DC_0035_00" width="1000" lsb="0"/>
+    <mtx name="DC_0036_00" width="1000" lsb="0"/>
+    <mtx name="DC_0037_00" width="1000" lsb="0"/>
+    <mtx name="DC_0038_00" width="999" lsb="0"/>
+    <mtx name="DC_0039_00" width="1000" lsb="0"/>
+    <mtx name="eight_00" width="342" lsb="35"/>
+    <mtx name="five_00" width="296" lsb="20"/>
+    <mtx name="four_00" width="337" lsb="15"/>
+    <mtx name="nine_00" width="314" lsb="35"/>
+    <mtx name="one_00" width="229" lsb="30"/>
+    <mtx name="seven_00" width="312" lsb="30"/>
+    <mtx name="six_00" width="314" lsb="35"/>
+    <mtx name="three_00" width="303" lsb="25"/>
+    <mtx name="two_00" width="335" lsb="25"/>
+    <mtx name="uni0030" width="600" lsb="0"/>
+    <mtx name="uni0030.inf" width="465" lsb="0"/>
+    <mtx name="uni0030.of" width="580" lsb="0"/>
+    <mtx name="uni0030.sc" width="574" lsb="0"/>
+    <mtx name="uni0030.sup" width="465" lsb="0"/>
+    <mtx name="uni0030.tab" width="600" lsb="0"/>
+    <mtx name="uni0031" width="350" lsb="0"/>
+    <mtx name="uni0031.inf" width="300" lsb="0"/>
+    <mtx name="uni0031.of" width="350" lsb="0"/>
+    <mtx name="uni0031.sc" width="350" lsb="0"/>
+    <mtx name="uni0031.sup" width="300" lsb="0"/>
+    <mtx name="uni0031.tab" width="600" lsb="0"/>
+    <mtx name="uni0032" width="500" lsb="0"/>
+    <mtx name="uni0032.inf" width="405" lsb="0"/>
+    <mtx name="uni0032.of" width="470" lsb="0"/>
+    <mtx name="uni0032.sc" width="470" lsb="0"/>
+    <mtx name="uni0032.sup" width="405" lsb="0"/>
+    <mtx name="uni0032.tab" width="600" lsb="0"/>
+    <mtx name="uni0033" width="515" lsb="0"/>
+    <mtx name="uni0033.inf" width="355" lsb="0"/>
+    <mtx name="uni0033.of" width="515" lsb="0"/>
+    <mtx name="uni0033.sc" width="455" lsb="0"/>
+    <mtx name="uni0033.sup" width="355" lsb="0"/>
+    <mtx name="uni0033.tab" width="600" lsb="0"/>
+    <mtx name="uni0034" width="555" lsb="0"/>
+    <mtx name="uni0034.inf" width="405" lsb="0"/>
+    <mtx name="uni0034.of" width="555" lsb="0"/>
+    <mtx name="uni0034.sc" width="505" lsb="0"/>
+    <mtx name="uni0034.sup" width="405" lsb="0"/>
+    <mtx name="uni0034.tab" width="600" lsb="0"/>
+    <mtx name="uni0035" width="515" lsb="0"/>
+    <mtx name="uni0035.inf" width="385" lsb="0"/>
+    <mtx name="uni0035.of" width="515" lsb="0"/>
+    <mtx name="uni0035.sc" width="450" lsb="0"/>
+    <mtx name="uni0035.sup" width="385" lsb="0"/>
+    <mtx name="uni0035.tab" width="600" lsb="0"/>
+    <mtx name="uni0036" width="550" lsb="0"/>
+    <mtx name="uni0036.inf" width="410" lsb="0"/>
+    <mtx name="uni0036.of" width="550" lsb="0"/>
+    <mtx name="uni0036.sc" width="491" lsb="0"/>
+    <mtx name="uni0036.sup" width="410" lsb="0"/>
+    <mtx name="uni0036.tab" width="600" lsb="0"/>
+    <mtx name="uni0037" width="530" lsb="0"/>
+    <mtx name="uni0037.inf" width="370" lsb="0"/>
+    <mtx name="uni0037.of" width="530" lsb="0"/>
+    <mtx name="uni0037.sc" width="445" lsb="0"/>
+    <mtx name="uni0037.sup" width="370" lsb="0"/>
+    <mtx name="uni0037.tab" width="600" lsb="0"/>
+    <mtx name="uni0038" width="555" lsb="0"/>
+    <mtx name="uni0038.inf" width="425" lsb="0"/>
+    <mtx name="uni0038.of" width="555" lsb="0"/>
+    <mtx name="uni0038.sc" width="485" lsb="0"/>
+    <mtx name="uni0038.sup" width="425" lsb="0"/>
+    <mtx name="uni0038.tab" width="600" lsb="0"/>
+    <mtx name="uni0039" width="550" lsb="0"/>
+    <mtx name="uni0039.inf" width="410" lsb="0"/>
+    <mtx name="uni0039.of" width="550" lsb="0"/>
+    <mtx name="uni0039.sc" width="490" lsb="0"/>
+    <mtx name="uni0039.sup" width="410" lsb="0"/>
+    <mtx name="uni0039.tab" width="600" lsb="0"/>
+    <mtx name="zero_00" width="362" lsb="35"/>
+  </hmtx>
+
+  <cmap>
+    <tableVersion version="0"/>
+    <cmap_format_4 platformID="0" platEncID="3" language="0">
+      <map code="0x30" name="uni0030.tab"/><!-- DIGIT ZERO -->
+      <map code="0x31" name="uni0031.tab"/><!-- DIGIT ONE -->
+      <map code="0x32" name="uni0032.tab"/><!-- DIGIT TWO -->
+      <map code="0x33" name="uni0033.tab"/><!-- DIGIT THREE -->
+      <map code="0x34" name="uni0034.tab"/><!-- DIGIT FOUR -->
+      <map code="0x35" name="uni0035.tab"/><!-- DIGIT FIVE -->
+      <map code="0x36" name="uni0036.tab"/><!-- DIGIT SIX -->
+      <map code="0x37" name="uni0037.tab"/><!-- DIGIT SEVEN -->
+      <map code="0x38" name="uni0038.tab"/><!-- DIGIT EIGHT -->
+      <map code="0x39" name="uni0039.tab"/><!-- DIGIT NINE -->
+    </cmap_format_4>
+    <cmap_format_4 platformID="3" platEncID="1" language="0">
+      <map code="0x30" name="uni0030.tab"/><!-- DIGIT ZERO -->
+      <map code="0x31" name="uni0031.tab"/><!-- DIGIT ONE -->
+      <map code="0x32" name="uni0032.tab"/><!-- DIGIT TWO -->
+      <map code="0x33" name="uni0033.tab"/><!-- DIGIT THREE -->
+      <map code="0x34" name="uni0034.tab"/><!-- DIGIT FOUR -->
+      <map code="0x35" name="uni0035.tab"/><!-- DIGIT FIVE -->
+      <map code="0x36" name="uni0036.tab"/><!-- DIGIT SIX -->
+      <map code="0x37" name="uni0037.tab"/><!-- DIGIT SEVEN -->
+      <map code="0x38" name="uni0038.tab"/><!-- DIGIT EIGHT -->
+      <map code="0x39" name="uni0039.tab"/><!-- DIGIT NINE -->
+    </cmap_format_4>
+  </cmap>
+
+  <name>
+    <namerecord nameID="256" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      wght
+    </namerecord>
+    <namerecord nameID="257" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V000
+    </namerecord>
+    <namerecord nameID="258" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V001
+    </namerecord>
+    <namerecord nameID="259" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V002
+    </namerecord>
+    <namerecord nameID="260" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V003
+    </namerecord>
+    <namerecord nameID="261" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V004
+    </namerecord>
+    <namerecord nameID="262" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V005
+    </namerecord>
+    <namerecord nameID="263" platformID="1" platEncID="0" langID="0x0" unicode="True">
+      V006
+    </namerecord>
+    <namerecord nameID="256" platformID="3" platEncID="1" langID="0x409">
+      wght
+    </namerecord>
+    <namerecord nameID="257" platformID="3" platEncID="1" langID="0x409">
+      V000
+    </namerecord>
+    <namerecord nameID="258" platformID="3" platEncID="1" langID="0x409">
+      V001
+    </namerecord>
+    <namerecord nameID="259" platformID="3" platEncID="1" langID="0x409">
+      V002
+    </namerecord>
+    <namerecord nameID="260" platformID="3" platEncID="1" langID="0x409">
+      V003
+    </namerecord>
+    <namerecord nameID="261" platformID="3" platEncID="1" langID="0x409">
+      V004
+    </namerecord>
+    <namerecord nameID="262" platformID="3" platEncID="1" langID="0x409">
+      V005
+    </namerecord>
+    <namerecord nameID="263" platformID="3" platEncID="1" langID="0x409">
+      V006
+    </namerecord>
+  </name>
+
+  <post>
+    <formatType value="2.0"/>
+    <italicAngle value="0.0"/>
+    <underlinePosition value="0"/>
+    <underlineThickness value="0"/>
+    <isFixedPitch value="0"/>
+    <minMemType42 value="0"/>
+    <maxMemType42 value="0"/>
+    <minMemType1 value="0"/>
+    <maxMemType1 value="0"/>
+    <psNames>
+      <!-- This file uses unique glyph names based on the information
+           found in the 'post' table. Since these names might not be unique,
+           we have to invent artificial names in case of clashes. In order to
+           be able to retain the original information, we need a name to
+           ps name mapping for those cases where they differ. That's what
+           you see below.
+            -->
+    </psNames>
+    <extraNames>
+      <!-- following are the name that are not taken from the standard Mac glyph order -->
+      <psName name="DC_0030_00"/>
+      <psName name="DC_0031_00"/>
+      <psName name="DC_0032_00"/>
+      <psName name="DC_0033_00"/>
+      <psName name="DC_0034_00"/>
+      <psName name="DC_0035_00"/>
+      <psName name="DC_0036_00"/>
+      <psName name="DC_0037_00"/>
+      <psName name="DC_0038_00"/>
+      <psName name="DC_0039_00"/>
+      <psName name="eight_00"/>
+      <psName name="five_00"/>
+      <psName name="four_00"/>
+      <psName name="nine_00"/>
+      <psName name="one_00"/>
+      <psName name="seven_00"/>
+      <psName name="six_00"/>
+      <psName name="three_00"/>
+      <psName name="two_00"/>
+      <psName name="uni0030"/>
+      <psName name="uni0030.inf"/>
+      <psName name="uni0030.of"/>
+      <psName name="uni0030.sc"/>
+      <psName name="uni0030.sup"/>
+      <psName name="uni0030.tab"/>
+      <psName name="uni0031"/>
+      <psName name="uni0031.inf"/>
+      <psName name="uni0031.of"/>
+      <psName name="uni0031.sc"/>
+      <psName name="uni0031.sup"/>
+      <psName name="uni0031.tab"/>
+      <psName name="uni0032"/>
+      <psName name="uni0032.inf"/>
+      <psName name="uni0032.of"/>
+      <psName name="uni0032.sc"/>
+      <psName name="uni0032.sup"/>
+      <psName name="uni0032.tab"/>
+      <psName name="uni0033"/>
+      <psName name="uni0033.inf"/>
+      <psName name="uni0033.of"/>
+      <psName name="uni0033.sc"/>
+      <psName name="uni0033.sup"/>
+      <psName name="uni0033.tab"/>
+      <psName name="uni0034"/>
+      <psName name="uni0034.inf"/>
+      <psName name="uni0034.of"/>
+      <psName name="uni0034.sc"/>
+      <psName name="uni0034.sup"/>
+      <psName name="uni0034.tab"/>
+      <psName name="uni0035"/>
+      <psName name="uni0035.inf"/>
+      <psName name="uni0035.of"/>
+      <psName name="uni0035.sc"/>
+      <psName name="uni0035.sup"/>
+      <psName name="uni0035.tab"/>
+      <psName name="uni0036"/>
+      <psName name="uni0036.inf"/>
+      <psName name="uni0036.of"/>
+      <psName name="uni0036.sc"/>
+      <psName name="uni0036.sup"/>
+      <psName name="uni0036.tab"/>
+      <psName name="uni0037"/>
+      <psName name="uni0037.inf"/>
+      <psName name="uni0037.of"/>
+      <psName name="uni0037.sc"/>
+      <psName name="uni0037.sup"/>
+      <psName name="uni0037.tab"/>
+      <psName name="uni0038"/>
+      <psName name="uni0038.inf"/>
+      <psName name="uni0038.of"/>
+      <psName name="uni0038.sc"/>
+      <psName name="uni0038.sup"/>
+      <psName name="uni0038.tab"/>
+      <psName name="uni0039"/>
+      <psName name="uni0039.inf"/>
+      <psName name="uni0039.of"/>
+      <psName name="uni0039.sc"/>
+      <psName name="uni0039.sup"/>
+      <psName name="uni0039.tab"/>
+      <psName name="zero_00"/>
+    </extraNames>
+  </post>
+
+  <CFF2>
+    <major value="2"/>
+    <minor value="0"/>
+    <CFFFont name="CFF2Font">
+      <FontMatrix value="0.001 0 0 0.001 0 0"/>
+      <FDArray>
+        <FontDict index="0">
+          <Private>
+            <BlueScale value="0.039625"/>
+            <BlueShift value="7"/>
+            <BlueFuzz value="1"/>
+            <LanguageGroup value="0"/>
+            <ExpansionFactor value="0.06"/>
+          </Private>
+        </FontDict>
+      </FDArray>
+      <CharStrings>
+        <CharString name=".notdef">
+        </CharString>
+        <CharString name="DC_0030_00">
+        </CharString>
+        <CharString name="DC_0031_00">
+        </CharString>
+        <CharString name="DC_0032_00">
+          1 vsindex
+        </CharString>
+        <CharString name="DC_0033_00">
+        </CharString>
+        <CharString name="DC_0034_00">
+          2 vsindex
+        </CharString>
+        <CharString name="DC_0035_00">
+        </CharString>
+        <CharString name="DC_0036_00">
+          3 vsindex
+        </CharString>
+        <CharString name="DC_0037_00">
+          4 vsindex
+        </CharString>
+        <CharString name="DC_0038_00">
+        </CharString>
+        <CharString name="DC_0039_00">
+          3 vsindex
+        </CharString>
+        <CharString name="eight_00">
+          307 162 260 190 0 1 2 blend
+          rmoveto
+          109 -48 59 -88 -83 -53 -66 -102 -110 50 -64 86 82 54 69 105 -5 -4 -45 -51 5 9 -65 -49 -61 -52 -49 -48 -3 -3 3 -2 5 4 47 50 -5 -5 63 50 62 54 48 46 3 0 -3 1 16 blend
+          vhcurveto
+          -30 -1 0 -170 0 28 2 blend
+          rmoveto
+          -94 -39 -54 -67 -67 -39 54 94 94 39 54 67 67 39 -54 -94 4 50 -46 27 -4 31 -64 43 -64 43 -46 27 4 -31 -4 -50 -4 -54 46 -25 4 -27 64 -45 64 -43 46 -27 -4 31 4 50 16 blend
+          vhcurveto
+          15 299 -10 175 0 -39 2 blend
+          rmoveto
+          97 -44 55 -77 -71 -50 -62 -90 -97 44 -54 77 72 49 61 90 -2 0 -39 -52 2 10 -61 -53 -59 -59 -41 -46 -1 -3 1 -7 3 0 39 47 -3 -5 61 58 59 64 41 41 1 -3 -1 8 16 blend
+          vhcurveto
+          -30 -1 0 -165 0 -34 2 blend
+          rmoveto
+          -81 -34 -48 -57 -57 -34 48 81 79 35 49 56 56 35 -49 -79 2 41 -40 23 -2 26 -60 37 -60 39 -40 21 2 -23 -2 -44 -1 -38 40 -24 1 -28 60 -36 60 -36 40 -24 -1 28 1 38 16 blend
+          vhcurveto
+        </CharString>
+        <CharString name="five_00">
+          53 343 30 10 -40 -46 2 blend
+          rmoveto
+          28 0 0 137 14 0 2 blend
+          rlineto
+          257 -28 26 46 0 -137 2 blend
+          vlineto
+          190 -25 240 141 0 -120 2 blend
+          rmoveto
+          25 -190 -25 0 120 -240 -141 0 -120 3 blend
+          vlineto
+          -33 -547 10 -20 32 143 2 blend
+          rmoveto
+          -26 26 35 -14 39 -20 -12 23 27 42 25 -12 -11 50 41 5 blend
+          hhcurveto
+          88 53 71 119 121 -51 69 -90 -24 -21 -6 -13 -22 65 44 50 46 5 17 -5 3 -6 -6 -49 -35 6 6 -66 -43 -50 -28 -44 -39 -11 -11 -20 -12 -31 -18 13 blend
+          hvcurveto
+          -16 -9 -84 1 blend
+          vlineto
+          7 30 16 3 17 25 2 16 1 54 10 15 1 60 9 5 blend
+          hhcurveto
+          75 40 -58 -107 -106 -39 -59 -71 -31 -29 11 21 -22 60 -13 50 -4 -8 34 8 67 7 70 -51 10 -7 35 -64 29 -48 -6 -40 1 11 0 21 1 -29 -14 13 blend
+          hvcurveto
+        </CharString>
+        <CharString name="four_00">
+          2 vsindex
+          212 20 0 -10 0 0 -50 220 1 blend
+          hmoveto
+          28 0 0 0 0 0 162 0 1 blend
+          600 -28 0 0 0 0 0 -162 0 1 blend
+          hlineto
+          -197 -455 -30 0 0 0 0 40 -180 0 100 -65 0 0 0 0 2 blend
+          rmoveto
+          297 25 -297 30 0 0 100 0 120 250 0 0 130 0 0 0 0 -30 0 0 -100 0 -120 -250 3 blend
+          hlineto
+          29 181 0 0 0 0 0 4 1 blend
+          hmoveto
+          188 412 -151 0 0 0 -10 -40 176 -341 -100 -64 0 200 -6 3 2 blend
+          rlineto
+          18 -20 341 0 -1 0 -200 6 -3 0 0 0 0 10 0 0 2 blend
+          vlineto
+          -197 -430 -30 0 0 0 0 40 -180 0 100 65 0 0 0 0 2 blend
+          rlineto
+        </CharString>
+        <CharString name="nine_00">
+          3 vsindex
+          279 414 0 280 201 0 -10 -25 2 blend
+          rmoveto
+          127 -39 71 -81 -80 -44 -68 -123 -107 39 -62 78 47 36 24 41 9 0 -2 0 0 -55 -54 0 12 25 0 -60 -54 0 -67 -51 0 -58 -52 0 -14 -26 0 6 -10 0 -1 -10 0 56 48 0 -11 -24 0 61 37 0 68 12 -3 45 13 0 22 -3 0 40 13 0 20 33 17 blend
+          vhcurveto
+          -6 -10 0 0 -101 0 10 15 2 blend
+          rlineto
+          -24 -99 -58 -119 -81 -94 21 -15 0 -4 -31 0 -31 11 -17 -52 25 15 3 76 0 -90 -3 10 -14 3 20 -21 98 -25 -10 -70 8 blend
+          rcurveline
+          117 136 66 172 126 0 86 92 0 -14 97 0 71 -12 0 -20 -91 0 24 -6 5 blend
+          vvcurveto
+          -30 12 0 -1 -155 0 0 -9 2 blend
+          rmoveto
+          -98 -30 -51 -62 -62 -30 51 98 102 32 59 60 60 32 -59 -102 0 3 40 0 -54 17 0 -13 25 0 -65 33 0 -65 37 0 -54 17 0 13 -22 0 -3 -43 0 -3 -47 0 56 -19 0 13 -29 0 63 -35 0 63 -31 0 56 -19 0 -13 32 0 3 44 16 blend
+          vhcurveto
+        </CharString>
+        <CharString name="one_00">
+          105 70 30 1 blend
+          hmoveto
+          29 0 161 1 blend
+          600 -24 0 -131 1 blend
+          hlineto
+          -18 -18 -10 0 -10 1 2 blend
+          -2 -2 -15 1 0 -10 -1 2 blend
+          hvcurveto
+          -29 -4 -70 -70 -1 -10 2 blend
+          rlineto
+          -20 75 0 -105 100 40 2 blend
+          vlineto
+        </CharString>
+        <CharString name="seven_00">
+          4 vsindex
+          30 0 0 40 10 1 blend
+          hmoveto
+          28 100 0 6 162 1 blend
+          hlineto
+          224 580 0 0 220 -40 0 0 0 -100 2 blend
+          rlineto
+          -28 -100 0 -6 -162 1 blend
+          hlineto
+          -211 -5 0 0 -214 7 0 -100 0 -25 2 blend
+          rmoveto
+          229 100 -50 220 15 1 blend
+          hlineto
+          10 5 0 50 0 140 0 100 0 25 2 blend
+          rlineto
+          20 -239 0 0 0 100 -100 0 -220 -155 2 blend
+          vlineto
+        </CharString>
+        <CharString name="six_00">
+          3 vsindex
+          35 196 0 40 -10 0 0 15 2 blend
+          rmoveto
+          -137 39 -71 81 80 44 68 133 117 -39 62 -78 -47 -33 -24 -41 -9 0 12 10 0 55 54 0 -12 -25 0 60 54 0 67 51 0 58 52 0 14 26 0 -16 0 0 -9 0 0 -56 -48 0 11 24 0 -61 -37 0 -68 -12 0 -48 -16 0 -22 3 0 -40 -13 0 -20 -33 17 blend
+          vhcurveto
+          6 10 0 0 101 0 -10 -15 2 blend
+          rlineto
+          24 99 55 99 81 94 -21 15 0 4 31 0 31 -11 20 55 -22 -15 17 -56 0 90 3 -10 14 -3 -20 21 -98 25 10 70 8 blend
+          rcurveline
+          -117 -136 -66 -152 -136 0 -86 -92 0 14 -97 0 -71 12 0 0 71 0 -14 16 5 blend
+          vvcurveto
+          30 -12 0 1 155 0 0 9 2 blend
+          rmoveto
+          108 30 51 62 62 30 -51 -108 -112 -32 -59 -60 -60 -32 59 112 0 -13 -50 0 54 -17 0 13 -25 0 65 -33 0 65 -37 0 54 -17 0 -13 22 0 13 53 0 13 57 0 -56 19 0 -13 29 0 -63 35 0 -63 31 0 -56 19 0 13 -32 0 -13 -54 16 blend
+          vhcurveto
+        </CharString>
+        <CharString name="three_00">
+          268 151 247 162 10 15 2 blend
+          rmoveto
+          99 -52 63 -82 -6 0 -36 -37 -4 0 -56 -55 4 blend
+          vhcurveto
+          -67 -20 66 -90 -60 0 -70 90 40 3 blend
+          hlineto
+          64 41 -57 -89 -86 -40 -49 -70 -33 -29 11 21 -22 55 -29 35 -19 4 36 6 57 -1 54 -41 14 -9 27 -54 31 -43 1 -44 11 13 -5 20 5 -23 -17 13 blend
+          hvcurveto
+          -19 -16 0 -57 0 -86 2 blend
+          rlineto
+          -27 27 35 -13 43 -19 -20 20 22 44 34 -14 -13 45 38 5 blend
+          hhcurveto
+          85 53 63 100 55 42 43 41 7 12 3 3 4 blend
+          hvcurveto
+          -18 308 -20 -30 1 blend
+          rmoveto
+          94 -48 59 -75 -37 -36 -16 -28 -26 1 1 -42 -40 9 14 -52 -39 -42 -30 -39 -38 -10 -12 -18 -16 -26 -24 9 blend
+          vhcurveto
+          19 -16 -4 57 -3 -87 2 blend
+          rlineto
+          21 18 30 14 29 26 2 39 13 25 -7 5 -5 49 -1 5 blend
+          hhcurveto
+          62 34 -45 -84 -79 -38 -61 -48 49 -27 41 -11 -11 25 1 53 4 50 -37 21 6 40 -53 14 8 blend
+          hvcurveto
+          -67 -15 68 -90 -40 0 -65 90 50 3 blend
+          hlineto
+          68 47 64 92 55 62 37 40 -5 -2 -5 2 4 blend
+          hvcurveto
+        </CharString>
+        <CharString name="two_00">
+          1 vsindex
+          43 25 10 60 0 66 147 0 90 0 0 125 2 blend
+          rmoveto
+          -10 -5 0 -60 0 -20 -140 0 -90 0 0 -25 2 blend
+          rlineto
+          -20 257 25 0 0 0 0 -100 0 0 200 223 137 0 90 0 0 125 3 blend
+          vlineto
+          -265 534 0 0 -200 -229 -154 0 -90 0 -36 -143 2 blend
+          rmoveto
+          16 -18 0 0 0 0 51 0 0 0 -1 -113 2 blend
+          rlineto
+          35 34 33 11 35 0 0 0 23 -12 0 0 0 27 -10 0 0 0 29 -9 0 0 0 14 4 0 0 0 50 -2 5 blend
+          hhcurveto
+          61 41 -44 -65 -65 -30 -49 -40 -76 0 0 0 51 -21 0 0 0 36 -15 0 0 0 -21 24 0 0 0 -27 33 0 0 0 -27 29 0 0 0 -37 6 0 0 0 -11 23 0 0 0 -36 6 0 0 0 17 32 9 blend
+          hvcurveto
+          -142 -268 32 0 132 251 0 0 0 -114 11 0 0 0 69 98 20 0 0 9 172 0 0 0 0 -10 0 0 0 94 -28 0 0 0 -76 -110 6 blend
+          rlineto
+          53 101 26 35 71 0 0 0 43 -1 0 0 0 -27 -30 -10 0 0 42 -4 0 0 0 24 10 -14 0 0 31 -7 5 blend
+          vvcurveto
+          80 -53 54 -78 -40 -41 -14 -39 -39 13 0 0 28 26 -9 0 0 -36 -35 1 0 0 20 21 0 0 0 -53 -46 -1 0 0 -49 -32 0 0 0 -30 -29 0 0 0 -14 -12 0 0 0 -22 -6 0 0 0 -26 -14 9 blend
+          vhcurveto
+        </CharString>
+        <CharString name="uni0030">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0030.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0030.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0030.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0030.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0030.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0031">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0031.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0031.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0031.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0031.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0031.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0032">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0032.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0032.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0032.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0032.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0032.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0033">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0033.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0033.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0033.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0033.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0033.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0034">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0034.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0034.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0034.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0034.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0034.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0035">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0035.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0035.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0035.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0035.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0035.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0036">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0036.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0036.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0036.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0036.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0036.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0037">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0037.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0037.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0037.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0037.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0037.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0038">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0038.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0038.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0038.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0038.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0038.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0039">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0039.inf">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0039.of">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0039.sc">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0039.sup">
+          5 vsindex
+        </CharString>
+        <CharString name="uni0039.tab">
+          5 vsindex
+        </CharString>
+        <CharString name="zero_00">
+          327 330 190 1 blend
+          301 rmoveto
+          211 -47 100 -99 -97 -49 -104 -207 -217 45 -96 101 97 49 105 208 -16 -2 -61 -37 16 2 -84 -63 -80 -64 -65 -36 -17 1 17 -1 21 8 63 40 -21 -8 82 60 80 65 65 35 17 -2 -17 2 16 blend
+          vhcurveto
+          -30 -2 -170 1 blend
+          -1 rmoveto
+          -193 -38 -94 -78 -78 -38 94 193 193 38 94 78 78 38 -94 -193 14 79 -59 28 -12 41 -84 42 -84 42 -59 28 12 -41 -14 -79 -14 -79 59 -28 12 -41 84 -42 84 -42 59 -28 -12 41 14 79 16 blend
+          vhcurveto
+        </CharString>
+      </CharStrings>
+      <VarStore Format="1">
+        <Format value="1"/>
+        <VarRegionList>
+          <!-- RegionAxisCount=8 -->
+          <!-- RegionCount=8 -->
+          <Region index="0">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="1">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="2">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="3">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="4">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="5">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="6">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+          </Region>
+          <Region index="7">
+            <VarRegionAxis index="0">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="1.0"/>
+              <EndCoord value="1.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="1">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="2">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="3">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="4">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="5">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="6">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+            <VarRegionAxis index="7">
+              <StartCoord value="0.0"/>
+              <PeakCoord value="0.0"/>
+              <EndCoord value="0.0"/>
+            </VarRegionAxis>
+          </Region>
+        </VarRegionList>
+        <!-- VarDataCount=6 -->
+        <VarData index="0">
+          <!-- ItemCount=0 -->
+          <NumShorts value="0"/>
+          <!-- VarRegionCount=2 -->
+          <VarRegionIndex index="0" value="0"/>
+          <VarRegionIndex index="1" value="1"/>
+        </VarData>
+        <VarData index="1">
+          <!-- ItemCount=0 -->
+          <NumShorts value="0"/>
+          <!-- VarRegionCount=5 -->
+          <VarRegionIndex index="0" value="0"/>
+          <VarRegionIndex index="1" value="1"/>
+          <VarRegionIndex index="2" value="2"/>
+          <VarRegionIndex index="3" value="3"/>
+          <VarRegionIndex index="4" value="4"/>
+        </VarData>
+        <VarData index="2">
+          <!-- ItemCount=0 -->
+          <NumShorts value="0"/>
+          <!-- VarRegionCount=7 -->
+          <VarRegionIndex index="0" value="0"/>
+          <VarRegionIndex index="1" value="1"/>
+          <VarRegionIndex index="2" value="2"/>
+          <VarRegionIndex index="3" value="3"/>
+          <VarRegionIndex index="4" value="4"/>
+          <VarRegionIndex index="5" value="5"/>
+          <VarRegionIndex index="6" value="6"/>
+        </VarData>
+        <VarData index="3">
+          <!-- ItemCount=0 -->
+          <NumShorts value="0"/>
+          <!-- VarRegionCount=3 -->
+          <VarRegionIndex index="0" value="0"/>
+          <VarRegionIndex index="1" value="1"/>
+          <VarRegionIndex index="2" value="2"/>
+        </VarData>
+        <VarData index="4">
+          <!-- ItemCount=0 -->
+          <NumShorts value="0"/>
+          <!-- VarRegionCount=4 -->
+          <VarRegionIndex index="0" value="0"/>
+          <VarRegionIndex index="1" value="1"/>
+          <VarRegionIndex index="2" value="2"/>
+          <VarRegionIndex index="3" value="3"/>
+        </VarData>
+        <VarData index="5">
+          <!-- ItemCount=0 -->
+          <NumShorts value="0"/>
+          <!-- VarRegionCount=1 -->
+          <VarRegionIndex index="0" value="7"/>
+        </VarData>
+      </VarStore>
+    </CFFFont>
+
+    <GlobalSubrs>
+      <!-- The 'index' attribute is only for humans; it is ignored when parsed. -->
+    </GlobalSubrs>
+  </CFF2>
+
+  <HVAR>
+    <Version value="0x00010000"/>
+    <VarStore Format="1">
+      <Format value="1"/>
+      <VarRegionList>
+        <!-- RegionAxisCount=8 -->
+        <!-- RegionCount=7 -->
+        <Region index="0">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="1">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="2">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="3">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="4">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="5">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="6">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+        </Region>
+      </VarRegionList>
+      <!-- VarDataCount=3 -->
+      <VarData index="0">
+        <!-- ItemCount=6 -->
+        <NumShorts value="2"/>
+        <!-- VarRegionCount=2 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <Item index="0" value="[0, 0]"/>
+        <Item index="1" value="[140, 221]"/>
+        <Item index="2" value="[287, 157]"/>
+        <Item index="3" value="[300, 180]"/>
+        <Item index="4" value="[310, 163]"/>
+        <Item index="5" value="[370, 180]"/>
+      </VarData>
+      <VarData index="1">
+        <!-- ItemCount=1 -->
+        <NumShorts value="2"/>
+        <!-- VarRegionCount=2 -->
+        <VarRegionIndex index="0" value="1"/>
+        <VarRegionIndex index="1" value="2"/>
+        <Item index="0" value="[320, 191]"/>
+      </VarData>
+      <VarData index="2">
+        <!-- ItemCount=3 -->
+        <NumShorts value="4"/>
+        <!-- VarRegionCount=6 -->
+        <VarRegionIndex index="0" value="2"/>
+        <VarRegionIndex index="1" value="3"/>
+        <VarRegionIndex index="2" value="4"/>
+        <VarRegionIndex index="3" value="6"/>
+        <VarRegionIndex index="4" value="0"/>
+        <VarRegionIndex index="5" value="5"/>
+        <Item index="0" value="[-20, 75, 0, 330, 10, 100]"/>
+        <Item index="1" value="[155, 309, 154, 0, 16, 0]"/>
+        <Item index="2" value="[306, 132, 0, 0, 100, 0]"/>
+      </VarData>
+    </VarStore>
+    <AdvWidthMap>
+      <Map glyph=".notdef" outer="0" inner="0"/>
+      <Map glyph="DC_0030_00" outer="0" inner="0"/>
+      <Map glyph="DC_0031_00" outer="0" inner="0"/>
+      <Map glyph="DC_0032_00" outer="0" inner="0"/>
+      <Map glyph="DC_0033_00" outer="0" inner="0"/>
+      <Map glyph="DC_0034_00" outer="0" inner="0"/>
+      <Map glyph="DC_0035_00" outer="0" inner="0"/>
+      <Map glyph="DC_0036_00" outer="0" inner="0"/>
+      <Map glyph="DC_0037_00" outer="0" inner="0"/>
+      <Map glyph="DC_0038_00" outer="0" inner="0"/>
+      <Map glyph="DC_0039_00" outer="0" inner="0"/>
+      <Map glyph="eight_00" outer="0" inner="3"/>
+      <Map glyph="five_00" outer="0" inner="4"/>
+      <Map glyph="four_00" outer="2" inner="0"/>
+      <Map glyph="nine_00" outer="1" inner="0"/>
+      <Map glyph="one_00" outer="0" inner="1"/>
+      <Map glyph="seven_00" outer="2" inner="2"/>
+      <Map glyph="six_00" outer="1" inner="0"/>
+      <Map glyph="three_00" outer="0" inner="2"/>
+      <Map glyph="two_00" outer="2" inner="1"/>
+      <Map glyph="uni0030" outer="0" inner="0"/>
+      <Map glyph="uni0030.inf" outer="0" inner="0"/>
+      <Map glyph="uni0030.of" outer="0" inner="0"/>
+      <Map glyph="uni0030.sc" outer="0" inner="0"/>
+      <Map glyph="uni0030.sup" outer="0" inner="0"/>
+      <Map glyph="uni0030.tab" outer="0" inner="0"/>
+      <Map glyph="uni0031" outer="0" inner="0"/>
+      <Map glyph="uni0031.inf" outer="0" inner="0"/>
+      <Map glyph="uni0031.of" outer="0" inner="0"/>
+      <Map glyph="uni0031.sc" outer="0" inner="0"/>
+      <Map glyph="uni0031.sup" outer="0" inner="0"/>
+      <Map glyph="uni0031.tab" outer="0" inner="0"/>
+      <Map glyph="uni0032" outer="0" inner="0"/>
+      <Map glyph="uni0032.inf" outer="0" inner="0"/>
+      <Map glyph="uni0032.of" outer="0" inner="0"/>
+      <Map glyph="uni0032.sc" outer="0" inner="0"/>
+      <Map glyph="uni0032.sup" outer="0" inner="0"/>
+      <Map glyph="uni0032.tab" outer="0" inner="0"/>
+      <Map glyph="uni0033" outer="0" inner="0"/>
+      <Map glyph="uni0033.inf" outer="0" inner="0"/>
+      <Map glyph="uni0033.of" outer="0" inner="0"/>
+      <Map glyph="uni0033.sc" outer="0" inner="0"/>
+      <Map glyph="uni0033.sup" outer="0" inner="0"/>
+      <Map glyph="uni0033.tab" outer="0" inner="0"/>
+      <Map glyph="uni0034" outer="0" inner="0"/>
+      <Map glyph="uni0034.inf" outer="0" inner="0"/>
+      <Map glyph="uni0034.of" outer="0" inner="0"/>
+      <Map glyph="uni0034.sc" outer="0" inner="0"/>
+      <Map glyph="uni0034.sup" outer="0" inner="0"/>
+      <Map glyph="uni0034.tab" outer="0" inner="0"/>
+      <Map glyph="uni0035" outer="0" inner="0"/>
+      <Map glyph="uni0035.inf" outer="0" inner="0"/>
+      <Map glyph="uni0035.of" outer="0" inner="0"/>
+      <Map glyph="uni0035.sc" outer="0" inner="0"/>
+      <Map glyph="uni0035.sup" outer="0" inner="0"/>
+      <Map glyph="uni0035.tab" outer="0" inner="0"/>
+      <Map glyph="uni0036" outer="0" inner="0"/>
+      <Map glyph="uni0036.inf" outer="0" inner="0"/>
+      <Map glyph="uni0036.of" outer="0" inner="0"/>
+      <Map glyph="uni0036.sc" outer="0" inner="0"/>
+      <Map glyph="uni0036.sup" outer="0" inner="0"/>
+      <Map glyph="uni0036.tab" outer="0" inner="0"/>
+      <Map glyph="uni0037" outer="0" inner="0"/>
+      <Map glyph="uni0037.inf" outer="0" inner="0"/>
+      <Map glyph="uni0037.of" outer="0" inner="0"/>
+      <Map glyph="uni0037.sc" outer="0" inner="0"/>
+      <Map glyph="uni0037.sup" outer="0" inner="0"/>
+      <Map glyph="uni0037.tab" outer="0" inner="0"/>
+      <Map glyph="uni0038" outer="0" inner="0"/>
+      <Map glyph="uni0038.inf" outer="0" inner="0"/>
+      <Map glyph="uni0038.of" outer="0" inner="0"/>
+      <Map glyph="uni0038.sc" outer="0" inner="0"/>
+      <Map glyph="uni0038.sup" outer="0" inner="0"/>
+      <Map glyph="uni0038.tab" outer="0" inner="0"/>
+      <Map glyph="uni0039" outer="0" inner="0"/>
+      <Map glyph="uni0039.inf" outer="0" inner="0"/>
+      <Map glyph="uni0039.of" outer="0" inner="0"/>
+      <Map glyph="uni0039.sc" outer="0" inner="0"/>
+      <Map glyph="uni0039.sup" outer="0" inner="0"/>
+      <Map glyph="uni0039.tab" outer="0" inner="0"/>
+      <Map glyph="zero_00" outer="0" inner="5"/>
+    </AdvWidthMap>
+  </HVAR>
+
+  <VARC>
+    <Version value="0x00010000"/>
+    <Coverage>
+      <Glyph value="DC_0030_00"/>
+      <Glyph value="DC_0031_00"/>
+      <Glyph value="DC_0032_00"/>
+      <Glyph value="DC_0033_00"/>
+      <Glyph value="DC_0034_00"/>
+      <Glyph value="DC_0035_00"/>
+      <Glyph value="DC_0036_00"/>
+      <Glyph value="DC_0037_00"/>
+      <Glyph value="DC_0038_00"/>
+      <Glyph value="DC_0039_00"/>
+      <Glyph value="uni0030"/>
+      <Glyph value="uni0030.inf"/>
+      <Glyph value="uni0030.of"/>
+      <Glyph value="uni0030.sc"/>
+      <Glyph value="uni0030.sup"/>
+      <Glyph value="uni0030.tab"/>
+      <Glyph value="uni0031"/>
+      <Glyph value="uni0031.inf"/>
+      <Glyph value="uni0031.of"/>
+      <Glyph value="uni0031.sc"/>
+      <Glyph value="uni0031.sup"/>
+      <Glyph value="uni0031.tab"/>
+      <Glyph value="uni0032"/>
+      <Glyph value="uni0032.inf"/>
+      <Glyph value="uni0032.of"/>
+      <Glyph value="uni0032.sc"/>
+      <Glyph value="uni0032.sup"/>
+      <Glyph value="uni0032.tab"/>
+      <Glyph value="uni0033"/>
+      <Glyph value="uni0033.inf"/>
+      <Glyph value="uni0033.of"/>
+      <Glyph value="uni0033.sc"/>
+      <Glyph value="uni0033.sup"/>
+      <Glyph value="uni0033.tab"/>
+      <Glyph value="uni0034"/>
+      <Glyph value="uni0034.inf"/>
+      <Glyph value="uni0034.of"/>
+      <Glyph value="uni0034.sc"/>
+      <Glyph value="uni0034.sup"/>
+      <Glyph value="uni0034.tab"/>
+      <Glyph value="uni0035"/>
+      <Glyph value="uni0035.inf"/>
+      <Glyph value="uni0035.of"/>
+      <Glyph value="uni0035.sc"/>
+      <Glyph value="uni0035.sup"/>
+      <Glyph value="uni0035.tab"/>
+      <Glyph value="uni0036"/>
+      <Glyph value="uni0036.inf"/>
+      <Glyph value="uni0036.of"/>
+      <Glyph value="uni0036.sc"/>
+      <Glyph value="uni0036.sup"/>
+      <Glyph value="uni0036.tab"/>
+      <Glyph value="uni0037"/>
+      <Glyph value="uni0037.inf"/>
+      <Glyph value="uni0037.of"/>
+      <Glyph value="uni0037.sc"/>
+      <Glyph value="uni0037.sup"/>
+      <Glyph value="uni0037.tab"/>
+      <Glyph value="uni0038"/>
+      <Glyph value="uni0038.inf"/>
+      <Glyph value="uni0038.of"/>
+      <Glyph value="uni0038.sc"/>
+      <Glyph value="uni0038.sup"/>
+      <Glyph value="uni0038.tab"/>
+      <Glyph value="uni0039"/>
+      <Glyph value="uni0039.inf"/>
+      <Glyph value="uni0039.of"/>
+      <Glyph value="uni0039.sc"/>
+      <Glyph value="uni0039.sup"/>
+      <Glyph value="uni0039.tab"/>
+    </Coverage>
+    <MultiVarStore Format="1">
+      <Format value="1"/>
+      <SparseVarRegionList>
+        <!-- RegionCount=8 -->
+        <Region index="0">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="1"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="1">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="2"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="2">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="3"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="3">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="4"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="4">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="5"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="5">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="6"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="6">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="7"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+        <Region index="7">
+          <!-- SparseRegionCount=1 -->
+          <SparseVarRegionAxis index="0">
+            <AxisIndex value="0"/>
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </SparseVarRegionAxis>
+        </Region>
+      </SparseVarRegionList>
+      <!-- MultiVarDataCount=6 -->
+      <MultiVarData index="0" Format="1">
+        <Format value="1"/>
+        <!-- VarRegionCount=2 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <Item index="0" value="[0, 9011, 10977, 0]"/>
+        <Item index="1" value="[-63, 0]"/>
+        <Item index="2" value="[14746, 0, 0, 9159]"/>
+        <Item index="3" value="[0, 8684, 11469, 0]"/>
+        <Item index="4" value="[-6, -21]"/>
+        <Item index="5" value="[0, 8929, 11469, 0]"/>
+        <Item index="6" value="[0, 8765, 11141, 0]"/>
+      </MultiVarData>
+      <MultiVarData index="1" Format="1">
+        <Format value="1"/>
+        <!-- VarRegionCount=5 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <VarRegionIndex index="2" value="2"/>
+        <VarRegionIndex index="3" value="3"/>
+        <VarRegionIndex index="4" value="4"/>
+        <Item index="0" value="[-18, -18, -18, -18, -18]"/>
+        <Item index="1" value="[0, 16384, 0, 0, 0, 0, 0, 16384, 0, 0, 16384, 0, 0, 0, 0, 0, 0, 0, 0, 9175, 0, 0, 0, 11141, 0]"/>
+      </MultiVarData>
+      <MultiVarData index="2" Format="1">
+        <Format value="1"/>
+        <!-- VarRegionCount=7 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <VarRegionIndex index="2" value="2"/>
+        <VarRegionIndex index="3" value="3"/>
+        <VarRegionIndex index="4" value="4"/>
+        <VarRegionIndex index="5" value="5"/>
+        <VarRegionIndex index="6" value="6"/>
+        <Item index="0" value="[0, 0, 0, 0, 0, 5, -26]"/>
+        <Item index="1" value="[0, 0, 0, 16384, 0, 0, 0, 0, 14746, 0, 0, 0, 0, 0, 0, 0, 0, 0, 13926, 0, 0, 10486, 0, 0, 0, 0, 0, 0, 0, 0, 9535, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9585, 0, 0, 0, 0, 0, 0, 0, 8192]"/>
+      </MultiVarData>
+      <MultiVarData index="3" Format="1">
+        <Format value="1"/>
+        <!-- VarRegionCount=3 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <VarRegionIndex index="2" value="2"/>
+        <Item index="0" value="[0, 6, -27]"/>
+        <Item index="1" value="[13107, 0, 0, -3277, 0, 8602, 0, 10977, 0]"/>
+        <Item index="2" value="[13107, 0, 0, 0, 0, 8602, 0, 10977, 0]"/>
+      </MultiVarData>
+      <MultiVarData index="4" Format="1">
+        <Format value="1"/>
+        <!-- VarRegionCount=4 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <VarRegionIndex index="2" value="2"/>
+        <VarRegionIndex index="3" value="3"/>
+        <Item index="0" value="[15073, 0, 0, 0, 0, 16384, 0, 0, 0, 0, 0, 9175, 0, 0, 8520, 0]"/>
+      </MultiVarData>
+      <MultiVarData index="5" Format="1">
+        <Format value="1"/>
+        <!-- VarRegionCount=1 -->
+        <VarRegionIndex index="0" value="7"/>
+        <Item index="0" value="[-12, -72]"/>
+        <Item index="1" value="[11469]"/>
+        <Item index="2" value="[-19, 0, 72, 0]"/>
+        <Item index="3" value="[9503, -4915]"/>
+        <Item index="4" value="[-14, 0, 0, 0]"/>
+        <Item index="5" value="[12124, -2457]"/>
+        <Item index="6" value="[-7, 0, 0, 0]"/>
+        <Item index="7" value="[11223, -3277]"/>
+        <Item index="8" value="[-22, -72]"/>
+        <Item index="9" value="[-37, 0, 51, 0]"/>
+        <Item index="10" value="[-3670, 10666]"/>
+        <Item index="11" value="[-9, 0, 0]"/>
+        <Item index="12" value="[-3031, 10977]"/>
+        <Item index="13" value="[-31, 0, 0]"/>
+        <Item index="14" value="[-2293, 10879]"/>
+        <Item index="15" value="[-27, -72]"/>
+        <Item index="16" value="[-1589, 11469]"/>
+        <Item index="17" value="[0, -72]"/>
+        <Item index="18" value="[-4, 0, -71, 0]"/>
+        <Item index="19" value="[1065, 16384, 11600, 0]"/>
+        <Item index="20" value="[-13, 0, 0]"/>
+        <Item index="21" value="[-1474, 11600, 0]"/>
+        <Item index="22" value="[-18, 0, 0]"/>
+        <Item index="23" value="[655, 11469, -1639]"/>
+        <Item index="24" value="[-5, -72]"/>
+        <Item index="25" value="[-6, 0, -31, 0]"/>
+        <Item index="26" value="[11731]"/>
+        <Item index="27" value="[-5, 0, -72]"/>
+        <Item index="28" value="[10814, -1638]"/>
+        <Item index="29" value="[-6, -72]"/>
+        <Item index="30" value="[0, -26]"/>
+        <Item index="31" value="[1638, 3457, 7373, 7373, 7373]"/>
+        <Item index="32" value="[0, 4211, 7045, 6505, 7258]"/>
+        <Item index="33" value="[0, 0, -26]"/>
+        <Item index="34" value="[1638, 3113, 4587, 7373, 7373, 7373]"/>
+        <Item index="35" value="[-2, 0, 0]"/>
+        <Item index="36" value="[4178, 6799, 7127, 8192, 819]"/>
+        <Item index="37" value="[-8, -72]"/>
+        <Item index="38" value="[0, 0, -62, 0]"/>
+        <Item index="39" value="[10977, 0]"/>
+        <Item index="40" value="[-8, 0, -72]"/>
+        <Item index="41" value="[-11, 0, -31, 0]"/>
+        <Item index="42" value="[10977, -492]"/>
+        <Item index="43" value="[-21, -72]"/>
+        <Item index="44" value="[11469, 492]"/>
+        <Item index="45" value="[-6, 0, -52, 0]"/>
+        <Item index="46" value="[5685, 10715, 0]"/>
+        <Item index="47" value="[-17, 0, -41, 0]"/>
+        <Item index="48" value="[11404, -819]"/>
+        <Item index="49" value="[6, -82]"/>
+        <Item index="50" value="[-4, 0, -51, 0]"/>
+        <Item index="51" value="[3539, 10240]"/>
+        <Item index="52" value="[6, 0, -82]"/>
+        <Item index="53" value="[-62, 0]"/>
+        <Item index="54" value="[11797]"/>
+        <Item index="55" value="[-9, 0, 0, 0]"/>
+        <Item index="56" value="[9339, -2048]"/>
+        <Item index="57" value="[-24, 0, 0, 0]"/>
+        <Item index="58" value="[-14, -72]"/>
+        <Item index="59" value="[-4, 0, -52, 0]"/>
+        <Item index="60" value="[5407, 10650, 0]"/>
+        <Item index="61" value="[-14, 0, -72]"/>
+        <Item index="62" value="[-12, -41, 0]"/>
+      </MultiVarData>
+    </MultiVarStore>
+    <AxisIndicesList>
+      <Item index="0" value="[1, 2]"/>
+      <Item index="1" value="[1, 2, 3, 4, 5]"/>
+      <Item index="2" value="[1, 2, 3, 4, 5, 6, 7]"/>
+      <Item index="3" value="[1, 2, 3]"/>
+      <Item index="4" value="[1, 2, 3, 4]"/>
+      <Item index="5" value="[1]"/>
+      <Item index="6" value="[2]"/>
+      <Item index="7" value="[4]"/>
+      <Item index="8" value="[2, 3, 4, 5]"/>
+      <Item index="9" value="[2, 4, 5]"/>
+      <Item index="10" value="[1, 3, 4, 5, 6]"/>
+      <Item index="11" value="[2, 3, 4, 5, 6]"/>
+      <Item index="12" value="[1, 2, 3, 4, 5, 6]"/>
+      <Item index="13" value="[3, 4, 5, 6, 7]"/>
+      <Item index="14" value="[2, 3]"/>
+      <Item index="15" value="[3]"/>
+      <Item index="16" value="[1, 3]"/>
+    </AxisIndicesList>
+    <VarCompositeGlyphs>
+      <VarCompositeGlyph index="0">
+        <VarComponent index="0">
+          <glyphName value="zero_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.33, 0.45]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="1">
+        <VarComponent index="0">
+          <glyphName value="one_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.1, 0.441]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="2"/>
+          <transformVarIndex value="1"/>
+          <translateX value="0.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="2">
+        <VarComponent index="0">
+          <glyphName value="two_00"/>
+          <axisIndicesIndex value="1"/>
+          <axisValues value="[0.0, 0.0, 0.0, 0.32, 0.44]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="65537"/>
+          <transformVarIndex value="65536"/>
+          <translateX value="18.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="3">
+        <VarComponent index="0">
+          <glyphName value="three_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.3, 0.47]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="3"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="4">
+        <VarComponent index="0">
+          <glyphName value="four_00"/>
+          <axisIndicesIndex value="2"/>
+          <axisValues value="[0.36, 0.1, 0.418, 0.0, 0.15, 0.415, 0.5]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="131073"/>
+          <transformVarIndex value="131072"/>
+          <translateX value="0.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="5">
+        <VarComponent index="0">
+          <glyphName value="five_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.3, 0.455]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="5"/>
+          <transformVarIndex value="4"/>
+          <translateX value="0.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="6">
+        <VarComponent index="0">
+          <glyphName value="six_00"/>
+          <axisIndicesIndex value="3"/>
+          <axisValues value="[0.2, 0.33, 0.475]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="196609"/>
+          <transformVarIndex value="196608"/>
+          <translateX value="0.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="7">
+        <VarComponent index="0">
+          <glyphName value="seven_00"/>
+          <axisIndicesIndex value="4"/>
+          <axisValues value="[0.08, 0.0, 0.48, 0.44]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="262144"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="8">
+        <VarComponent index="0">
+          <glyphName value="eight_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.32, 0.465]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="6"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="9">
+        <VarComponent index="0">
+          <glyphName value="nine_00"/>
+          <axisIndicesIndex value="3"/>
+          <axisValues value="[0.2, 0.33, 0.475]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="196610"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="10">
+        <VarComponent index="0">
+          <glyphName value="DC_0030_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327680"/>
+          <translateX value="16.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="11">
+        <VarComponent index="0">
+          <glyphName value="DC_0030_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.42, 0.3]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327683"/>
+          <transformVarIndex value="327682"/>
+          <translateX value="27.0"/>
+          <translateY value="-178.0"/>
+          <scaleX value="0.6"/>
+          <scaleY value="0.66"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="12">
+        <VarComponent index="0">
+          <glyphName value="DC_0030_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.26, 0.3]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327685"/>
+          <transformVarIndex value="327684"/>
+          <translateX value="36.0"/>
+          <translateY value="-3.0"/>
+          <scaleX value="0.76"/>
+          <scaleY value="0.776"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="13">
+        <VarComponent index="0">
+          <glyphName value="DC_0030_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.215, 0.2]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327687"/>
+          <transformVarIndex value="327686"/>
+          <translateX value="30.0"/>
+          <translateY value="-3.0"/>
+          <scaleX value="0.81"/>
+          <scaleY value="0.842"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="14">
+        <VarComponent index="0">
+          <glyphName value="DC_0030_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.42, 0.3]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327683"/>
+          <transformVarIndex value="327682"/>
+          <translateX value="27.0"/>
+          <translateY value="362.0"/>
+          <scaleX value="0.6"/>
+          <scaleY value="0.66"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="15">
+        <VarComponent index="0">
+          <glyphName value="DC_0030_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327680"/>
+          <translateX value="16.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="16">
+        <VarComponent index="0">
+          <glyphName value="DC_0031_00"/>
+          <axisIndicesIndex value="6"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327688"/>
+          <translateX value="-1.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="17">
+        <VarComponent index="0">
+          <glyphName value="DC_0031_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.224, 0.349]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327690"/>
+          <transformVarIndex value="327689"/>
+          <translateX value="32.0"/>
+          <translateY value="-180.0"/>
+          <scaleX value="0.65"/>
+          <scaleY value="0.667"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="18">
+        <VarComponent index="0">
+          <glyphName value="DC_0031_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.244, 0.33]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327692"/>
+          <transformVarIndex value="327691"/>
+          <translateX value="22.0"/>
+          <scaleX value="0.74"/>
+          <scaleY value="0.767"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="19">
+        <VarComponent index="0">
+          <glyphName value="DC_0031_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.22, 0.236]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327694"/>
+          <transformVarIndex value="327693"/>
+          <translateX value="31.0"/>
+          <scaleX value="0.81"/>
+          <scaleY value="0.834"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="20">
+        <VarComponent index="0">
+          <glyphName value="DC_0031_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.224, 0.349]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327690"/>
+          <transformVarIndex value="327689"/>
+          <translateX value="32.0"/>
+          <translateY value="360.0"/>
+          <scaleX value="0.65"/>
+          <scaleY value="0.667"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="21">
+        <VarComponent index="0">
+          <glyphName value="DC_0031_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.398, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327696"/>
+          <transformVarIndex value="327695"/>
+          <translateX value="134.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="22">
+        <VarComponent index="0">
+          <glyphName value="DC_0032_00"/>
+          <axisIndicesIndex value="7"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327697"/>
+          <translateX value="-10.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="23">
+        <VarComponent index="0">
+          <glyphName value="DC_0032_00"/>
+          <axisIndicesIndex value="8"/>
+          <axisValues value="[0.035, 0.0, 0.292, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327699"/>
+          <transformVarIndex value="327698"/>
+          <translateX value="10.0"/>
+          <translateY value="-180.0"/>
+          <scaleX value="0.68"/>
+          <scaleY value="0.663"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="24">
+        <VarComponent index="0">
+          <glyphName value="DC_0032_00"/>
+          <axisIndicesIndex value="9"/>
+          <axisValues value="[0.18, 0.292, 0.2]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327701"/>
+          <transformVarIndex value="327700"/>
+          <translateX value="10.0"/>
+          <scaleX value="0.77"/>
+          <scaleY value="0.772"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="25">
+        <VarComponent index="0">
+          <glyphName value="DC_0032_00"/>
+          <axisIndicesIndex value="9"/>
+          <axisValues value="[0.0, 0.19, 0.2]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327703"/>
+          <transformVarIndex value="327702"/>
+          <translateX value="23.0"/>
+          <scaleX value="0.79"/>
+          <scaleY value="0.837"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="26">
+        <VarComponent index="0">
+          <glyphName value="DC_0032_00"/>
+          <axisIndicesIndex value="8"/>
+          <axisValues value="[0.035, 0.0, 0.292, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327699"/>
+          <transformVarIndex value="327698"/>
+          <translateX value="10.0"/>
+          <translateY value="360.0"/>
+          <scaleX value="0.68"/>
+          <scaleY value="0.663"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="27">
+        <VarComponent index="0">
+          <glyphName value="DC_0032_00"/>
+          <axisIndicesIndex value="7"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327697"/>
+          <translateX value="40.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="28">
+        <VarComponent index="0">
+          <glyphName value="DC_0033_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327704"/>
+          <translateX value="30.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="29">
+        <VarComponent index="0">
+          <glyphName value="DC_0033_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.284]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327706"/>
+          <transformVarIndex value="327705"/>
+          <translateX value="11.0"/>
+          <translateY value="-178.0"/>
+          <scaleX value="0.67"/>
+          <scaleY value="0.66"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="30">
+        <VarComponent index="0">
+          <glyphName value="DC_0033_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327707"/>
+          <translateX value="30.0"/>
+          <translateY value="-140.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="31">
+        <VarComponent index="0">
+          <glyphName value="DC_0033_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.24, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327708"/>
+          <transformVarIndex value="327686"/>
+          <translateX value="30.0"/>
+          <translateY value="-2.0"/>
+          <scaleX value="0.8"/>
+          <scaleY value="0.84"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="32">
+        <VarComponent index="0">
+          <glyphName value="DC_0033_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.284]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327706"/>
+          <transformVarIndex value="327705"/>
+          <translateX value="11.0"/>
+          <translateY value="362.0"/>
+          <scaleX value="0.67"/>
+          <scaleY value="0.66"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="33">
+        <VarComponent index="0">
+          <glyphName value="DC_0033_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327709"/>
+          <translateX value="73.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="34">
+        <VarComponent index="0">
+          <glyphName value="DC_0034_00"/>
+          <axisIndicesIndex value="10"/>
+          <axisValues value="[0.0, 0.0, 0.0, 0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327711"/>
+          <transformVarIndex value="327710"/>
+          <translateX value="5.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="35">
+        <VarComponent index="0">
+          <glyphName value="DC_0034_00"/>
+          <axisIndicesIndex value="11"/>
+          <axisValues value="[0.1, 0.117, 0.17, 0.225, 0.18]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327712"/>
+          <translateX value="9.0"/>
+          <translateY value="-180.0"/>
+          <scaleX value="0.69"/>
+          <scaleY value="0.668"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="36">
+        <VarComponent index="0">
+          <glyphName value="DC_0034_00"/>
+          <axisIndicesIndex value="12"/>
+          <axisValues value="[0.0, 0.14, 0.03, 0.0, 0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327714"/>
+          <transformVarIndex value="327713"/>
+          <translateX value="5.0"/>
+          <translateY value="-140.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="37">
+        <VarComponent index="0">
+          <glyphName value="DC_0034_00"/>
+          <axisIndicesIndex value="13"/>
+          <axisValues value="[0.045, 0.06, 0.12, 0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327716"/>
+          <transformVarIndex value="327715"/>
+          <translateX value="10.0"/>
+          <scaleX value="0.87"/>
+          <scaleY value="0.834"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="38">
+        <VarComponent index="0">
+          <glyphName value="DC_0034_00"/>
+          <axisIndicesIndex value="11"/>
+          <axisValues value="[0.1, 0.117, 0.17, 0.225, 0.18]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327712"/>
+          <translateX value="9.0"/>
+          <translateY value="360.0"/>
+          <scaleX value="0.69"/>
+          <scaleY value="0.668"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="39">
+        <VarComponent index="0">
+          <glyphName value="DC_0034_00"/>
+          <axisIndicesIndex value="10"/>
+          <axisValues value="[0.0, 0.0, 0.0, 0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327711"/>
+          <transformVarIndex value="327710"/>
+          <translateX value="28.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="40">
+        <VarComponent index="0">
+          <glyphName value="DC_0035_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327717"/>
+          <translateX value="30.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="41">
+        <VarComponent index="0">
+          <glyphName value="DC_0035_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.33, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327719"/>
+          <transformVarIndex value="327718"/>
+          <translateX value="27.0"/>
+          <translateY value="-178.0"/>
+          <scaleX value="0.66"/>
+          <scaleY value="0.664"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="42">
+        <VarComponent index="0">
+          <glyphName value="DC_0035_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327720"/>
+          <translateX value="30.0"/>
+          <translateY value="-140.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="43">
+        <VarComponent index="0">
+          <glyphName value="DC_0035_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.2, 0.03]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327722"/>
+          <transformVarIndex value="327721"/>
+          <translateX value="25.0"/>
+          <translateY value="-2.0"/>
+          <scaleX value="0.835"/>
+          <scaleY value="0.837"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="44">
+        <VarComponent index="0">
+          <glyphName value="DC_0035_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.33, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327719"/>
+          <transformVarIndex value="327718"/>
+          <translateX value="27.0"/>
+          <translateY value="362.0"/>
+          <scaleX value="0.66"/>
+          <scaleY value="0.664"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="45">
+        <VarComponent index="0">
+          <glyphName value="DC_0035_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327717"/>
+          <translateX value="73.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="46">
+        <VarComponent index="0">
+          <glyphName value="DC_0036_00"/>
+          <axisIndicesIndex value="14"/>
+          <axisValues value="[0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327724"/>
+          <transformVarIndex value="327723"/>
+          <translateX value="20.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="47">
+        <VarComponent index="0">
+          <glyphName value="DC_0036_00"/>
+          <axisIndicesIndex value="3"/>
+          <axisValues value="[0.0, 0.346, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327726"/>
+          <transformVarIndex value="327725"/>
+          <translateX value="20.0"/>
+          <translateY value="-178.0"/>
+          <scaleX value="0.65"/>
+          <scaleY value="0.662"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="48">
+        <VarComponent index="0">
+          <glyphName value="DC_0036_00"/>
+          <axisIndicesIndex value="14"/>
+          <axisValues value="[0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327724"/>
+          <transformVarIndex value="327723"/>
+          <translateX value="20.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="49">
+        <VarComponent index="0">
+          <glyphName value="DC_0036_00"/>
+          <axisIndicesIndex value="14"/>
+          <axisValues value="[0.204, 0.05]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327728"/>
+          <transformVarIndex value="327727"/>
+          <translateX value="18.0"/>
+          <translateY value="-2.0"/>
+          <scaleX value="0.84"/>
+          <scaleY value="0.837"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="50">
+        <VarComponent index="0">
+          <glyphName value="DC_0036_00"/>
+          <axisIndicesIndex value="3"/>
+          <axisValues value="[0.0, 0.346, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327726"/>
+          <transformVarIndex value="327725"/>
+          <translateX value="20.0"/>
+          <translateY value="362.0"/>
+          <scaleX value="0.65"/>
+          <scaleY value="0.662"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="51">
+        <VarComponent index="0">
+          <glyphName value="DC_0036_00"/>
+          <axisIndicesIndex value="14"/>
+          <axisValues value="[0.0, 0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327724"/>
+          <transformVarIndex value="327723"/>
+          <translateX value="45.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="52">
+        <VarComponent index="0">
+          <glyphName value="DC_0037_00"/>
+          <axisIndicesIndex value="15"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327729"/>
+          <translateX value="-4.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="53">
+        <VarComponent index="0">
+          <glyphName value="DC_0037_00"/>
+          <axisIndicesIndex value="16"/>
+          <axisValues value="[0.0, 0.284]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327731"/>
+          <transformVarIndex value="327730"/>
+          <translateX value="1.0"/>
+          <translateY value="-180.0"/>
+          <scaleX value="0.67"/>
+          <scaleY value="0.667"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="54">
+        <VarComponent index="0">
+          <glyphName value="DC_0037_00"/>
+          <axisIndicesIndex value="15"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327732"/>
+          <translateX value="-4.0"/>
+          <translateY value="-140.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="55">
+        <VarComponent index="0">
+          <glyphName value="DC_0037_00"/>
+          <axisIndicesIndex value="15"/>
+          <axisValues value="[0.18]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327734"/>
+          <transformVarIndex value="327733"/>
+          <scaleX value="0.82"/>
+          <scaleY value="0.834"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="56">
+        <VarComponent index="0">
+          <glyphName value="DC_0037_00"/>
+          <axisIndicesIndex value="16"/>
+          <axisValues value="[0.0, 0.284]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327731"/>
+          <transformVarIndex value="327730"/>
+          <translateX value="1.0"/>
+          <translateY value="360.0"/>
+          <scaleX value="0.67"/>
+          <scaleY value="0.667"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="57">
+        <VarComponent index="0">
+          <glyphName value="DC_0037_00"/>
+          <axisIndicesIndex value="15"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327729"/>
+          <translateX value="31.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="58">
+        <VarComponent index="0">
+          <glyphName value="DC_0038_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327680"/>
+          <translateX value="22.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="59">
+        <VarComponent index="0">
+          <glyphName value="DC_0038_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.43, 0.225]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327736"/>
+          <transformVarIndex value="327735"/>
+          <translateX value="29.0"/>
+          <translateY value="-178.0"/>
+          <scaleX value="0.6"/>
+          <scaleY value="0.66"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="60">
+        <VarComponent index="0">
+          <glyphName value="DC_0038_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327680"/>
+          <translateX value="22.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="61">
+        <VarComponent index="0">
+          <glyphName value="DC_0038_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.13, 0.03]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327722"/>
+          <transformVarIndex value="327737"/>
+          <translateX value="21.0"/>
+          <translateY value="-2.0"/>
+          <scaleX value="0.82"/>
+          <scaleY value="0.84"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="62">
+        <VarComponent index="0">
+          <glyphName value="DC_0038_00"/>
+          <axisIndicesIndex value="0"/>
+          <axisValues value="[0.43, 0.225]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327736"/>
+          <transformVarIndex value="327735"/>
+          <translateX value="29.0"/>
+          <translateY value="362.0"/>
+          <scaleX value="0.6"/>
+          <scaleY value="0.66"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="63">
+        <VarComponent index="0">
+          <glyphName value="DC_0038_00"/>
+          <axisIndicesIndex value="5"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327680"/>
+          <translateX value="45.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="64">
+        <VarComponent index="0">
+          <glyphName value="DC_0039_00"/>
+          <axisIndicesIndex value="6"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327738"/>
+          <translateX value="19.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="65">
+        <VarComponent index="0">
+          <glyphName value="DC_0039_00"/>
+          <axisIndicesIndex value="3"/>
+          <axisValues value="[0.0, 0.35, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327740"/>
+          <transformVarIndex value="327739"/>
+          <translateX value="19.0"/>
+          <translateY value="-179.0"/>
+          <scaleX value="0.65"/>
+          <scaleY value="0.662"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="66">
+        <VarComponent index="0">
+          <glyphName value="DC_0039_00"/>
+          <axisIndicesIndex value="6"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327741"/>
+          <translateX value="19.0"/>
+          <translateY value="-140.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="67">
+        <VarComponent index="0">
+          <glyphName value="DC_0039_00"/>
+          <axisIndicesIndex value="14"/>
+          <axisValues value="[0.204, 0.05]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327728"/>
+          <transformVarIndex value="327742"/>
+          <translateX value="15.0"/>
+          <scaleX value="0.84"/>
+          <scaleY value="0.837"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="68">
+        <VarComponent index="0">
+          <glyphName value="DC_0039_00"/>
+          <axisIndicesIndex value="3"/>
+          <axisValues value="[0.0, 0.35, 0.1]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327740"/>
+          <transformVarIndex value="327739"/>
+          <translateX value="19.0"/>
+          <translateY value="361.0"/>
+          <scaleX value="0.65"/>
+          <scaleY value="0.662"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+      <VarCompositeGlyph index="69">
+        <VarComponent index="0">
+          <glyphName value="DC_0039_00"/>
+          <axisIndicesIndex value="6"/>
+          <axisValues value="[0.0]" resetUnspecifiedAxes="1"/>
+          <axisValuesVarIndex value="327681"/>
+          <transformVarIndex value="327738"/>
+          <translateX value="44.0"/>
+          <scaleX value="1.0"/>
+        </VarComponent>
+      </VarCompositeGlyph>
+    </VarCompositeGlyphs>
+  </VARC>
+
+  <fvar>
+
+    <!-- wght -->
+    <Axis>
+      <AxisTag>wght</AxisTag>
+      <Flags>0x0</Flags>
+      <MinValue>400.0</MinValue>
+      <DefaultValue>400.0</DefaultValue>
+      <MaxValue>700.0</MaxValue>
+      <AxisNameID>256</AxisNameID>
+    </Axis>
+
+    <!-- V000 -->
+    <Axis>
+      <AxisTag>V000</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>257</AxisNameID>
+    </Axis>
+
+    <!-- V001 -->
+    <Axis>
+      <AxisTag>V001</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>258</AxisNameID>
+    </Axis>
+
+    <!-- V002 -->
+    <Axis>
+      <AxisTag>V002</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>259</AxisNameID>
+    </Axis>
+
+    <!-- V003 -->
+    <Axis>
+      <AxisTag>V003</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>260</AxisNameID>
+    </Axis>
+
+    <!-- V004 -->
+    <Axis>
+      <AxisTag>V004</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>261</AxisNameID>
+    </Axis>
+
+    <!-- V005 -->
+    <Axis>
+      <AxisTag>V005</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>262</AxisNameID>
+    </Axis>
+
+    <!-- V006 -->
+    <Axis>
+      <AxisTag>V006</AxisTag>
+      <Flags>0x1</Flags>
+      <MinValue>-1.0</MinValue>
+      <DefaultValue>0.0</DefaultValue>
+      <MaxValue>1.0</MaxValue>
+      <AxisNameID>263</AxisNameID>
+    </Axis>
+  </fvar>
+
+</ttFont>

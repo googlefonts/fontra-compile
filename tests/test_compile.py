@@ -21,7 +21,7 @@ dataDir = testDir / "data"
 
 
 @pytest.mark.parametrize("sourceName", ["figArnaud.rcjk", "MutatorSans.fontra"])
-@pytest.mark.parametrize("outSuffix", [".ttf"])
+@pytest.mark.parametrize("outSuffix", [".ttf", ".otf"])
 def test_main(tmpdir, sourceName, outSuffix):
     tmpdir = pathlib.Path(tmpdir)
     sourcePath = dataDir / sourceName
