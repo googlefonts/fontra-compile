@@ -275,7 +275,7 @@ class Builder:
 
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
-        boundsPen = (ControlBoundsPen if self.buildCFF2 else BoundsPen)(None)
+        boundsPen = (BoundsPen if self.buildCFF2 else ControlBoundsPen)(None)
         defaultLayerGlyph.path.drawPoints(PointToSegmentPen(boundsPen))
         leftSideBearing = boundsPen.bounds[0] if boundsPen.bounds is not None else 0
 
