@@ -12,7 +12,8 @@ from fontTools.misc.vector import Vector
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib import TTFont, newTable
 from fontTools.ttLib.tables import otTables as ot
-from fontTools.ttLib.tables._g_l_y_f import Glyph, GlyphCoordinates
+from fontTools.ttLib.tables._g_l_y_f import Glyph as TTGlyph
+from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.ttLib.tables.otTables import VAR_TRANSFORM_MAPPING, VarComponentFlags
 from fontTools.varLib.models import (
@@ -48,8 +49,9 @@ VARCO_IF_VARYING = {
 
 @dataclass
 class GlyphInfo:
-    glyph: Glyph
+    ttGlyph: TTGlyph
     xAdvance: float = 500
+    xAdvanceVariations: list = field(default_factory=list)
     variations: list = field(default_factory=list)
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
@@ -187,7 +189,9 @@ class Builder:
 
             if glyphInfo is None:
                 # make .notdef based on UPM
-                glyphInfo = GlyphInfo(glyph=TTGlyphPointPen(None).glyph(), xAdvance=500)
+                glyphInfo = GlyphInfo(
+                    ttGlyph=TTGlyphPointPen(None).glyph(), xAdvance=500
+                )
 
             self.glyphInfos[glyphName] = glyphInfo
 
@@ -204,12 +208,13 @@ class Builder:
         glyphSources = filterActiveSources(glyph.sources)
 
         locations = prepareLocations(glyphSources, defaultLocation, axisDict)
-
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
         model = (
             VariationModel(locations) if len(locations) >= 2 else None
         )  # XXX axis order!
+
+        xAdvanceVariations = prepareXAdvanceVariations(glyph, glyphSources)
 
         sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
         variations = (
@@ -226,8 +231,9 @@ class Builder:
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
         return GlyphInfo(
-            glyph=ttGlyph,
+            ttGlyph=ttGlyph,
             xAdvance=max(defaultGlyph.xAdvance or 0, 0),
+            xAdvanceVariations=xAdvanceVariations,
             variations=variations,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
@@ -386,7 +392,7 @@ class Builder:
         builder.updateHead(created=timestampNow(), modified=timestampNow())
         builder.setupGlyphOrder(self.glyphOrder)
         builder.setupNameTable(dict())
-        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "glyph"))
+        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
 
         localAxisTags = set()
         for glyphInfo in self.glyphInfos.values():
@@ -467,7 +473,7 @@ class Builder:
 
                 components.append(compo)
 
-            if self.glyphInfos[glyphName].glyph.numberOfContours:
+            if self.glyphInfos[glyphName].ttGlyph.numberOfContours:
                 # Add a component for the outline section, so we can effectively
                 # mix outlines and components. This is a special case in the spec.
                 compo = ot.VarComponent()
@@ -497,6 +503,10 @@ def prepareLocations(glyphSources, defaultLocation, axisDict):
         normalizeLocation({**defaultLocation, **source.location}, axisDict)
         for source in glyphSources
     ]
+
+
+def prepareXAdvanceVariations(glyph: VariableGlyph, glyphSources):
+    return [glyph.layers[source.layerName].glyph.xAdvance for source in glyphSources]
 
 
 def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
