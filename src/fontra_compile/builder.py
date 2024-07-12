@@ -53,14 +53,22 @@ VARCO_IF_VARYING = {
 
 @dataclass
 class GlyphInfo:
-    ttGlyph: TTGlyph
     hasContours: bool
-    xAdvance: float = 500
-    xAdvanceVariations: list = field(default_factory=list)
-    gvarVariations: list = field(default_factory=list)
+    xAdvance: float
+    xAdvanceVariations: list
+    ttGlyph: TTGlyph | None = None
+    gvarVariations: list | None = None
+    charString: Any | None = None
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
     model: VariationModel | None = None
+
+    def __post_init__(self) -> None:
+        if self.ttGlyph is None:
+            assert self.gvarVariations is None
+            assert self.charString is not None
+        else:
+            assert self.charString is None
 
 
 @dataclass
@@ -199,6 +207,7 @@ class Builder:
                     hasContours=False,
                     xAdvance=500,
                     xAdvanceVariations=[500],
+                    gvarVariations=[],
                 )
 
             self.glyphInfos[glyphName] = glyphInfo
