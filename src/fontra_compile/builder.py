@@ -201,14 +201,15 @@ class Builder:
     async def prepareOneGlyph(self, glyphName: str) -> GlyphInfo:
         glyph = await self.getSourceGlyph(glyphName, False)
 
+        glyphSources = filterActiveSources(glyph.sources)
+        checkInterpolationCompatibility(glyph, glyphSources)
+
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
         defaultLocation = {**self.defaultLocation, **localDefaultLocation}
         axisDict = {**self.globalAxisDict, **localAxisDict}
         localAxisTags = makeLocalAxisTags(axisDict, self.globalAxisDict)
         axisTags = {**self.globalAxisTags, **localAxisTags}
-
-        glyphSources = filterActiveSources(glyph.sources)
 
         locations = prepareLocations(glyphSources, defaultLocation, axisDict)
         locations = [mapDictKeys(s, axisTags) for s in locations]
@@ -509,13 +510,27 @@ def prepareLocations(glyphSources, defaultLocation, axisDict):
     ]
 
 
+def checkInterpolationCompatibility(glyph: VariableGlyph, glyphSources):
+    firstSourcePath = None
+
+    for source in glyphSources:
+        sourceGlyph = glyph.layers[source.layerName].glyph
+        assert isinstance(sourceGlyph.path, PackedPath)
+        if firstSourcePath is None:
+            firstSourcePath = sourceGlyph.path
+        else:
+            if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
+                raise InterpolationError(
+                    f"contours for source {source.name} of {glyph.name} are not compatible"
+                )
+
+
 def prepareXAdvanceVariations(glyph: VariableGlyph, glyphSources):
     return [glyph.layers[source.layerName].glyph.xAdvance for source in glyphSources]
 
 
 def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
     sourceCoordinates = []
-    firstSourcePath = None
 
     for source in glyphSources:
         sourceGlyph = glyph.layers[source.layerName].glyph
@@ -524,13 +539,7 @@ def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
 
         assert isinstance(sourceGlyph.path, PackedPath)
         coordinates.array.extend(sourceGlyph.path.coordinates)  # shortcut via ._a array
-        if firstSourcePath is None:
-            firstSourcePath = sourceGlyph.path
-        else:
-            if firstSourcePath.contourInfo != sourceGlyph.path.contourInfo:
-                raise InterpolationError(
-                    f"contours for source {source.name} of {glyph.name} are not compatible"
-                )
+
         # phantom points
         coordinates.append((0, 0))
         coordinates.append((sourceGlyph.xAdvance, 0))
