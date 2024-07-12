@@ -500,7 +500,7 @@ def prepareSourceCoordinates(
     locations = []
     firstSourcePath = None
 
-    for sourceIndex, source in enumerate(glyphSources):
+    for source in glyphSources:
         location = {**defaultLocation, **source.location}
         locations.append(normalizeLocation(location, axisDict))
         sourceGlyph = glyph.layers[source.layerName].glyph
