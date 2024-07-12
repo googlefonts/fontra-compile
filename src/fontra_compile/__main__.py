@@ -25,7 +25,9 @@ async def main_async():
     )
 
     reader = getFileSystemBackend(sourceFontPath)
-    builder = Builder(reader, glyphNames)
+    builder = Builder(
+        reader, glyphNames, buildCFF2=outputFontPath.suffix.lower() == ".otf"
+    )
     await builder.setup()
     ttFont = await builder.build()
     ttFont.save(outputFontPath)

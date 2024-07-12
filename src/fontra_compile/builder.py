@@ -3,6 +3,7 @@ from typing import Any
 
 from fontra.core.classes import VariableGlyph
 from fontra.core.path import PackedPath
+from fontra.core.protocols import ReadableFontBackend
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
@@ -133,10 +134,11 @@ class ComponentInfo:
             compo.axisValuesVarIndex = varIdx
 
 
+@dataclass
 class Builder:
-    def __init__(self, reader, requestedGlyphNames=None):
-        self.reader = reader  # a Fontra Backend, such as DesignspaceBackend
-        self.requestedGlyphNames = requestedGlyphNames
+    reader: ReadableFontBackend  # a Fontra Backend, such as DesignspaceBackend
+    requestedGlyphNames: list = field(default_factory=list)
+    buildCFF2: bool = False
 
     async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
@@ -157,7 +159,7 @@ class Builder:
         self.globalAxisTags = {axis.name: axis.tag for axis in self.globalAxes}
         self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
-        self.cachedSourceGlyphs: dict[str, VariableGlyph] = {}
+        self.cachedSourceGlyphs: dict[str, VariableGlyph | None] = {}
         self.cachedComponentBaseInfo: dict = {}
 
         self.glyphInfos: dict[str, GlyphInfo] = {}
@@ -173,6 +175,7 @@ class Builder:
         sourceGlyph = self.cachedSourceGlyphs.get(glyphName)
         if sourceGlyph is None:
             sourceGlyph = await self.reader.getGlyph(glyphName)
+            assert sourceGlyph is not None
             if storeInCache:
                 self.cachedSourceGlyphs[glyphName] = sourceGlyph
         return sourceGlyph
