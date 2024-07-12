@@ -60,6 +60,7 @@ class GlyphInfo:
     ttGlyph: TTGlyph | None = None
     gvarVariations: list | None = None
     charString: Any | None = None
+    charStringSupports: list | None = None
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
     model: VariationModel | None = None
@@ -238,22 +239,18 @@ class Builder:
         xAdvanceVariations = prepareXAdvanceVariations(glyph, glyphSources)
 
         defaultSourceIndex = model.reverseMapping[0] if model is not None else 0
-        defaultGlyph = glyph.layers[glyphSources[defaultSourceIndex].layerName].glyph
+        defaultLayerGlyph = glyph.layers[
+            glyphSources[defaultSourceIndex].layerName
+        ].glyph
 
-        gvarVariations = None
         ttGlyph = None
+        gvarVariations = None
         charString = None
+        charStringSupports = None
 
         if not self.buildCFF2:
-            ttGlyphPen = TTGlyphPointPen(None)
-            defaultGlyph.path.drawPoints(ttGlyphPen)
-            ttGlyph = ttGlyphPen.glyph()
-
-            sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
-            gvarVariations = (
-                prepareGvarVariations(sourceCoordinates, model)
-                if model is not None
-                else []
+            ttGlyph, gvarVariations = buildTTGlyph(
+                glyph, glyphSources, defaultLayerGlyph, model
             )
         else:
             raise NotImplementedError()
@@ -264,8 +261,9 @@ class Builder:
             ttGlyph=ttGlyph,
             gvarVariations=gvarVariations,
             charString=charString,
-            hasContours=not defaultGlyph.path.isEmpty(),
-            xAdvance=max(defaultGlyph.xAdvance or 0, 0),
+            charStringSupports=charStringSupports,
+            hasContours=not defaultLayerGlyph.path.isEmpty(),
+            xAdvance=max(defaultLayerGlyph.xAdvance or 0, 0),
             xAdvanceVariations=xAdvanceVariations,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
@@ -666,6 +664,18 @@ def checkInterpolationCompatibility(glyph: VariableGlyph, glyphSources):
 
 def prepareXAdvanceVariations(glyph: VariableGlyph, glyphSources):
     return [glyph.layers[source.layerName].glyph.xAdvance for source in glyphSources]
+
+
+def buildTTGlyph(glyph, glyphSources, defaultLayerGlyph, model):
+    ttGlyphPen = TTGlyphPointPen(None)
+    defaultLayerGlyph.path.drawPoints(ttGlyphPen)
+    ttGlyph = ttGlyphPen.glyph()
+
+    sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
+    gvarVariations = (
+        prepareGvarVariations(sourceCoordinates, model) if model is not None else []
+    )
+    return ttGlyph, gvarVariations
 
 
 def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
