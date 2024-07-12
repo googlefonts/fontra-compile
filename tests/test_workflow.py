@@ -19,7 +19,7 @@ steps:
 - output: compile-varc
   destination: "output1.ttf"
 """,
-        "MutatorSans.ttx",
+        "MutatorSans.ttf.ttx",
     ),
     (
         """
