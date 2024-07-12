@@ -6,6 +6,7 @@ from fontra.core.path import PackedPath
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
+from fontTools.misc.roundTools import noRound, otRound
 from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
 from fontTools.misc.vector import Vector
@@ -16,6 +17,8 @@ from fontTools.ttLib.tables._g_l_y_f import Glyph as TTGlyph
 from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.ttLib.tables.otTables import VAR_TRANSFORM_MAPPING, VarComponentFlags
+from fontTools.varLib import HVAR_FIELDS, VVAR_FIELDS
+from fontTools.varLib.builder import buildVarIdxMap
 from fontTools.varLib.models import (
     VariationModel,
     VariationModelError,
@@ -23,6 +26,7 @@ from fontTools.varLib.models import (
     piecewiseLinearMap,
 )
 from fontTools.varLib.multiVarStore import OnlineMultiVarStoreBuilder
+from fontTools.varLib.varStore import OnlineVarStoreBuilder
 
 
 class InterpolationError(Exception):
@@ -194,6 +198,7 @@ class Builder:
                     ttGlyph=TTGlyphPointPen(None).glyph(),
                     hasContours=False,
                     xAdvance=500,
+                    xAdvanceVariations=[500],
                 )
 
             self.glyphInfos[glyphName] = glyphInfo
@@ -427,6 +432,9 @@ class Builder:
                 getGlyphInfoAttributes(self.glyphInfos, "xAdvance"),
             )
         )
+        hvarTable = self.buildHVAR(axisTags)
+        builder.font["HVAR"] = hvarTable
+
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
@@ -501,6 +509,112 @@ class Builder:
         varcTable = newTable("VARC")
         varcTable.table = varcSubtable
         return varcTable
+
+    def buildHVAR(self, axisTags):
+        return self._buildHVAR(HVAR_FIELDS, axisTags)
+
+    def buildVVAR(self, axisTags):
+        raise NotImplementedError()
+        return self._buildHVAR(VVAR_FIELDS, axisTags)
+
+    def _buildHVAR(self, tableFields, axisTags):
+        tableTag = tableFields.tableTag
+
+        VHVAR = newTable(tableTag)
+        tableClass = getattr(ot, tableTag)
+        vhvar = VHVAR.table = tableClass()
+        vhvar.Version = 0x00010000
+
+        # # Build list of source font advance widths for each glyph
+        # metricsTag = tableFields.metricsTag
+        # advMetricses = [m[metricsTag].metrics for m in master_ttfs]
+
+        # # Build list of source font vertical origin coords for each glyph
+        # if tableTag == "VVAR" and "VORG" in master_ttfs[0]:
+        #     vOrigMetricses = [m["VORG"].VOriginRecords for m in master_ttfs]
+        #     defaultYOrigs = [m["VORG"].defaultVertOriginY for m in master_ttfs]
+        #     vOrigMetricses = list(zip(vOrigMetricses, defaultYOrigs))
+        # else:
+        #     vOrigMetricses = None
+
+        metricsStore, advanceMapping, vOrigMapping = self._prepareHVVAR(
+            "xAdvanceVariations", axisTags
+        )
+
+        vhvar.VarStore = metricsStore
+        if advanceMapping is None:
+            setattr(vhvar, tableFields.advMapping, None)
+        else:
+            setattr(vhvar, tableFields.advMapping, advanceMapping)
+
+        # if vOrigMapping is not None:
+        #     setattr(vhvar, tableFields.vOrigMapping, vOrigMapping)
+
+        setattr(vhvar, tableFields.sb1, None)
+        setattr(vhvar, tableFields.sb2, None)
+
+        return VHVAR
+
+    def _prepareHVVAR(self, advancesAttrName, axisTags, doVOrigins=False):
+        # Based on fontTools.varLib._get_advance_metrics()
+        glyphOrder = self.glyphOrder
+
+        vhAdvanceDeltasAndSupports = {}
+        # vOrigDeltasAndSupports = {}
+
+        for glyphName in glyphOrder:
+            glyphInfo = self.glyphInfos[glyphName]
+            vhAdvances = getattr(glyphInfo, advancesAttrName)
+            if glyphInfo.model is None:
+                assert len(vhAdvances) == 1
+                vhAdvanceDeltasAndSupports[glyphName] = [vhAdvances], [{}]
+            else:
+                vhAdvanceDeltasAndSupports[glyphName] = (
+                    glyphInfo.model.getDeltasAndSupports(vhAdvances, round=otRound)
+                )
+
+        if doVOrigins:
+            raise NotImplementedError()
+            # for glyph in glyphOrder:
+            #     # We need to supply a vOrigs tuple with non-None default values
+            #     # for each glyph. vOrigMetricses contains values only for those
+            #     # glyphs which have a non-default vOrig.
+            #     vOrigs = [
+            #         metrics[glyph] if glyph in metrics else defaultVOrig
+            #         for metrics, defaultVOrig in vOrigMetricses
+            #     ]
+            #     vOrigDeltasAndSupports[glyph] = masterModel.getDeltasAndSupports(
+            #         vOrigs, round=otRound
+            #     )
+
+        storeBuilder = OnlineVarStoreBuilder(axisTags)
+        advMapping = {}
+        for glyphName in glyphOrder:
+            deltas, supports = vhAdvanceDeltasAndSupports[glyphName]
+            storeBuilder.setSupports(supports)
+            advMapping[glyphName] = storeBuilder.storeDeltas(deltas, round=noRound)
+
+        # if vOrigMetricses:
+        #     vOrigMap = {}
+        #     for glyphName in glyphOrder:
+        #         deltas, supports = vOrigDeltasAndSupports[glyphName]
+        #         storeBuilder.setSupports(supports)
+        #         vOrigMap[glyphName] = storeBuilder.storeDeltas(deltas, round=noRound)
+
+        varStore = storeBuilder.finish()
+        mapping2 = varStore.optimize(use_NO_VARIATION_INDEX=False)
+        advMapping = [mapping2[advMapping[g]] for g in glyphOrder]
+        advanceMapping = buildVarIdxMap(advMapping, glyphOrder)
+
+        # if vOrigMetricses:
+        #     vOrigMap = [mapping2[vOrigMap[g]] for g in glyphOrder]
+
+        vOrigMapping = None
+
+        # if vOrigMetricses:
+        #     vOrigMapping = buildVarIdxMap(vOrigMap, glyphOrder)
+
+        return varStore, advanceMapping, vOrigMapping
 
 
 def prepareLocations(glyphSources, defaultLocation, axisDict):
