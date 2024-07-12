@@ -7,7 +7,7 @@ from fontra.backends import getFileSystemBackend
 from .builder import Builder
 
 
-async def main_async():
+async def main_async() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("source_font")
     parser.add_argument("output_font")
@@ -26,7 +26,9 @@ async def main_async():
 
     reader = getFileSystemBackend(sourceFontPath)
     builder = Builder(
-        reader, glyphNames, buildCFF2=outputFontPath.suffix.lower() == ".otf"
+        reader=reader,
+        requestedGlyphNames=glyphNames,
+        buildCFF2=outputFontPath.suffix.lower() == ".otf",
     )
     await builder.setup()
     ttFont = await builder.build()

@@ -32,7 +32,9 @@ class FontraCompileAction:
         outputDir = pathlib.Path(outputDir)
         outputFontPath = outputDir / self.destination
         assert self.input is not None
-        builder = Builder(self.input, buildCFF2=outputFontPath.suffix.lower() == ".otf")
+        builder = Builder(
+            reader=self.input, buildCFF2=outputFontPath.suffix.lower() == ".otf"
+        )
         await builder.setup()
         ttFont = await builder.build()
         ttFont.save(outputFontPath)

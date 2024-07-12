@@ -134,7 +134,7 @@ class ComponentInfo:
             compo.axisValuesVarIndex = varIdx
 
 
-@dataclass
+@dataclass(kw_only=True)
 class Builder:
     reader: ReadableFontBackend  # a Fontra Backend, such as DesignspaceBackend
     requestedGlyphNames: list = field(default_factory=list)
