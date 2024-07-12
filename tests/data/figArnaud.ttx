@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.50">
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.53">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -90,12 +90,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.0"/>
-    <checkSumAdjustment value="0x87e882a6"/>
+    <checkSumAdjustment value="0x56ff81ab"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Sun Apr 21 20:45:19 2024"/>
-    <modified value="Sun Apr 21 20:45:19 2024"/>
+    <created value="Fri Jul 12 14:44:16 2024"/>
+    <modified value="Fri Jul 12 14:44:16 2024"/>
     <xMin value="15"/>
     <yMin value="-20"/>
     <xMax value="327"/>
@@ -977,6 +977,430 @@
       <psName name="zero_00"/>
     </extraNames>
   </post>
+
+  <HVAR>
+    <Version value="0x00010000"/>
+    <VarStore Format="1">
+      <Format value="1"/>
+      <VarRegionList>
+        <!-- RegionAxisCount=8 -->
+        <!-- RegionCount=7 -->
+        <Region index="0">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="1">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="2">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="3">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="4">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="5">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+        </Region>
+        <Region index="6">
+          <VarRegionAxis index="0">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="1">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="2">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="3">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="4">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="5">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="6">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="0.0"/>
+            <EndCoord value="0.0"/>
+          </VarRegionAxis>
+          <VarRegionAxis index="7">
+            <StartCoord value="0.0"/>
+            <PeakCoord value="1.0"/>
+            <EndCoord value="1.0"/>
+          </VarRegionAxis>
+        </Region>
+      </VarRegionList>
+      <!-- VarDataCount=3 -->
+      <VarData index="0">
+        <!-- ItemCount=6 -->
+        <NumShorts value="2"/>
+        <!-- VarRegionCount=2 -->
+        <VarRegionIndex index="0" value="0"/>
+        <VarRegionIndex index="1" value="1"/>
+        <Item index="0" value="[0, 0]"/>
+        <Item index="1" value="[140, 221]"/>
+        <Item index="2" value="[287, 157]"/>
+        <Item index="3" value="[300, 180]"/>
+        <Item index="4" value="[310, 163]"/>
+        <Item index="5" value="[370, 180]"/>
+      </VarData>
+      <VarData index="1">
+        <!-- ItemCount=1 -->
+        <NumShorts value="2"/>
+        <!-- VarRegionCount=2 -->
+        <VarRegionIndex index="0" value="1"/>
+        <VarRegionIndex index="1" value="2"/>
+        <Item index="0" value="[320, 191]"/>
+      </VarData>
+      <VarData index="2">
+        <!-- ItemCount=3 -->
+        <NumShorts value="4"/>
+        <!-- VarRegionCount=6 -->
+        <VarRegionIndex index="0" value="2"/>
+        <VarRegionIndex index="1" value="3"/>
+        <VarRegionIndex index="2" value="4"/>
+        <VarRegionIndex index="3" value="6"/>
+        <VarRegionIndex index="4" value="0"/>
+        <VarRegionIndex index="5" value="5"/>
+        <Item index="0" value="[-20, 75, 0, 330, 10, 100]"/>
+        <Item index="1" value="[155, 309, 154, 0, 16, 0]"/>
+        <Item index="2" value="[306, 132, 0, 0, 100, 0]"/>
+      </VarData>
+    </VarStore>
+    <AdvWidthMap>
+      <Map glyph=".notdef" outer="0" inner="0"/>
+      <Map glyph="DC_0030_00" outer="0" inner="0"/>
+      <Map glyph="DC_0031_00" outer="0" inner="0"/>
+      <Map glyph="DC_0032_00" outer="0" inner="0"/>
+      <Map glyph="DC_0033_00" outer="0" inner="0"/>
+      <Map glyph="DC_0034_00" outer="0" inner="0"/>
+      <Map glyph="DC_0035_00" outer="0" inner="0"/>
+      <Map glyph="DC_0036_00" outer="0" inner="0"/>
+      <Map glyph="DC_0037_00" outer="0" inner="0"/>
+      <Map glyph="DC_0038_00" outer="0" inner="0"/>
+      <Map glyph="DC_0039_00" outer="0" inner="0"/>
+      <Map glyph="eight_00" outer="0" inner="3"/>
+      <Map glyph="five_00" outer="0" inner="4"/>
+      <Map glyph="four_00" outer="2" inner="0"/>
+      <Map glyph="nine_00" outer="1" inner="0"/>
+      <Map glyph="one_00" outer="0" inner="1"/>
+      <Map glyph="seven_00" outer="2" inner="2"/>
+      <Map glyph="six_00" outer="1" inner="0"/>
+      <Map glyph="three_00" outer="0" inner="2"/>
+      <Map glyph="two_00" outer="2" inner="1"/>
+      <Map glyph="uni0030" outer="0" inner="0"/>
+      <Map glyph="uni0030.inf" outer="0" inner="0"/>
+      <Map glyph="uni0030.of" outer="0" inner="0"/>
+      <Map glyph="uni0030.sc" outer="0" inner="0"/>
+      <Map glyph="uni0030.sup" outer="0" inner="0"/>
+      <Map glyph="uni0030.tab" outer="0" inner="0"/>
+      <Map glyph="uni0031" outer="0" inner="0"/>
+      <Map glyph="uni0031.inf" outer="0" inner="0"/>
+      <Map glyph="uni0031.of" outer="0" inner="0"/>
+      <Map glyph="uni0031.sc" outer="0" inner="0"/>
+      <Map glyph="uni0031.sup" outer="0" inner="0"/>
+      <Map glyph="uni0031.tab" outer="0" inner="0"/>
+      <Map glyph="uni0032" outer="0" inner="0"/>
+      <Map glyph="uni0032.inf" outer="0" inner="0"/>
+      <Map glyph="uni0032.of" outer="0" inner="0"/>
+      <Map glyph="uni0032.sc" outer="0" inner="0"/>
+      <Map glyph="uni0032.sup" outer="0" inner="0"/>
+      <Map glyph="uni0032.tab" outer="0" inner="0"/>
+      <Map glyph="uni0033" outer="0" inner="0"/>
+      <Map glyph="uni0033.inf" outer="0" inner="0"/>
+      <Map glyph="uni0033.of" outer="0" inner="0"/>
+      <Map glyph="uni0033.sc" outer="0" inner="0"/>
+      <Map glyph="uni0033.sup" outer="0" inner="0"/>
+      <Map glyph="uni0033.tab" outer="0" inner="0"/>
+      <Map glyph="uni0034" outer="0" inner="0"/>
+      <Map glyph="uni0034.inf" outer="0" inner="0"/>
+      <Map glyph="uni0034.of" outer="0" inner="0"/>
+      <Map glyph="uni0034.sc" outer="0" inner="0"/>
+      <Map glyph="uni0034.sup" outer="0" inner="0"/>
+      <Map glyph="uni0034.tab" outer="0" inner="0"/>
+      <Map glyph="uni0035" outer="0" inner="0"/>
+      <Map glyph="uni0035.inf" outer="0" inner="0"/>
+      <Map glyph="uni0035.of" outer="0" inner="0"/>
+      <Map glyph="uni0035.sc" outer="0" inner="0"/>
+      <Map glyph="uni0035.sup" outer="0" inner="0"/>
+      <Map glyph="uni0035.tab" outer="0" inner="0"/>
+      <Map glyph="uni0036" outer="0" inner="0"/>
+      <Map glyph="uni0036.inf" outer="0" inner="0"/>
+      <Map glyph="uni0036.of" outer="0" inner="0"/>
+      <Map glyph="uni0036.sc" outer="0" inner="0"/>
+      <Map glyph="uni0036.sup" outer="0" inner="0"/>
+      <Map glyph="uni0036.tab" outer="0" inner="0"/>
+      <Map glyph="uni0037" outer="0" inner="0"/>
+      <Map glyph="uni0037.inf" outer="0" inner="0"/>
+      <Map glyph="uni0037.of" outer="0" inner="0"/>
+      <Map glyph="uni0037.sc" outer="0" inner="0"/>
+      <Map glyph="uni0037.sup" outer="0" inner="0"/>
+      <Map glyph="uni0037.tab" outer="0" inner="0"/>
+      <Map glyph="uni0038" outer="0" inner="0"/>
+      <Map glyph="uni0038.inf" outer="0" inner="0"/>
+      <Map glyph="uni0038.of" outer="0" inner="0"/>
+      <Map glyph="uni0038.sc" outer="0" inner="0"/>
+      <Map glyph="uni0038.sup" outer="0" inner="0"/>
+      <Map glyph="uni0038.tab" outer="0" inner="0"/>
+      <Map glyph="uni0039" outer="0" inner="0"/>
+      <Map glyph="uni0039.inf" outer="0" inner="0"/>
+      <Map glyph="uni0039.of" outer="0" inner="0"/>
+      <Map glyph="uni0039.sc" outer="0" inner="0"/>
+      <Map glyph="uni0039.sup" outer="0" inner="0"/>
+      <Map glyph="uni0039.tab" outer="0" inner="0"/>
+      <Map glyph="zero_00" outer="0" inner="5"/>
+    </AdvWidthMap>
+  </HVAR>
 
   <VARC>
     <Version value="0x00010000"/>

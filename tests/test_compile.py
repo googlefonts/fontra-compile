@@ -29,6 +29,10 @@ def test_main(tmpdir, sourceName):
     outTTXPath = tmpdir / (sourcePath.stem + ".ttx")
     subprocess.run(["fontra-compile", sourcePath, outPath], check=True)
     subprocess.run(["ttx", outPath], check=True)
+
+    # # Write expected
+    # ttxPath.write_text(outTTXPath.read_text())
+
     ttxLines = cleanupTTX(outTTXPath.read_text())
     expectedLines = cleanupTTX(ttxPath.read_text())
     assert expectedLines == ttxLines

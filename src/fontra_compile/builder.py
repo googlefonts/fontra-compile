@@ -6,15 +6,19 @@ from fontra.core.path import PackedPath
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
+from fontTools.misc.roundTools import noRound, otRound
 from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
 from fontTools.misc.vector import Vector
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib import TTFont, newTable
 from fontTools.ttLib.tables import otTables as ot
-from fontTools.ttLib.tables._g_l_y_f import Glyph, GlyphCoordinates
+from fontTools.ttLib.tables._g_l_y_f import Glyph as TTGlyph
+from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.ttLib.tables.otTables import VAR_TRANSFORM_MAPPING, VarComponentFlags
+from fontTools.varLib import HVAR_FIELDS, VVAR_FIELDS
+from fontTools.varLib.builder import buildVarIdxMap
 from fontTools.varLib.models import (
     VariationModel,
     VariationModelError,
@@ -22,6 +26,7 @@ from fontTools.varLib.models import (
     piecewiseLinearMap,
 )
 from fontTools.varLib.multiVarStore import OnlineMultiVarStoreBuilder
+from fontTools.varLib.varStore import OnlineVarStoreBuilder
 
 
 class InterpolationError(Exception):
@@ -48,8 +53,10 @@ VARCO_IF_VARYING = {
 
 @dataclass
 class GlyphInfo:
-    glyph: Glyph
+    ttGlyph: TTGlyph
+    hasContours: bool
     xAdvance: float = 500
+    xAdvanceVariations: list = field(default_factory=list)
     variations: list = field(default_factory=list)
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
@@ -187,12 +194,20 @@ class Builder:
 
             if glyphInfo is None:
                 # make .notdef based on UPM
-                glyphInfo = GlyphInfo(glyph=TTGlyphPointPen(None).glyph(), xAdvance=500)
+                glyphInfo = GlyphInfo(
+                    ttGlyph=TTGlyphPointPen(None).glyph(),
+                    hasContours=False,
+                    xAdvance=500,
+                    xAdvanceVariations=[500],
+                )
 
             self.glyphInfos[glyphName] = glyphInfo
 
     async def prepareOneGlyph(self, glyphName: str) -> GlyphInfo:
         glyph = await self.getSourceGlyph(glyphName, False)
+
+        glyphSources = filterActiveSources(glyph.sources)
+        checkInterpolationCompatibility(glyph, glyphSources)
 
         localAxisDict = {axis.name: axisTuple(axis) for axis in glyph.axes}
         localDefaultLocation = {k: v[1] for k, v in localAxisDict.items()}
@@ -201,18 +216,16 @@ class Builder:
         localAxisTags = makeLocalAxisTags(axisDict, self.globalAxisDict)
         axisTags = {**self.globalAxisTags, **localAxisTags}
 
-        glyphSources = filterActiveSources(glyph.sources)
-
-        sourceCoordinates, locations = prepareSourceCoordinates(
-            glyph, glyphSources, defaultLocation, axisDict
-        )
-
+        locations = prepareLocations(glyphSources, defaultLocation, axisDict)
         locations = [mapDictKeys(s, axisTags) for s in locations]
 
         model = (
             VariationModel(locations) if len(locations) >= 2 else None
         )  # XXX axis order!
 
+        xAdvanceVariations = prepareXAdvanceVariations(glyph, glyphSources)
+
+        sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
         variations = (
             prepareGvarVariations(sourceCoordinates, model) if model is not None else []
         )
@@ -227,8 +240,10 @@ class Builder:
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
         return GlyphInfo(
-            glyph=ttGlyph,
+            ttGlyph=ttGlyph,
+            hasContours=not defaultGlyph.path.isEmpty(),
             xAdvance=max(defaultGlyph.xAdvance or 0, 0),
+            xAdvanceVariations=xAdvanceVariations,
             variations=variations,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
@@ -387,7 +402,7 @@ class Builder:
         builder.updateHead(created=timestampNow(), modified=timestampNow())
         builder.setupGlyphOrder(self.glyphOrder)
         builder.setupNameTable(dict())
-        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "glyph"))
+        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
 
         localAxisTags = set()
         for glyphInfo in self.glyphInfos.values():
@@ -417,6 +432,9 @@ class Builder:
                 getGlyphInfoAttributes(self.glyphInfos, "xAdvance"),
             )
         )
+        hvarTable = self.buildHVAR(axisTags)
+        builder.font["HVAR"] = hvarTable
+
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
@@ -468,7 +486,7 @@ class Builder:
 
                 components.append(compo)
 
-            if self.glyphInfos[glyphName].glyph.numberOfContours:
+            if self.glyphInfos[glyphName].hasContours:
                 # Add a component for the outline section, so we can effectively
                 # mix outlines and components. This is a special case in the spec.
                 compo = ot.VarComponent()
@@ -492,23 +510,126 @@ class Builder:
         varcTable.table = varcSubtable
         return varcTable
 
+    def buildHVAR(self, axisTags):
+        return self._buildHVAR(HVAR_FIELDS, axisTags)
 
-def prepareSourceCoordinates(
-    glyph: VariableGlyph, glyphSources, defaultLocation, axisDict
-):
-    sourceCoordinates = []
-    locations = []
+    def buildVVAR(self, axisTags):
+        raise NotImplementedError()
+        return self._buildHVAR(VVAR_FIELDS, axisTags)
+
+    def _buildHVAR(self, tableFields, axisTags):
+        tableTag = tableFields.tableTag
+
+        VHVAR = newTable(tableTag)
+        tableClass = getattr(ot, tableTag)
+        vhvar = VHVAR.table = tableClass()
+        vhvar.Version = 0x00010000
+
+        # # Build list of source font advance widths for each glyph
+        # metricsTag = tableFields.metricsTag
+        # advMetricses = [m[metricsTag].metrics for m in master_ttfs]
+
+        # # Build list of source font vertical origin coords for each glyph
+        # if tableTag == "VVAR" and "VORG" in master_ttfs[0]:
+        #     vOrigMetricses = [m["VORG"].VOriginRecords for m in master_ttfs]
+        #     defaultYOrigs = [m["VORG"].defaultVertOriginY for m in master_ttfs]
+        #     vOrigMetricses = list(zip(vOrigMetricses, defaultYOrigs))
+        # else:
+        #     vOrigMetricses = None
+
+        metricsStore, advanceMapping, vOrigMapping = self._prepareHVVAR(
+            "xAdvanceVariations", axisTags
+        )
+
+        vhvar.VarStore = metricsStore
+        if advanceMapping is None:
+            setattr(vhvar, tableFields.advMapping, None)
+        else:
+            setattr(vhvar, tableFields.advMapping, advanceMapping)
+
+        # if vOrigMapping is not None:
+        #     setattr(vhvar, tableFields.vOrigMapping, vOrigMapping)
+
+        setattr(vhvar, tableFields.sb1, None)
+        setattr(vhvar, tableFields.sb2, None)
+
+        return VHVAR
+
+    def _prepareHVVAR(self, advancesAttrName, axisTags, doVOrigins=False):
+        # Based on fontTools.varLib._get_advance_metrics()
+        glyphOrder = self.glyphOrder
+
+        vhAdvanceDeltasAndSupports = {}
+        # vOrigDeltasAndSupports = {}
+
+        for glyphName in glyphOrder:
+            glyphInfo = self.glyphInfos[glyphName]
+            vhAdvances = getattr(glyphInfo, advancesAttrName)
+            if glyphInfo.model is None:
+                assert len(vhAdvances) == 1
+                vhAdvanceDeltasAndSupports[glyphName] = [vhAdvances], [{}]
+            else:
+                vhAdvanceDeltasAndSupports[glyphName] = (
+                    glyphInfo.model.getDeltasAndSupports(vhAdvances, round=otRound)
+                )
+
+        if doVOrigins:
+            raise NotImplementedError()
+            # for glyph in glyphOrder:
+            #     # We need to supply a vOrigs tuple with non-None default values
+            #     # for each glyph. vOrigMetricses contains values only for those
+            #     # glyphs which have a non-default vOrig.
+            #     vOrigs = [
+            #         metrics[glyph] if glyph in metrics else defaultVOrig
+            #         for metrics, defaultVOrig in vOrigMetricses
+            #     ]
+            #     vOrigDeltasAndSupports[glyph] = masterModel.getDeltasAndSupports(
+            #         vOrigs, round=otRound
+            #     )
+
+        storeBuilder = OnlineVarStoreBuilder(axisTags)
+        advMapping = {}
+        for glyphName in glyphOrder:
+            deltas, supports = vhAdvanceDeltasAndSupports[glyphName]
+            storeBuilder.setSupports(supports)
+            advMapping[glyphName] = storeBuilder.storeDeltas(deltas, round=noRound)
+
+        # if vOrigMetricses:
+        #     vOrigMap = {}
+        #     for glyphName in glyphOrder:
+        #         deltas, supports = vOrigDeltasAndSupports[glyphName]
+        #         storeBuilder.setSupports(supports)
+        #         vOrigMap[glyphName] = storeBuilder.storeDeltas(deltas, round=noRound)
+
+        varStore = storeBuilder.finish()
+        mapping2 = varStore.optimize(use_NO_VARIATION_INDEX=False)
+        advMapping = [mapping2[advMapping[g]] for g in glyphOrder]
+        advanceMapping = buildVarIdxMap(advMapping, glyphOrder)
+
+        # if vOrigMetricses:
+        #     vOrigMap = [mapping2[vOrigMap[g]] for g in glyphOrder]
+
+        vOrigMapping = None
+
+        # if vOrigMetricses:
+        #     vOrigMapping = buildVarIdxMap(vOrigMap, glyphOrder)
+
+        return varStore, advanceMapping, vOrigMapping
+
+
+def prepareLocations(glyphSources, defaultLocation, axisDict):
+    return [
+        normalizeLocation({**defaultLocation, **source.location}, axisDict)
+        for source in glyphSources
+    ]
+
+
+def checkInterpolationCompatibility(glyph: VariableGlyph, glyphSources):
     firstSourcePath = None
 
-    for sourceIndex, source in enumerate(glyphSources):
-        location = {**defaultLocation, **source.location}
-        locations.append(normalizeLocation(location, axisDict))
+    for source in glyphSources:
         sourceGlyph = glyph.layers[source.layerName].glyph
-
-        coordinates = GlyphCoordinates()
-
         assert isinstance(sourceGlyph.path, PackedPath)
-        coordinates.array.extend(sourceGlyph.path.coordinates)  # shortcut via ._a array
         if firstSourcePath is None:
             firstSourcePath = sourceGlyph.path
         else:
@@ -516,6 +637,23 @@ def prepareSourceCoordinates(
                 raise InterpolationError(
                     f"contours for source {source.name} of {glyph.name} are not compatible"
                 )
+
+
+def prepareXAdvanceVariations(glyph: VariableGlyph, glyphSources):
+    return [glyph.layers[source.layerName].glyph.xAdvance for source in glyphSources]
+
+
+def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
+    sourceCoordinates = []
+
+    for source in glyphSources:
+        sourceGlyph = glyph.layers[source.layerName].glyph
+
+        coordinates = GlyphCoordinates()
+
+        assert isinstance(sourceGlyph.path, PackedPath)
+        coordinates.array.extend(sourceGlyph.path.coordinates)  # shortcut via ._a array
+
         # phantom points
         coordinates.append((0, 0))
         coordinates.append((sourceGlyph.xAdvance, 0))
@@ -523,7 +661,7 @@ def prepareSourceCoordinates(
         coordinates.append((0, 0))
         sourceCoordinates.append(coordinates)
 
-    return sourceCoordinates, locations
+    return sourceCoordinates
 
 
 def prepareGvarVariations(sourceCoordinates, model):
