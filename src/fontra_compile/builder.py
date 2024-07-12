@@ -237,26 +237,36 @@ class Builder:
 
         xAdvanceVariations = prepareXAdvanceVariations(glyph, glyphSources)
 
-        sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
-        gvarVariations = (
-            prepareGvarVariations(sourceCoordinates, model) if model is not None else []
-        )
-
         defaultSourceIndex = model.reverseMapping[0] if model is not None else 0
         defaultGlyph = glyph.layers[glyphSources[defaultSourceIndex].layerName].glyph
 
-        ttGlyphPen = TTGlyphPointPen(None)
-        defaultGlyph.path.drawPoints(ttGlyphPen)
-        ttGlyph = ttGlyphPen.glyph()
+        gvarVariations = None
+        ttGlyph = None
+        charString = None
+
+        if not self.buildCFF2:
+            ttGlyphPen = TTGlyphPointPen(None)
+            defaultGlyph.path.drawPoints(ttGlyphPen)
+            ttGlyph = ttGlyphPen.glyph()
+
+            sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
+            gvarVariations = (
+                prepareGvarVariations(sourceCoordinates, model)
+                if model is not None
+                else []
+            )
+        else:
+            raise NotImplementedError()
 
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
         return GlyphInfo(
             ttGlyph=ttGlyph,
+            gvarVariations=gvarVariations,
+            charString=charString,
             hasContours=not defaultGlyph.path.isEmpty(),
             xAdvance=max(defaultGlyph.xAdvance or 0, 0),
             xAdvanceVariations=xAdvanceVariations,
-            gvarVariations=gvarVariations,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
             model=model,
@@ -414,7 +424,6 @@ class Builder:
         builder.updateHead(created=timestampNow(), modified=timestampNow())
         builder.setupGlyphOrder(self.glyphOrder)
         builder.setupNameTable(dict())
-        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
 
         localAxisTags = set()
         for glyphInfo in self.glyphInfos.values():
@@ -429,9 +438,13 @@ class Builder:
             if any(axis.map for axis in dsAxes):
                 builder.setupAvar(dsAxes)
 
-        gvarVariations = getGlyphInfoAttributes(self.glyphInfos, "gvarVariations")
-        if gvarVariations:
-            builder.setupGvar(gvarVariations)
+        if not self.buildCFF2:
+            builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
+            gvarVariations = getGlyphInfoAttributes(self.glyphInfos, "gvarVariations")
+            if gvarVariations:
+                builder.setupGvar(gvarVariations)
+        else:
+            raise NotImplementedError()
 
         if any(glyphInfo.variableComponents for glyphInfo in self.glyphInfos.values()):
             varcTable = self.buildVARC(axisTags)
