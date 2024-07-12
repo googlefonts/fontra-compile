@@ -203,7 +203,7 @@ class Builder:
 
         glyphSources = filterActiveSources(glyph.sources)
 
-        locations = prepareLocations(glyph, glyphSources, defaultLocation, axisDict)
+        locations = prepareLocations(glyphSources, defaultLocation, axisDict)
         sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
 
         locations = [mapDictKeys(s, axisTags) for s in locations]
@@ -492,7 +492,7 @@ class Builder:
         return varcTable
 
 
-def prepareLocations(glyph, glyphSources, defaultLocation, axisDict):
+def prepareLocations(glyphSources, defaultLocation, axisDict):
     return [
         normalizeLocation({**defaultLocation, **source.location}, axisDict)
         for source in glyphSources
