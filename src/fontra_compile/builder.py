@@ -270,11 +270,8 @@ class Builder:
                 glyph, glyphSources, defaultLayerGlyph, model
             )
         else:
-            charString = buildCharString(glyph, glyphSources, defaultLayerGlyph, model)
-            charStringSupports = (
-                tuple(tuple(sorted(sup.items())) for sup in model.supports[1:])
-                if model is not None
-                else None
+            charString, charStringSupports = buildCharString(
+                glyph, glyphSources, defaultLayerGlyph, model
             )
 
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
@@ -771,7 +768,13 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
             layerGlyph.path.drawPoints(pointPen)
         charString = pen.getCharString(var_model=model)
 
-    return charString
+    charStringSupports = (
+        tuple(tuple(sorted(sup.items())) for sup in model.supports[1:])
+        if model is not None
+        else None
+    )
+
+    return charString, charStringSupports
 
 
 def prepareCFFVarData(charStrings, charStringSupports):
