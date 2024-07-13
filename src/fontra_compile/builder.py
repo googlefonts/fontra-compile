@@ -484,9 +484,9 @@ class Builder:
 
         builder.setupHorizontalHeader()
         builder.setupHorizontalMetrics(
-            addLSB(
-                getGlyphInfoAttributes(self.glyphInfos, "leftSideBearing"),
+            dictZip(
                 getGlyphInfoAttributes(self.glyphInfos, "xAdvance"),
+                getGlyphInfoAttributes(self.glyphInfos, "leftSideBearing"),
             )
         )
         hvarTable = self.buildHVAR(axisTags)
@@ -815,13 +815,11 @@ def prepareCFFVarData(charStrings, charStringSupports):
     return varDataList, regionList
 
 
-def addLSB(
-    leftSideBearings: dict[str, int], metrics: dict[str, int]
-) -> dict[str, tuple[int, int]]:
-    return {
-        glyphName: (xAdvance, leftSideBearings.get(glyphName, 0))
-        for glyphName, xAdvance in metrics.items()
-    }
+def dictZip(*dicts: dict) -> dict:
+    keys = dicts[0].keys()
+    if not all(keys == d.keys() for d in dicts[1:]):
+        raise ValueError("all input dicts must have the same set of keys")
+    return {key: tuple(d[key] for d in dicts) for key in keys}
 
 
 def applyAxisMapToAxisValues(axis) -> tuple[float, float, float]:
