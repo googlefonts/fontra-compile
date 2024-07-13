@@ -759,6 +759,13 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
         defaultLayerGlyph.path.drawPoints(PointToSegmentPen(pen))
         charString = pen.getCharString()
     else:
+        if model.reverseMapping[0] != 0:
+            # For some reason, CFF2CharStringMergePen requires the first source
+            # to be the default, so let's make it so.
+            glyphSources = [glyphSources[i] for i in model.reverseMapping]
+            model = VariationModel(model.locations, model.axisOrder)
+            assert model.reverseMapping[0] == 0
+
         pen = CFF2CharStringMergePen([], glyph.name, len(glyphSources), 0)
         pointPen = PointToSegmentPen(pen)
         for sourceIndex, source in enumerate(glyphSources):
