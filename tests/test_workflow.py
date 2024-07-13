@@ -26,6 +26,16 @@ steps:
 steps:
 - input: fontra-read
   source: "tests/data/MutatorSans.fontra"
+- output: compile-varc
+  destination: "output1.otf"
+""",
+        "MutatorSans.otf.ttx",
+    ),
+    (
+        """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
 - output: compile-fontmake
   options:
     flatten-components:  # no value
