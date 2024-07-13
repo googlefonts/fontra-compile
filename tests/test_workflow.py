@@ -49,9 +49,7 @@ steps:
     ),
     (
         """
-# This test confirms that the order of sources in glyphs is irrelevant.
-# In other words, check that we produce the same output regardless of glyph
-# source order.
+# Check that we produce the same output regardless of glyph source order.
 steps:
 - input: fontra-read
   source: "tests/data/MutatorSans.fontra"
@@ -63,9 +61,7 @@ steps:
     ),
     (
         """
-# This test confirms that the order of sources in glyphs is irrelevant.
-# In other words, check that we produce the same output regardless of glyph
-# source order.
+# Check that we produce the same output regardless of glyph source order.
 steps:
 - input: fontra-read
   source: "tests/data/MutatorSans.fontra"
