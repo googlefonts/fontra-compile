@@ -67,3 +67,7 @@ ignore_missing_imports = true
 [[tool.mypy.overrides]]
 module = "fontmake.*"
 ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "cffsubr.*"
+ignore_missing_imports = true
