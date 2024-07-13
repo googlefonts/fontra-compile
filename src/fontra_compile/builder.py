@@ -66,7 +66,7 @@ class GlyphInfo:
     ttGlyph: TTGlyph | None = None
     gvarVariations: list | None = None
     charString: Any | None = None
-    charStringSupports: list | None = None
+    charStringSupports: tuple | None = None
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
     model: VariationModel | None = None
