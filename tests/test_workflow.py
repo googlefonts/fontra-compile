@@ -57,6 +57,20 @@ steps:
   source: "tests/data/MutatorSans.fontra"
 - filter: randomize-glyph-source-order
 - output: compile-varc
+  destination: "output-random-source-order.ttf"
+""",
+        "MutatorSans.ttf.ttx",
+    ),
+    (
+        """
+# This test confirms that the order of sources in glyphs is irrelevant.
+# In other words, check that we produce the same output regardless of glyph
+# source order.
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
+- filter: randomize-glyph-source-order
+- output: compile-varc
   destination: "output-random-source-order.otf"
 """,
         "MutatorSans.otf.ttx",
