@@ -1,6 +1,7 @@
 from dataclasses import dataclass, field
 from typing import Any
 
+import cffsubr
 from fontra.core.classes import VariableGlyph
 from fontra.core.path import PackedPath
 from fontra.core.protocols import ReadableFontBackend
@@ -497,6 +498,9 @@ class Builder:
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
+
+        if self.buildCFF2:
+            cffsubr.subroutinize(builder.font)
 
         return builder.font
 
