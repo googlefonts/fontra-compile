@@ -758,6 +758,7 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
         pen = T2CharStringPen(None, None, CFF2=True)
         defaultLayerGlyph.path.drawPoints(PointToSegmentPen(pen))
         charString = pen.getCharString()
+        charStringSupports = None
     else:
         if model.reverseMapping[0] != 0:
             # For some reason, CFF2CharStringMergePen requires the first source
@@ -773,13 +774,11 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
                 pen.restart(sourceIndex)
             layerGlyph = glyph.layers[source.layerName].glyph
             layerGlyph.path.drawPoints(pointPen)
-        charString = pen.getCharString(var_model=model)
 
-    charStringSupports = (
-        tuple(tuple(sorted(sup.items())) for sup in model.supports[1:])
-        if model is not None
-        else None
-    )
+        charString = pen.getCharString(var_model=model)
+        charStringSupports = tuple(
+            tuple(sorted(sup.items())) for sup in model.supports[1:]
+        )
 
     return charString, charStringSupports
 
