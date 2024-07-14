@@ -14,6 +14,7 @@ from fontTools.misc.transform import DecomposedTransform
 from fontTools.misc.vector import Vector
 from fontTools.pens.boundsPen import BoundsPen, ControlBoundsPen
 from fontTools.pens.pointPen import PointToSegmentPen
+from fontTools.pens.recordingPen import RecordingPen
 from fontTools.pens.t2CharStringPen import T2CharStringPen
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib import TTFont, newTable
@@ -768,12 +769,11 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
             assert model.reverseMapping[0] == 0
 
         pen = CFF2CharStringMergePen([], glyph.name, len(glyphSources), 0)
-        pointPen = PointToSegmentPen(pen)
         for sourceIndex, source in enumerate(glyphSources):
             if sourceIndex:
                 pen.restart(sourceIndex)
             layerGlyph = glyph.layers[source.layerName].glyph
-            layerGlyph.path.drawPoints(pointPen)
+            drawPathToSegmentPen(layerGlyph.path, pen)
 
         charString = pen.getCharString(var_model=model)
         charStringSupports = tuple(
@@ -921,3 +921,22 @@ def getGlyphInfoAttributes(glyphInfos, attrName):
         glyphName: getattr(glyphInfo, attrName)
         for glyphName, glyphInfo in glyphInfos.items()
     }
+
+
+def drawPathToSegmentPen(path, pen):
+    # We ask PointToSegmentPen to output implied closing lines, then filter
+    # said closing lines again because we don't need them in the CharString.
+    # The reason is that PointToSegment pen will still output closing lines
+    # in some cases, based on input coordinates, even if we ask it not to.
+    # https://github.com/fonttools/fonttools/issues/3584
+    recPen = DropImpliedClosingLinePen()
+    pointPen = PointToSegmentPen(recPen, outputImpliedClosingLine=True)
+    path.drawPoints(pointPen)
+    recPen.replay(pen)
+
+
+class DropImpliedClosingLinePen(RecordingPen):
+    def closePath(self):
+        if self.value[-1][0] == "lineTo":
+            del self.value[-1]
+        super().closePath()
