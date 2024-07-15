@@ -702,6 +702,12 @@ def prepareXAdvanceVariations(glyph: VariableGlyph, glyphSources):
     return [glyph.layers[source.layerName].glyph.xAdvance for source in glyphSources]
 
 
+def computeLeftSideBearing(path: Path | PackedPath, useTightBounds: bool) -> int:
+    boundsPen = (BoundsPen if useTightBounds else ControlBoundsPen)(None)
+    path.drawPoints(PointToSegmentPen(boundsPen))
+    return otRound(boundsPen.bounds[0]) if boundsPen.bounds is not None else 0
+
+
 def buildTTGlyph(glyph, glyphSources, defaultLayerGlyph, model):
     ttGlyphPen = TTGlyphPointPen(None)
     defaultLayerGlyph.path.drawPoints(ttGlyphPen)
@@ -779,12 +785,6 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
         )
 
     return charString, charStringSupports
-
-
-def computeLeftSideBearing(path: Path | PackedPath, useTightBounds: bool) -> int:
-    boundsPen = (BoundsPen if useTightBounds else ControlBoundsPen)(None)
-    path.drawPoints(PointToSegmentPen(boundsPen))
-    return otRound(boundsPen.bounds[0]) if boundsPen.bounds is not None else 0
 
 
 def prepareCFFVarData(charStrings, charStringSupports):
