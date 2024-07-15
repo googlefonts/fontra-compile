@@ -848,7 +848,7 @@ def axisTuple(axis, fixAsymmetricAxes=True) -> tuple[float, float, float]:
         # To work around it, we extend either side of the axis so the distance between
         # minValue and defaultValue becomes the same as the distance between defaultValue
         # and maxValue.
-        # The downside if this approach is that axis values will no longer be clipped to
+        # The downside of this approach is that axis values will no longer be clipped to
         # their original minimum or maximum, so we may create new edge cases here.
         minDiff = defaultValue - minValue
         maxDiff = maxValue - defaultValue
