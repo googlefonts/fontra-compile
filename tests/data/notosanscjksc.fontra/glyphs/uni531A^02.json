@@ -1,0 +1,70 @@
+{
+"name": "uni531A",
+"sources": [
+{
+"name": "<default>",
+"layerName": "foreground",
+"customData": {
+"fontra.development.status": 4
+}
+},
+{
+"name": "wght=1",
+"layerName": "wght=1",
+"location": {
+"wght": 1
+},
+"customData": {
+"fontra.development.status": 4
+}
+}
+],
+"layers": {
+"foreground": {
+"glyph": {
+"components": [
+{
+"name": "VG_531A_00",
+"transformation": {
+"translateX": 142,
+"translateY": 129
+},
+"location": {
+"L_S_end_length": 0,
+"L_S_weight": 0,
+"TB_2H_weight": -1,
+"T_H_right_length": -20,
+"height": 741,
+"weight": 30,
+"width": 745
+}
+}
+],
+"xAdvance": 1000
+}
+},
+"wght=1": {
+"glyph": {
+"components": [
+{
+"name": "VG_531A_00",
+"transformation": {
+"translateX": 91,
+"translateY": 79
+},
+"location": {
+"L_S_end_length": 0,
+"L_S_weight": 0,
+"TB_2H_weight": -1,
+"T_H_right_length": -27,
+"height": 838,
+"weight": 136,
+"width": 845
+}
+}
+],
+"xAdvance": 1000
+}
+}
+}
+}

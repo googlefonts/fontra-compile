@@ -1,8 +1,10 @@
 from dataclasses import dataclass, field
 from typing import Any
 
+import cffsubr
 from fontra.core.classes import VariableGlyph
-from fontra.core.path import PackedPath
+from fontra.core.path import PackedPath, Path
+from fontra.core.protocols import ReadableFontBackend
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
 from fontTools.misc.fixedTools import floatToFixed as fl2fi
@@ -10,6 +12,10 @@ from fontTools.misc.roundTools import noRound, otRound
 from fontTools.misc.timeTools import timestampNow
 from fontTools.misc.transform import DecomposedTransform
 from fontTools.misc.vector import Vector
+from fontTools.pens.boundsPen import BoundsPen, ControlBoundsPen
+from fontTools.pens.pointPen import PointToSegmentPen
+from fontTools.pens.recordingPen import RecordingPen
+from fontTools.pens.t2CharStringPen import T2CharStringPen
 from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib import TTFont, newTable
 from fontTools.ttLib.tables import otTables as ot
@@ -18,7 +24,8 @@ from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.ttLib.tables.otTables import VAR_TRANSFORM_MAPPING, VarComponentFlags
 from fontTools.varLib import HVAR_FIELDS, VVAR_FIELDS
-from fontTools.varLib.builder import buildVarIdxMap
+from fontTools.varLib.builder import buildVarData, buildVarIdxMap
+from fontTools.varLib.cff import CFF2CharStringMergePen, addCFFVarStore
 from fontTools.varLib.models import (
     VariationModel,
     VariationModelError,
@@ -53,14 +60,27 @@ VARCO_IF_VARYING = {
 
 @dataclass
 class GlyphInfo:
-    ttGlyph: TTGlyph
     hasContours: bool
-    xAdvance: float = 500
-    xAdvanceVariations: list = field(default_factory=list)
-    variations: list = field(default_factory=list)
+    xAdvance: float
+    xAdvanceVariations: list
+    leftSideBearing: int
+    ttGlyph: TTGlyph | None = None
+    gvarVariations: list | None = None
+    charString: Any | None = None
+    charStringSupports: tuple | None = None
     variableComponents: list = field(default_factory=list)
     localAxisTags: set = field(default_factory=set)
     model: VariationModel | None = None
+
+    def __post_init__(self) -> None:
+        if self.ttGlyph is None:
+            assert self.gvarVariations is None
+            assert self.charString is not None
+        else:
+            assert self.charString is None
+            assert self.charStringSupports is None
+            if self.gvarVariations is None:
+                self.gvarVariations = []
 
 
 @dataclass
@@ -125,10 +145,11 @@ class ComponentInfo:
             compo.axisValuesVarIndex = varIdx
 
 
+@dataclass(kw_only=True)
 class Builder:
-    def __init__(self, reader, requestedGlyphNames=None):
-        self.reader = reader  # a Fontra Backend, such as DesignspaceBackend
-        self.requestedGlyphNames = requestedGlyphNames
+    reader: ReadableFontBackend  # a Fontra Backend, such as DesignspaceBackend
+    requestedGlyphNames: list = field(default_factory=list)
+    buildCFF2: bool = False
 
     async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
@@ -149,7 +170,7 @@ class Builder:
         self.globalAxisTags = {axis.name: axis.tag for axis in self.globalAxes}
         self.defaultLocation = {k: v[1] for k, v in self.globalAxisDict.items()}
 
-        self.cachedSourceGlyphs: dict[str, VariableGlyph] = {}
+        self.cachedSourceGlyphs: dict[str, VariableGlyph | None] = {}
         self.cachedComponentBaseInfo: dict = {}
 
         self.glyphInfos: dict[str, GlyphInfo] = {}
@@ -165,6 +186,7 @@ class Builder:
         sourceGlyph = self.cachedSourceGlyphs.get(glyphName)
         if sourceGlyph is None:
             sourceGlyph = await self.reader.getGlyph(glyphName)
+            assert sourceGlyph is not None
             if storeInCache:
                 self.cachedSourceGlyphs[glyphName] = sourceGlyph
         return sourceGlyph
@@ -195,10 +217,19 @@ class Builder:
             if glyphInfo is None:
                 # make .notdef based on UPM
                 glyphInfo = GlyphInfo(
-                    ttGlyph=TTGlyphPointPen(None).glyph(),
+                    ttGlyph=(
+                        TTGlyphPointPen(None).glyph() if not self.buildCFF2 else None
+                    ),
+                    charString=(
+                        T2CharStringPen(None, None, CFF2=True).getCharString()
+                        if self.buildCFF2
+                        else None
+                    ),
                     hasContours=False,
                     xAdvance=500,
+                    leftSideBearing=0,  # TODO: fix when actual notdef shape is added
                     xAdvanceVariations=[500],
+                    gvarVariations=None,
                 )
 
             self.glyphInfos[glyphName] = glyphInfo
@@ -225,26 +256,38 @@ class Builder:
 
         xAdvanceVariations = prepareXAdvanceVariations(glyph, glyphSources)
 
-        sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
-        variations = (
-            prepareGvarVariations(sourceCoordinates, model) if model is not None else []
-        )
-
         defaultSourceIndex = model.reverseMapping[0] if model is not None else 0
-        defaultGlyph = glyph.layers[glyphSources[defaultSourceIndex].layerName].glyph
+        defaultLayerGlyph = glyph.layers[
+            glyphSources[defaultSourceIndex].layerName
+        ].glyph
 
-        ttGlyphPen = TTGlyphPointPen(None)
-        defaultGlyph.path.drawPoints(ttGlyphPen)
-        ttGlyph = ttGlyphPen.glyph()
+        ttGlyph = None
+        gvarVariations = None
+        charString = None
+        charStringSupports = None
+
+        if not self.buildCFF2:
+            ttGlyph, gvarVariations = buildTTGlyph(
+                glyph, glyphSources, defaultLayerGlyph, model
+            )
+        else:
+            charString, charStringSupports = buildCharString(
+                glyph, glyphSources, defaultLayerGlyph, model
+            )
 
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
+        leftSideBearing = computeLeftSideBearing(defaultLayerGlyph.path, self.buildCFF2)
+
         return GlyphInfo(
             ttGlyph=ttGlyph,
-            hasContours=not defaultGlyph.path.isEmpty(),
-            xAdvance=max(defaultGlyph.xAdvance or 0, 0),
+            gvarVariations=gvarVariations,
+            charString=charString,
+            charStringSupports=charStringSupports,
+            hasContours=not defaultLayerGlyph.path.isEmpty(),
+            xAdvance=max(defaultLayerGlyph.xAdvance or 0, 0),
             xAdvanceVariations=xAdvanceVariations,
-            variations=variations,
+            leftSideBearing=leftSideBearing,
             variableComponents=componentInfo,
             localAxisTags=set(localAxisTags.values()),
             model=model,
@@ -397,12 +440,15 @@ class Builder:
         )
 
     async def buildFont(self) -> TTFont:
-        builder = FontBuilder(await self.reader.getUnitsPerEm(), glyphDataFormat=1)
+        builder = FontBuilder(
+            await self.reader.getUnitsPerEm(),
+            glyphDataFormat=1,
+            isTTF=not self.buildCFF2,
+        )
 
         builder.updateHead(created=timestampNow(), modified=timestampNow())
         builder.setupGlyphOrder(self.glyphOrder)
         builder.setupNameTable(dict())
-        builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
 
         localAxisTags = set()
         for glyphInfo in self.glyphInfos.values():
@@ -417,9 +463,19 @@ class Builder:
             if any(axis.map for axis in dsAxes):
                 builder.setupAvar(dsAxes)
 
-        variations = getGlyphInfoAttributes(self.glyphInfos, "variations")
-        if variations:
-            builder.setupGvar(variations)
+        if not self.buildCFF2:
+            builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
+            gvarVariations = getGlyphInfoAttributes(self.glyphInfos, "gvarVariations")
+            if gvarVariations:
+                builder.setupGvar(gvarVariations)
+        else:
+            charStrings = getGlyphInfoAttributes(self.glyphInfos, "charString")
+            charStringSupports = getGlyphInfoAttributes(
+                self.glyphInfos, "charStringSupports"
+            )
+            varDataList, regionList = prepareCFFVarData(charStrings, charStringSupports)
+            builder.setupCFF2(charStrings)
+            addCFFVarStore(builder.font, None, varDataList, regionList)
 
         if any(glyphInfo.variableComponents for glyphInfo in self.glyphInfos.values()):
             varcTable = self.buildVARC(axisTags)
@@ -427,9 +483,9 @@ class Builder:
 
         builder.setupHorizontalHeader()
         builder.setupHorizontalMetrics(
-            addLSB(
-                builder.font["glyf"],
+            dictZip(
                 getGlyphInfoAttributes(self.glyphInfos, "xAdvance"),
+                getGlyphInfoAttributes(self.glyphInfos, "leftSideBearing"),
             )
         )
         hvarTable = self.buildHVAR(axisTags)
@@ -438,6 +494,9 @@ class Builder:
         builder.setupCharacterMap(self.cmap)
         builder.setupOS2()
         builder.setupPost()
+
+        if self.buildCFF2:
+            cffsubr.subroutinize(builder.font)
 
         return builder.font
 
@@ -643,6 +702,24 @@ def prepareXAdvanceVariations(glyph: VariableGlyph, glyphSources):
     return [glyph.layers[source.layerName].glyph.xAdvance for source in glyphSources]
 
 
+def computeLeftSideBearing(path: Path | PackedPath, useTightBounds: bool) -> int:
+    boundsPen = (BoundsPen if useTightBounds else ControlBoundsPen)(None)
+    path.drawPoints(PointToSegmentPen(boundsPen))
+    return otRound(boundsPen.bounds[0]) if boundsPen.bounds is not None else 0
+
+
+def buildTTGlyph(glyph, glyphSources, defaultLayerGlyph, model):
+    ttGlyphPen = TTGlyphPointPen(None)
+    defaultLayerGlyph.path.drawPoints(ttGlyphPen)
+    ttGlyph = ttGlyphPen.glyph()
+
+    sourceCoordinates = prepareSourceCoordinates(glyph, glyphSources)
+    gvarVariations = (
+        prepareGvarVariations(sourceCoordinates, model) if model is not None else []
+    )
+    return ttGlyph, gvarVariations
+
+
 def prepareSourceCoordinates(glyph: VariableGlyph, glyphSources):
     sourceCoordinates = []
 
@@ -681,11 +758,72 @@ def prepareGvarVariations(sourceCoordinates, model):
     return [TupleVariation(s, d) for s, d in zip(supports, deltas)]
 
 
-def addLSB(glyfTable, metrics: dict[str, int]) -> dict[str, tuple[int, int]]:
-    return {
-        glyphName: (xAdvance, glyfTable[glyphName].xMin)
-        for glyphName, xAdvance in metrics.items()
-    }
+def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
+    if model is None:
+        pen = T2CharStringPen(None, None, CFF2=True)
+        defaultLayerGlyph.path.drawPoints(PointToSegmentPen(pen))
+        charString = pen.getCharString()
+        charStringSupports = None
+    else:
+        if model.reverseMapping[0] != 0:
+            # For some reason, CFF2CharStringMergePen requires the first source
+            # to be the default, so let's make it so.
+            glyphSources = [glyphSources[i] for i in model.reverseMapping]
+            model = VariationModel(model.locations, model.axisOrder)
+            assert model.reverseMapping[0] == 0
+
+        pen = CFF2CharStringMergePen([], glyph.name, len(glyphSources), 0)
+        for sourceIndex, source in enumerate(glyphSources):
+            if sourceIndex:
+                pen.restart(sourceIndex)
+            layerGlyph = glyph.layers[source.layerName].glyph
+            drawPathToSegmentPen(layerGlyph.path, pen)
+
+        charString = pen.getCharString(var_model=model)
+        charStringSupports = tuple(
+            tuple(sorted(sup.items())) for sup in model.supports[1:]
+        )
+
+    return charString, charStringSupports
+
+
+def prepareCFFVarData(charStrings, charStringSupports):
+    vsindexMap = {}
+    for supports in charStringSupports.values():
+        if supports and supports not in vsindexMap:
+            vsindexMap[supports] = len(vsindexMap)
+
+    for glyphName, charString in charStrings.items():
+        supports = charStringSupports.get(glyphName)
+        if supports is not None:
+            assert "vsindex" not in charString.program
+            vsindex = vsindexMap[supports]
+            if vsindex != 0:
+                charString.program[:0] = [vsindex, "vsindex"]
+
+    assert list(vsindexMap.values()) == list(range(len(vsindexMap)))
+
+    regionMap = {}
+    for supports in vsindexMap.keys():
+        for region in supports:
+            if region not in regionMap:
+                regionMap[region] = len(regionMap)
+    assert list(regionMap.values()) == list(range(len(regionMap)))
+    regionList = [dict(region) for region in regionMap.keys()]
+
+    varDataList = []
+    for supports in vsindexMap.keys():
+        varTupleIndexes = [regionMap[region] for region in supports]
+        varDataList.append(buildVarData(varTupleIndexes, None, False))
+
+    return varDataList, regionList
+
+
+def dictZip(*dicts: dict) -> dict:
+    keys = dicts[0].keys()
+    if not all(keys == d.keys() for d in dicts[1:]):
+        raise ValueError("all input dicts must have the same set of keys")
+    return {key: tuple(d[key] for d in dicts) for key in keys}
 
 
 def applyAxisMapToAxisValues(axis) -> tuple[float, float, float]:
@@ -787,3 +925,22 @@ def getGlyphInfoAttributes(glyphInfos, attrName):
         glyphName: getattr(glyphInfo, attrName)
         for glyphName, glyphInfo in glyphInfos.items()
     }
+
+
+def drawPathToSegmentPen(path, pen):
+    # We ask PointToSegmentPen to output implied closing lines, then filter
+    # said closing lines again because we don't need them in the CharString.
+    # The reason is that PointToSegment pen will still output closing lines
+    # in some cases, based on input coordinates, even if we ask it not to.
+    # https://github.com/fonttools/fonttools/issues/3584
+    recPen = DropImpliedClosingLinePen()
+    pointPen = PointToSegmentPen(recPen, outputImpliedClosingLine=True)
+    path.drawPoints(pointPen)
+    recPen.replay(pen)
+
+
+class DropImpliedClosingLinePen(RecordingPen):
+    def closePath(self):
+        if self.value[-1][0] == "lineTo":
+            del self.value[-1]
+        super().closePath()

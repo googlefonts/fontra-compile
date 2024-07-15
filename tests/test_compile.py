@@ -21,14 +21,17 @@ dataDir = testDir / "data"
 
 
 @pytest.mark.parametrize("sourceName", ["figArnaud.rcjk", "MutatorSans.fontra"])
-def test_main(tmpdir, sourceName):
+@pytest.mark.parametrize("outSuffix", [".ttf", ".otf"])
+def test_main(tmpdir, sourceName, outSuffix):
     tmpdir = pathlib.Path(tmpdir)
     sourcePath = dataDir / sourceName
-    ttxPath = dataDir / (sourcePath.stem + ".ttx")
-    outPath = tmpdir / (sourcePath.stem + ".ttf")
-    outTTXPath = tmpdir / (sourcePath.stem + ".ttx")
+    outFileName = sourcePath.stem + outSuffix
+    ttxFileName = outFileName + ".ttx"
+    ttxPath = dataDir / ttxFileName
+    outPath = tmpdir / outFileName
+    outTTXPath = tmpdir / ttxFileName
     subprocess.run(["fontra-compile", sourcePath, outPath], check=True)
-    subprocess.run(["ttx", outPath], check=True)
+    subprocess.run(["ttx", outPath, "-o", outTTXPath], check=True)
 
     # # Write expected
     # ttxPath.write_text(outTTXPath.read_text())
