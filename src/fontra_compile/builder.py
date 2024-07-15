@@ -3,7 +3,7 @@ from typing import Any
 
 import cffsubr
 from fontra.core.classes import VariableGlyph
-from fontra.core.path import PackedPath
+from fontra.core.path import PackedPath, Path
 from fontra.core.protocols import ReadableFontBackend
 from fontTools.designspaceLib import AxisDescriptor
 from fontTools.fontBuilder import FontBuilder
@@ -277,9 +277,7 @@ class Builder:
 
         componentInfo = await self.collectComponentInfo(glyph, defaultSourceIndex)
 
-        boundsPen = (BoundsPen if self.buildCFF2 else ControlBoundsPen)(None)
-        defaultLayerGlyph.path.drawPoints(PointToSegmentPen(boundsPen))
-        leftSideBearing = boundsPen.bounds[0] if boundsPen.bounds is not None else 0
+        leftSideBearing = computeLeftSideBearing(defaultLayerGlyph.path, self.buildCFF2)
 
         return GlyphInfo(
             ttGlyph=ttGlyph,
@@ -781,6 +779,12 @@ def buildCharString(glyph, glyphSources, defaultLayerGlyph, model):
         )
 
     return charString, charStringSupports
+
+
+def computeLeftSideBearing(path: Path | PackedPath, useTightBounds: bool) -> int:
+    boundsPen = (BoundsPen if useTightBounds else ControlBoundsPen)(None)
+    path.drawPoints(PointToSegmentPen(boundsPen))
+    return otRound(boundsPen.bounds[0]) if boundsPen.bounds is not None else 0
 
 
 def prepareCFFVarData(charStrings, charStringSupports):
