@@ -834,8 +834,29 @@ def applyAxisMapToAxisValues(axis) -> tuple[float, float, float]:
     return (minValue, defaultValue, maxValue)
 
 
-def axisTuple(axis) -> tuple[float, float, float]:
-    return (axis.minValue, axis.defaultValue, axis.maxValue)
+def axisTuple(axis, fixAsymmetricAxes=True) -> tuple[float, float, float]:
+    minValue, defaultValue, maxValue = axis.minValue, axis.defaultValue, axis.maxValue
+    if fixAsymmetricAxes and minValue < defaultValue < maxValue:
+        # Variable component axis values can interpolate across the "default" border.
+        # For example if an axis goes from 0 to 1000 with the default at 200, a variable
+        # component may interpolate this from 100 to 600. In the VARC table, all axis
+        # values will be normalized to (-1, 0, +1). So 100 would normalize to -0.5 and 600
+        # would normalize to +0.5. But this means that interpolation does not work the
+        # same in the normalized space. For example, the midpoint between -0.5 and +0.5
+        # is 0, but the midpoint between 100 and 600 is 350, which would normalize to
+        # 0.1875. This is obviously a problem.
+        # To work around it, we extend either side of the axis so the distance between
+        # minValue and defaultValue becomes the same as the distance between defaultValue
+        # and maxValue.
+        # The downside if this approach is that axis values will no longer be clipped to
+        # their original minimum or maximum, so we may create new edge cases here.
+        minDiff = defaultValue - minValue
+        maxDiff = maxValue - defaultValue
+        if minDiff > maxDiff:
+            maxValue = defaultValue + minDiff
+        elif minDiff < maxDiff:
+            minValue = defaultValue - maxDiff
+    return minValue, defaultValue, maxValue
 
 
 def newAxisDescriptor(
