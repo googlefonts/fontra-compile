@@ -1,0 +1,149 @@
+{
+"name": "uni3479",
+"sources": [
+{
+"name": "<default>",
+"layerName": "foreground",
+"customData": {
+"fontra.development.status": 4
+}
+},
+{
+"name": "wght=1",
+"layerName": "wght=1",
+"location": {
+"wght": 1
+},
+"customData": {
+"fontra.development.status": 4
+}
+}
+],
+"layers": {
+"foreground": {
+"glyph": {
+"components": [
+{
+"name": "VG_65E5_00",
+"transformation": {
+"translateX": 238,
+"translateY": 93
+},
+"location": {
+"H_weight": 0,
+"L_S_bottom_length": 43,
+"M_H_moveV": 3,
+"M_H_right_length": 0,
+"M_H_weight": 0,
+"R_S_bottom_length": 38,
+"height": 276,
+"weight": 30,
+"width": 539
+}
+},
+{
+"name": "VG_7530_00",
+"transformation": {
+"translateX": 174,
+"translateY": 431
+},
+"location": {
+"H_weight": 0,
+"L_S_bottom_length": 0,
+"M_H_moveV": 3,
+"M_H_weight": 0,
+"M_S_bottom_length": 0,
+"M_S_moveH": 0,
+"M_S_top_length": 87.0909678312641,
+"R_S_bottom_length": 0,
+"height": 234,
+"weight": 30,
+"width": 651
+}
+},
+{
+"name": "VG_4E00_00",
+"transformation": {
+"translateX": 332,
+"translateY": 232
+},
+"location": {
+"weight": 30,
+"width": 344
+}
+},
+{
+"name": "T_4EBA_2FF1",
+"location": {
+"height": 299
+}
+}
+],
+"xAdvance": 1000
+}
+},
+"wght=1": {
+"glyph": {
+"components": [
+{
+"name": "VG_65E5_00",
+"transformation": {
+"translateX": 198,
+"translateY": 51
+},
+"location": {
+"H_weight": -55,
+"L_S_bottom_length": 25,
+"M_H_moveV": 0,
+"M_H_right_length": 0,
+"M_H_weight": 0,
+"R_S_bottom_length": 21,
+"height": 326,
+"weight": 146,
+"width": 608
+}
+},
+{
+"name": "VG_7530_00",
+"transformation": {
+"translateX": 146,
+"translateY": 394
+},
+"location": {
+"H_weight": -35,
+"L_S_bottom_length": 0,
+"M_H_moveV": -1,
+"M_H_weight": -14,
+"M_S_bottom_length": 0,
+"M_S_moveH": -6,
+"M_S_top_length": 78.0909678312641,
+"M_S_weight": -5,
+"R_S_bottom_length": 0,
+"height": 293,
+"weight": 123,
+"width": 710
+}
+},
+{
+"name": "VG_4E00_00",
+"transformation": {
+"translateX": 320,
+"translateY": 210
+},
+"location": {
+"weight": 91,
+"width": 357
+}
+},
+{
+"name": "T_4EBA_2FF1",
+"location": {
+"height": 299
+}
+}
+],
+"xAdvance": 1000
+}
+}
+}
+}

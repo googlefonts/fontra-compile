@@ -75,6 +75,16 @@ steps:
         """
 steps:
 - input: fontra-read
+  source: "tests/data/notosanscjksc.fontra"
+- output: compile-varc
+  destination: "output.otf"
+""",
+        "notosanscjksc.otf.ttx",
+    ),
+    (
+        """
+steps:
+- input: fontra-read
   source: "tests/data/MutatorSans.fontra"
 - output: compile-fontmake
   options:

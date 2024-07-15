@@ -1,0 +1,224 @@
+{
+"name": "VG_4E28_00",
+"axes": [
+{
+"name": "weight",
+"minValue": -100,
+"defaultValue": 10,
+"maxValue": 200
+},
+{
+"name": "height",
+"minValue": 10,
+"defaultValue": 1000,
+"maxValue": 2000
+},
+{
+"name": "T_slant",
+"minValue": 0,
+"defaultValue": 0,
+"maxValue": 100
+}
+],
+"sources": [
+{
+"name": "<default>",
+"layerName": "foreground",
+"customData": {
+"fontra.development.status": 0
+}
+},
+{
+"name": "weight=200",
+"layerName": "weight=200",
+"location": {
+"weight": 200
+},
+"customData": {
+"fontra.development.status": 0
+}
+},
+{
+"name": "height=10",
+"layerName": "height=10",
+"location": {
+"height": 10
+},
+"customData": {
+"fontra.development.status": 0
+}
+},
+{
+"name": "height=2000",
+"layerName": "height=2000",
+"location": {
+"height": 2000
+},
+"customData": {
+"fontra.development.status": 0
+}
+},
+{
+"name": "T_slant=100",
+"layerName": "T_slant=100",
+"location": {
+"T_slant": 100
+},
+"customData": {
+"fontra.development.status": 0
+}
+}
+],
+"layers": {
+"T_slant=100": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 500,
+"y": 880
+},
+{
+"x": 500,
+"y": -120
+},
+{
+"x": 510,
+"y": -120
+},
+{
+"x": 510,
+"y": 980
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 1000
+}
+},
+"foreground": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 500,
+"y": 880
+},
+{
+"x": 500,
+"y": -120
+},
+{
+"x": 510,
+"y": -120
+},
+{
+"x": 510,
+"y": 880
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 1000
+}
+},
+"height=10": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 500,
+"y": 880
+},
+{
+"x": 500,
+"y": 870
+},
+{
+"x": 510,
+"y": 870
+},
+{
+"x": 510,
+"y": 880
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 1000
+}
+},
+"height=2000": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 500,
+"y": 880
+},
+{
+"x": 500,
+"y": -1120
+},
+{
+"x": 510,
+"y": -1120
+},
+{
+"x": 510,
+"y": 880
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 1000
+}
+},
+"weight=200": {
+"glyph": {
+"path": {
+"contours": [
+{
+"points": [
+{
+"x": 500,
+"y": 880
+},
+{
+"x": 500,
+"y": -120
+},
+{
+"x": 700,
+"y": -120
+},
+{
+"x": 700,
+"y": 880
+}
+],
+"isClosed": true
+}
+]
+},
+"xAdvance": 1000
+}
+}
+}
+}
