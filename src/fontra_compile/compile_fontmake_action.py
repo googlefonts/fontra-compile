@@ -10,7 +10,11 @@ from fontmake.__main__ import main as fontmake_main
 from fontra.backends import getFileSystemBackend, newFileSystemBackend
 from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
-from fontra.workflow.actions import OutputActionProtocol, registerOutputAction
+from fontra.workflow.actions import (
+    OutputActionProtocol,
+    getActionClass,
+    registerOutputAction,
+)
 from fontTools.designspaceLib import DesignSpaceDocument
 from fontTools.ufoLib import UFOReaderWriter
 
@@ -63,8 +67,15 @@ class CompileFontMakeAction:
                 assert hasattr(dsBackend, "setOverlapSimpleFlag")
                 dsBackend.setOverlapSimpleFlag = True
 
-            async with aclosing(dsBackend):
-                await copyFont(self.input, dsBackend, continueOnError=continueOnError)
+            unusedSourcesFilter = getActionClass(
+                "filter", "drop-unused-sources-and-layers"
+            )()
+
+            async with (
+                aclosing(dsBackend),
+                unusedSourcesFilter.connect(self.input) as inBackend,
+            ):
+                await copyFont(inBackend, dsBackend, continueOnError=continueOnError)
 
             if isVariable:
                 addInstances(sourcePath)
