@@ -1829,6 +1829,10 @@
     </extraNames>
   </post>
 
+  <gasp>
+    <gaspRange rangeMaxPPEM="65535" rangeGaspBehavior="15"/>
+  </gasp>
+
   <HVAR>
     <Version value="0x00010000"/>
     <VarStore Format="1">
