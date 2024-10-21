@@ -25,6 +25,7 @@ class CompileFontMakeAction:
     destination: str
     options: dict[str, str] = field(default_factory=dict)
     setOverlapSimpleFlag: bool = False
+    addMinimalGaspTable: bool = False
     ufoTempDir: str | None = None
     input: ReadableFontBackend | None = field(init=False, default=None)
 
@@ -80,6 +81,9 @@ class CompileFontMakeAction:
             if isVariable:
                 addInstances(sourcePath)
             addGlyphOrder(sourcePath)
+
+            if self.addMinimalGaspTable:
+                addMinimalGaspTable(sourcePath)
 
             extraArguments = []
             for option, value in self.options.items():
@@ -176,3 +180,20 @@ def addGlyphOrder(designspacePath):
         glyphSet = ufo.getGlyphSet()
         lib["public.glyphOrder"] = sorted(glyphSet.keys(), key=_glyphSortKeyFunc)
         ufo.writeLib(lib)
+
+
+class UFOFontInfo:
+    pass
+
+
+def addMinimalGaspTable(designspacePath):
+    backend = getFileSystemBackend(designspacePath)
+    dsDoc = backend.dsDoc
+    defaultSource = dsDoc.findDefault()
+    ufo = UFOReaderWriter(defaultSource.path)
+    fontInfo = UFOFontInfo()
+    ufo.readInfo(fontInfo)
+    fontInfo.openTypeGaspRangeRecords = [
+        {"rangeMaxPPEM": 0xFFFF, "rangeGaspBehavior": [0, 1, 2, 3]}
+    ]
+    ufo.writeInfo(fontInfo)

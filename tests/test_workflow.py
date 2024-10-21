@@ -95,6 +95,7 @@ steps:
   options:
     flatten-components:  # no value
   destination: "output-fontmake.ttf"
+  addMinimalGaspTable: true
 """,
         "MutatorSans-fontmake.ttx",
     ),
