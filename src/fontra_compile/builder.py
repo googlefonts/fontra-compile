@@ -150,6 +150,7 @@ class Builder:
     reader: ReadableFontBackend  # a Fontra Backend, such as DesignspaceBackend
     requestedGlyphNames: list = field(default_factory=list)
     buildCFF2: bool = False
+    subroutinize: bool = True
 
     async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
@@ -497,7 +498,7 @@ class Builder:
         builder.setupOS2()
         builder.setupPost()
 
-        if self.buildCFF2:
+        if self.buildCFF2 and self.subroutinize:
             cffsubr.subroutinize(builder.font)
 
         return builder.font
