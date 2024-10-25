@@ -442,7 +442,7 @@ class Builder:
     async def buildFont(self) -> TTFont:
         builder = FontBuilder(
             await self.reader.getUnitsPerEm(),
-            glyphDataFormat=1,
+            glyphDataFormat=0 if self.buildCFF2 else 1,
             isTTF=not self.buildCFF2,
         )
 
