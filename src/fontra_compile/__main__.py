@@ -20,9 +20,7 @@ async def main_async() -> None:
     args = parser.parse_args()
     sourceFontPath = pathlib.Path(args.source_font).resolve()
     outputFontPath = pathlib.Path(args.output_font).resolve()
-    glyphNames = (
-        args.glyph_names.replace(",", " ").split() if args.glyph_names else None
-    )
+    glyphNames = args.glyph_names.replace(",", " ").split() if args.glyph_names else []
 
     reader = getFileSystemBackend(sourceFontPath)
     builder = Builder(
