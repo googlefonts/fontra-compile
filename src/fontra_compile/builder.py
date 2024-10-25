@@ -442,7 +442,9 @@ class Builder:
     async def buildFont(self) -> TTFont:
         builder = FontBuilder(
             await self.reader.getUnitsPerEm(),
-            glyphDataFormat=0 if self.buildCFF2 else 1,
+            glyphDataFormat=(
+                0 if self.buildCFF2 else 1
+            ),  # FIXME: set only for cubic-in-glyf
             isTTF=not self.buildCFF2,
         )
 
