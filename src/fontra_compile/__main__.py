@@ -16,6 +16,11 @@ async def main_async() -> None:
         help="Comma- or space-delimited list of glyph names to include. "
         "When not given, include all glyphs.",
     )
+    parser.add_argument(
+        "--no-cff-subroutinize",
+        action="store_true",
+        help="Don't perform CFF subroutinizing.",
+    )
 
     args = parser.parse_args()
     sourceFontPath = pathlib.Path(args.source_font).resolve()
@@ -27,6 +32,7 @@ async def main_async() -> None:
         reader=reader,
         requestedGlyphNames=glyphNames,
         buildCFF2=outputFontPath.suffix.lower() == ".otf",
+        subroutinize=not args.no_cff_subroutinize,
     )
     await builder.setup()
     ttFont = await builder.build()

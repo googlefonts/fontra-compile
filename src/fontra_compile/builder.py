@@ -150,6 +150,7 @@ class Builder:
     reader: ReadableFontBackend  # a Fontra Backend, such as DesignspaceBackend
     requestedGlyphNames: list = field(default_factory=list)
     buildCFF2: bool = False
+    subroutinize: bool = True
 
     async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
@@ -442,7 +443,9 @@ class Builder:
     async def buildFont(self) -> TTFont:
         builder = FontBuilder(
             await self.reader.getUnitsPerEm(),
-            glyphDataFormat=1,
+            glyphDataFormat=(
+                0 if self.buildCFF2 else 1
+            ),  # FIXME: set only for cubic-in-glyf
             isTTF=not self.buildCFF2,
         )
 
@@ -495,7 +498,7 @@ class Builder:
         builder.setupOS2()
         builder.setupPost()
 
-        if self.buildCFF2:
+        if self.buildCFF2 and self.subroutinize:
             cffsubr.subroutinize(builder.font)
 
         return builder.font
