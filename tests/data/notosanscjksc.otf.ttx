@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="OTTO" ttLibVersion="4.53">
+<ttFont sfntVersion="OTTO" ttLibVersion="4.55">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -21,12 +21,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.0"/>
-    <checkSumAdjustment value="0x7d2263a6"/>
+    <checkSumAdjustment value="0x5dca178c"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Mon Jul 15 13:01:57 2024"/>
-    <modified value="Mon Jul 15 13:01:57 2024"/>
+    <created value="Fri Nov 15 17:18:01 2024"/>
+    <modified value="Fri Nov 15 17:18:01 2024"/>
     <xMin value="0"/>
     <yMin value="-120"/>
     <xMax value="1000"/>
@@ -144,48 +144,6 @@
   </cmap>
 
   <name>
-    <namerecord nameID="256" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      wght
-    </namerecord>
-    <namerecord nameID="257" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V000
-    </namerecord>
-    <namerecord nameID="258" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V001
-    </namerecord>
-    <namerecord nameID="259" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V002
-    </namerecord>
-    <namerecord nameID="260" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V003
-    </namerecord>
-    <namerecord nameID="261" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V004
-    </namerecord>
-    <namerecord nameID="262" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V005
-    </namerecord>
-    <namerecord nameID="263" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V006
-    </namerecord>
-    <namerecord nameID="264" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V007
-    </namerecord>
-    <namerecord nameID="265" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V008
-    </namerecord>
-    <namerecord nameID="266" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V009
-    </namerecord>
-    <namerecord nameID="267" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V010
-    </namerecord>
-    <namerecord nameID="268" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V011
-    </namerecord>
-    <namerecord nameID="269" platformID="1" platEncID="0" langID="0x0" unicode="True">
-      V012
-    </namerecord>
     <namerecord nameID="256" platformID="3" platEncID="1" langID="0x409">
       wght
     </namerecord>
