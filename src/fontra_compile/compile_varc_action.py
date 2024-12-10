@@ -16,6 +16,7 @@ class FontraCompileAction:
     destination: str
     input: ReadableFontBackend | None = field(init=False, default=None)
     subroutinize: bool = True
+    useExtendedGvar: bool = False
 
     @asynccontextmanager
     async def connect(
@@ -37,6 +38,7 @@ class FontraCompileAction:
             reader=self.input,
             buildCFF2=outputFontPath.suffix.lower() == ".otf",
             subroutinize=self.subroutinize,
+            useExtendedGvar=self.useExtendedGvar,
         )
         await builder.setup()
         ttFont = await builder.build()
