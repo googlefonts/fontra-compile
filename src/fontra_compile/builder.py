@@ -151,6 +151,7 @@ class Builder:
     requestedGlyphNames: list = field(default_factory=list)
     buildCFF2: bool = False
     subroutinize: bool = True
+    useExtendedGvar: bool = False
 
     async def setup(self) -> None:
         self.glyphMap = await self.reader.getGlyphMap()
@@ -470,7 +471,10 @@ class Builder:
             builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
             gvarVariations = getGlyphInfoAttributes(self.glyphInfos, "gvarVariations")
             if gvarVariations:
-                builder.setupGvar(gvarVariations)
+                if self.useExtendedGvar:
+                    builder.setupGVAR(gvarVariations)
+                else:
+                    builder.setupGvar(gvarVariations)
         else:
             charStrings = getGlyphInfoAttributes(self.glyphInfos, "charString")
             charStringSupports = getGlyphInfoAttributes(
