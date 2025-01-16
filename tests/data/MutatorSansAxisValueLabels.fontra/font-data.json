@@ -1,0 +1,58 @@
+{
+"fontInfo": {
+"familyName": "MutatorMathTest",
+"versionMajor": 1,
+"versionMinor": 2,
+"copyright": "License same as MutatorMath. BSD 3-clause. [test-token: C]",
+"licenseDescription": "License same as MutatorMath. BSD 3-clause. [test-token: C]"
+},
+"axes": {
+"axes": [
+{
+"name": "weight",
+"label": "weight",
+"tag": "wght",
+"minValue": 100,
+"defaultValue": 100,
+"maxValue": 900,
+"mapping": [
+[
+100,
+150
+],
+[
+900,
+850
+]
+],
+"valueLabels": [
+{
+"name": "Light",
+"value": 100
+},
+{
+"name": "Regular",
+"value": 400,
+"elidable": true
+},
+{
+"name": "Medium",
+"value": 600
+},
+{
+"name": "Black",
+"value": 900
+}
+]
+},
+{
+"name": "width",
+"label": "width",
+"tag": "wdth",
+"minValue": 0,
+"defaultValue": 0,
+"maxValue": 1000
+}
+]
+}
+}
