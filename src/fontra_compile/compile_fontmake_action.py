@@ -137,6 +137,7 @@ def addInstances(designspacePath):
             for label in axis.axisLabels
         ]
         for axis in axes
+        if axis.axisLabels
     ]
 
     axesByName = {axis.name: axis for axis in dsDoc.axes}

@@ -90,6 +90,16 @@ steps:
         """
 steps:
 - input: fontra-read
+  source: "tests/data/MutatorSansAxisValueLabels.fontra"
+- output: compile-fontmake
+  destination: "output-fontmake.ttf"
+""",
+        "MutatorSansAxisValueLabels-fontmake.ttx",
+    ),
+    (
+        """
+steps:
+- input: fontra-read
   source: "tests/data/MutatorSans.fontra"
 - output: compile-fontmake
   options:
