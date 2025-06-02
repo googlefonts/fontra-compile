@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.55">
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.58">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -63,12 +63,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.002"/>
-    <checkSumAdjustment value="0x87b7ede0"/>
+    <checkSumAdjustment value="0x7dfeb676"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Fri Nov 15 17:18:02 2024"/>
-    <modified value="Fri Nov 15 17:18:02 2024"/>
+    <created value="Mon Jun  2 16:14:54 2025"/>
+    <modified value="Mon Jun  2 16:14:54 2025"/>
     <xMin value="0"/>
     <yMin value="-200"/>
     <xMax value="559"/>
@@ -1646,57 +1646,60 @@
       MutatorMathTest-Condensed
     </namerecord>
     <namerecord nameID="266" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Regular
+      Regular
     </namerecord>
     <namerecord nameID="267" platformID="3" platEncID="1" langID="0x409">
-      Wide
+      MutatorMathTest-Regular
     </namerecord>
     <namerecord nameID="268" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Wide
+      Wide
     </namerecord>
     <namerecord nameID="269" platformID="3" platEncID="1" langID="0x409">
-      Medium Condensed
+      MutatorMathTest-Wide
     </namerecord>
     <namerecord nameID="270" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-MediumCondensed
+      Medium Condensed
     </namerecord>
     <namerecord nameID="271" platformID="3" platEncID="1" langID="0x409">
-      Medium
+      MutatorMathTest-MediumCondensed
     </namerecord>
     <namerecord nameID="272" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Medium
+      Medium
     </namerecord>
     <namerecord nameID="273" platformID="3" platEncID="1" langID="0x409">
-      Medium Wide
+      MutatorMathTest-Medium
     </namerecord>
     <namerecord nameID="274" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-MediumWide
+      Medium Wide
     </namerecord>
     <namerecord nameID="275" platformID="3" platEncID="1" langID="0x409">
-      Black Condensed
+      MutatorMathTest-MediumWide
     </namerecord>
     <namerecord nameID="276" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-BlackCondensed
+      Black Condensed
     </namerecord>
     <namerecord nameID="277" platformID="3" platEncID="1" langID="0x409">
-      Black
+      MutatorMathTest-BlackCondensed
     </namerecord>
     <namerecord nameID="278" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Black
+      Black
     </namerecord>
     <namerecord nameID="279" platformID="3" platEncID="1" langID="0x409">
-      Black Wide
+      MutatorMathTest-Black
     </namerecord>
     <namerecord nameID="280" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-BlackWide
+      Black Wide
     </namerecord>
     <namerecord nameID="281" platformID="3" platEncID="1" langID="0x409">
-      weight
+      MutatorMathTest-BlackWide
     </namerecord>
     <namerecord nameID="282" platformID="3" platEncID="1" langID="0x409">
-      width
+      weight
     </namerecord>
     <namerecord nameID="283" platformID="3" platEncID="1" langID="0x409">
+      width
+    </namerecord>
+    <namerecord nameID="284" platformID="3" platEncID="1" langID="0x409">
       Normal
     </namerecord>
   </name>
@@ -1978,12 +1981,12 @@
     <DesignAxisRecord>
       <Axis index="0">
         <AxisTag value="wght"/>
-        <AxisNameID value="281"/>  <!-- weight -->
+        <AxisNameID value="282"/>  <!-- weight -->
         <AxisOrdering value="0"/>
       </Axis>
       <Axis index="1">
         <AxisTag value="wdth"/>
-        <AxisNameID value="282"/>  <!-- width -->
+        <AxisNameID value="283"/>  <!-- width -->
         <AxisOrdering value="1"/>
       </Axis>
     </DesignAxisRecord>
@@ -2004,13 +2007,13 @@
       <AxisValue index="2" Format="1">
         <AxisIndex value="0"/>
         <Flags value="0"/>
-        <ValueNameID value="271"/>  <!-- Medium -->
+        <ValueNameID value="272"/>  <!-- Medium -->
         <Value value="600.0"/>
       </AxisValue>
       <AxisValue index="3" Format="1">
         <AxisIndex value="0"/>
         <Flags value="0"/>
-        <ValueNameID value="277"/>  <!-- Black -->
+        <ValueNameID value="278"/>  <!-- Black -->
         <Value value="900.0"/>
       </AxisValue>
       <AxisValue index="4" Format="1">
@@ -2022,13 +2025,13 @@
       <AxisValue index="5" Format="1">
         <AxisIndex value="1"/>
         <Flags value="2"/>  <!-- ElidableAxisValueName -->
-        <ValueNameID value="283"/>  <!-- Normal -->
+        <ValueNameID value="284"/>  <!-- Normal -->
         <Value value="400.0"/>
       </AxisValue>
       <AxisValue index="6" Format="1">
         <AxisIndex value="1"/>
         <Flags value="0"/>
-        <ValueNameID value="267"/>  <!-- Wide -->
+        <ValueNameID value="268"/>  <!-- Wide -->
         <Value value="1000.0"/>
       </AxisValue>
     </AxisValueArray>
@@ -2087,56 +2090,56 @@
 
     <!-- Regular -->
     <!-- PostScript: MutatorMathTest-Regular -->
-    <NamedInstance flags="0x0" postscriptNameID="266" subfamilyNameID="2">
+    <NamedInstance flags="0x0" postscriptNameID="267" subfamilyNameID="266">
       <coord axis="wght" value="400.0"/>
       <coord axis="wdth" value="400.0"/>
     </NamedInstance>
 
     <!-- Wide -->
     <!-- PostScript: MutatorMathTest-Wide -->
-    <NamedInstance flags="0x0" postscriptNameID="268" subfamilyNameID="267">
+    <NamedInstance flags="0x0" postscriptNameID="269" subfamilyNameID="268">
       <coord axis="wght" value="400.0"/>
       <coord axis="wdth" value="1000.0"/>
     </NamedInstance>
 
     <!-- Medium Condensed -->
     <!-- PostScript: MutatorMathTest-MediumCondensed -->
-    <NamedInstance flags="0x0" postscriptNameID="270" subfamilyNameID="269">
+    <NamedInstance flags="0x0" postscriptNameID="271" subfamilyNameID="270">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
 
     <!-- Medium -->
     <!-- PostScript: MutatorMathTest-Medium -->
-    <NamedInstance flags="0x0" postscriptNameID="272" subfamilyNameID="271">
+    <NamedInstance flags="0x0" postscriptNameID="273" subfamilyNameID="272">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="400.0"/>
     </NamedInstance>
 
     <!-- Medium Wide -->
     <!-- PostScript: MutatorMathTest-MediumWide -->
-    <NamedInstance flags="0x0" postscriptNameID="274" subfamilyNameID="273">
+    <NamedInstance flags="0x0" postscriptNameID="275" subfamilyNameID="274">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="1000.0"/>
     </NamedInstance>
 
     <!-- Black Condensed -->
     <!-- PostScript: MutatorMathTest-BlackCondensed -->
-    <NamedInstance flags="0x0" postscriptNameID="276" subfamilyNameID="275">
+    <NamedInstance flags="0x0" postscriptNameID="277" subfamilyNameID="276">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
 
     <!-- Black -->
     <!-- PostScript: MutatorMathTest-Black -->
-    <NamedInstance flags="0x0" postscriptNameID="278" subfamilyNameID="277">
+    <NamedInstance flags="0x0" postscriptNameID="279" subfamilyNameID="278">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="400.0"/>
     </NamedInstance>
 
     <!-- Black Wide -->
     <!-- PostScript: MutatorMathTest-BlackWide -->
-    <NamedInstance flags="0x0" postscriptNameID="280" subfamilyNameID="279">
+    <NamedInstance flags="0x0" postscriptNameID="281" subfamilyNameID="280">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="1000.0"/>
     </NamedInstance>

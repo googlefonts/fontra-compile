@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="OTTO" ttLibVersion="4.53">
+<ttFont sfntVersion="OTTO" ttLibVersion="4.58">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -62,12 +62,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.002"/>
-    <checkSumAdjustment value="0x447a4cfe"/>
+    <checkSumAdjustment value="0x3dc19696"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Thu Jul 11 09:05:40 2024"/>
-    <modified value="Thu Jul 11 09:05:40 2024"/>
+    <created value="Mon Jun  2 16:14:54 2025"/>
+    <modified value="Mon Jun  2 16:14:54 2025"/>
     <xMin value="0"/>
     <yMin value="-250"/>
     <xMax value="559"/>

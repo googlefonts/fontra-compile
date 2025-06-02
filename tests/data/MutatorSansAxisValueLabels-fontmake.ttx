@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.55">
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.58">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -12,12 +12,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.002"/>
-    <checkSumAdjustment value="0xddeb066b"/>
+    <checkSumAdjustment value="0xd7bd111f"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Thu Jan 16 18:43:26 2025"/>
-    <modified value="Thu Jan 16 18:43:26 2025"/>
+    <created value="Mon Jun  2 16:14:54 2025"/>
+    <modified value="Mon Jun  2 16:14:54 2025"/>
     <xMin value="20"/>
     <yMin value="-200"/>
     <xMax value="450"/>
@@ -236,24 +236,27 @@
       MutatorMathTest-Light
     </namerecord>
     <namerecord nameID="260" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Regular
+      Regular
     </namerecord>
     <namerecord nameID="261" platformID="3" platEncID="1" langID="0x409">
-      Medium
+      MutatorMathTest-Regular
     </namerecord>
     <namerecord nameID="262" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Medium
+      Medium
     </namerecord>
     <namerecord nameID="263" platformID="3" platEncID="1" langID="0x409">
-      Black
+      MutatorMathTest-Medium
     </namerecord>
     <namerecord nameID="264" platformID="3" platEncID="1" langID="0x409">
-      MutatorMathTest-Black
+      Black
     </namerecord>
     <namerecord nameID="265" platformID="3" platEncID="1" langID="0x409">
-      weight
+      MutatorMathTest-Black
     </namerecord>
     <namerecord nameID="266" platformID="3" platEncID="1" langID="0x409">
+      weight
+    </namerecord>
+    <namerecord nameID="267" platformID="3" platEncID="1" langID="0x409">
       width
     </namerecord>
   </name>
@@ -348,12 +351,12 @@
     <DesignAxisRecord>
       <Axis index="0">
         <AxisTag value="wght"/>
-        <AxisNameID value="265"/>  <!-- weight -->
+        <AxisNameID value="266"/>  <!-- weight -->
         <AxisOrdering value="0"/>
       </Axis>
       <Axis index="1">
         <AxisTag value="wdth"/>
-        <AxisNameID value="266"/>  <!-- width -->
+        <AxisNameID value="267"/>  <!-- width -->
         <AxisOrdering value="1"/>
       </Axis>
     </DesignAxisRecord>
@@ -374,13 +377,13 @@
       <AxisValue index="2" Format="1">
         <AxisIndex value="0"/>
         <Flags value="0"/>
-        <ValueNameID value="261"/>  <!-- Medium -->
+        <ValueNameID value="262"/>  <!-- Medium -->
         <Value value="600.0"/>
       </AxisValue>
       <AxisValue index="3" Format="1">
         <AxisIndex value="0"/>
         <Flags value="0"/>
-        <ValueNameID value="263"/>  <!-- Black -->
+        <ValueNameID value="264"/>  <!-- Black -->
         <Value value="900.0"/>
       </AxisValue>
     </AxisValueArray>
@@ -418,21 +421,21 @@
 
     <!-- Regular -->
     <!-- PostScript: MutatorMathTest-Regular -->
-    <NamedInstance flags="0x0" postscriptNameID="260" subfamilyNameID="2">
+    <NamedInstance flags="0x0" postscriptNameID="261" subfamilyNameID="260">
       <coord axis="wght" value="400.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
 
     <!-- Medium -->
     <!-- PostScript: MutatorMathTest-Medium -->
-    <NamedInstance flags="0x0" postscriptNameID="262" subfamilyNameID="261">
+    <NamedInstance flags="0x0" postscriptNameID="263" subfamilyNameID="262">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
 
     <!-- Black -->
     <!-- PostScript: MutatorMathTest-Black -->
-    <NamedInstance flags="0x0" postscriptNameID="264" subfamilyNameID="263">
+    <NamedInstance flags="0x0" postscriptNameID="265" subfamilyNameID="264">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
