@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.58">
+<ttFont sfntVersion="\x00\x01\x00\x00" ttLibVersion="4.59">
 
   <GlyphOrder>
     <!-- The 'id' attribute is only for humans; it is ignored when parsed. -->
@@ -63,12 +63,12 @@
     <!-- Most of this table will be recalculated by the compiler -->
     <tableVersion value="1.0"/>
     <fontRevision value="1.002"/>
-    <checkSumAdjustment value="0xf752dd22"/>
+    <checkSumAdjustment value="0xf0cf7418"/>
     <magicNumber value="0x5f0f3cf5"/>
     <flags value="00000000 00000011"/>
     <unitsPerEm value="1000"/>
-    <created value="Mon Jun  2 16:14:54 2025"/>
-    <modified value="Mon Jun  2 16:14:54 2025"/>
+    <created value="Fri Jul 25 06:37:21 2025"/>
+    <modified value="Fri Jul 25 06:37:21 2025"/>
     <xMin value="0"/>
     <yMin value="-200"/>
     <xMax value="559"/>
@@ -1632,24 +1632,27 @@
       Condensed
     </namerecord>
     <namerecord nameID="262" platformID="3" platEncID="1" langID="0x409">
-      Wide
+      Regular
     </namerecord>
     <namerecord nameID="263" platformID="3" platEncID="1" langID="0x409">
-      Medium Condensed
+      Wide
     </namerecord>
     <namerecord nameID="264" platformID="3" platEncID="1" langID="0x409">
-      Medium
+      Medium Condensed
     </namerecord>
     <namerecord nameID="265" platformID="3" platEncID="1" langID="0x409">
-      Medium Wide
+      Medium
     </namerecord>
     <namerecord nameID="266" platformID="3" platEncID="1" langID="0x409">
-      Black Condensed
+      Medium Wide
     </namerecord>
     <namerecord nameID="267" platformID="3" platEncID="1" langID="0x409">
-      Black
+      Black Condensed
     </namerecord>
     <namerecord nameID="268" platformID="3" platEncID="1" langID="0x409">
+      Black
+    </namerecord>
+    <namerecord nameID="269" platformID="3" platEncID="1" langID="0x409">
       Black Wide
     </namerecord>
   </name>
@@ -1987,49 +1990,49 @@
     </NamedInstance>
 
     <!-- Regular -->
-    <NamedInstance flags="0x0" subfamilyNameID="2">
+    <NamedInstance flags="0x0" subfamilyNameID="262">
       <coord axis="wght" value="400.0"/>
       <coord axis="wdth" value="400.0"/>
     </NamedInstance>
 
     <!-- Wide -->
-    <NamedInstance flags="0x0" subfamilyNameID="262">
+    <NamedInstance flags="0x0" subfamilyNameID="263">
       <coord axis="wght" value="400.0"/>
       <coord axis="wdth" value="1000.0"/>
     </NamedInstance>
 
     <!-- Medium Condensed -->
-    <NamedInstance flags="0x0" subfamilyNameID="263">
+    <NamedInstance flags="0x0" subfamilyNameID="264">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
 
     <!-- Medium -->
-    <NamedInstance flags="0x0" subfamilyNameID="264">
+    <NamedInstance flags="0x0" subfamilyNameID="265">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="400.0"/>
     </NamedInstance>
 
     <!-- Medium Wide -->
-    <NamedInstance flags="0x0" subfamilyNameID="265">
+    <NamedInstance flags="0x0" subfamilyNameID="266">
       <coord axis="wght" value="600.0"/>
       <coord axis="wdth" value="1000.0"/>
     </NamedInstance>
 
     <!-- Black Condensed -->
-    <NamedInstance flags="0x0" subfamilyNameID="266">
+    <NamedInstance flags="0x0" subfamilyNameID="267">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="0.0"/>
     </NamedInstance>
 
     <!-- Black -->
-    <NamedInstance flags="0x0" subfamilyNameID="267">
+    <NamedInstance flags="0x0" subfamilyNameID="268">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="400.0"/>
     </NamedInstance>
 
     <!-- Black Wide -->
-    <NamedInstance flags="0x0" subfamilyNameID="268">
+    <NamedInstance flags="0x0" subfamilyNameID="269">
       <coord axis="wght" value="900.0"/>
       <coord axis="wdth" value="1000.0"/>
     </NamedInstance>
