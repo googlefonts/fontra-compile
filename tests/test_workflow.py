@@ -49,6 +49,17 @@ steps:
     ),
     (
         """
+steps:
+- input: fontra-read
+  source: "tests/data/MutatorSans.fontra"
+- filter: convert-to-quadratics
+- output: compile-varc
+  destination: "output1.ttf"
+""",
+        "MutatorSans-glyf0.ttf.ttx",
+    ),
+    (
+        """
 # Check that we produce the same output regardless of glyph source order.
 steps:
 - input: fontra-read
