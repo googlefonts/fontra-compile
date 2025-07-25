@@ -20,7 +20,7 @@ from fontTools.pens.ttGlyphPen import TTGlyphPointPen
 from fontTools.ttLib import TTFont, newTable
 from fontTools.ttLib.tables import otTables as ot
 from fontTools.ttLib.tables._g_l_y_f import Glyph as TTGlyph
-from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates
+from fontTools.ttLib.tables._g_l_y_f import GlyphCoordinates, flagCubic
 from fontTools.ttLib.tables._g_v_a_r import TupleVariation
 from fontTools.ttLib.tables.otTables import VAR_TRANSFORM_MAPPING, VarComponentFlags
 from fontTools.varLib import HVAR_FIELDS, VVAR_FIELDS
@@ -444,9 +444,6 @@ class Builder:
     async def buildFont(self) -> TTFont:
         builder = FontBuilder(
             await self.reader.getUnitsPerEm(),
-            glyphDataFormat=(
-                0 if self.buildCFF2 else 1
-            ),  # FIXME: set only for cubic-in-glyf
             isTTF=not self.buildCFF2,
         )
 
@@ -468,7 +465,16 @@ class Builder:
                 builder.setupAvar(dsAxes)
 
         if not self.buildCFF2:
-            builder.setupGlyf(getGlyphInfoAttributes(self.glyphInfos, "ttGlyph"))
+            glyphs = getGlyphInfoAttributes(self.glyphInfos, "ttGlyph")
+
+            if any(
+                g.numberOfContours > 0 and any(f & flagCubic for f in g.flags)
+                for g in glyphs.values()
+            ):
+                # We have cubic curves, bump the head.glyphDataFormat field
+                builder.font["head"].glyphDataFormat = 1
+
+            builder.setupGlyf(glyphs)
             gvarVariations = getGlyphInfoAttributes(self.glyphInfos, "gvarVariations")
             if gvarVariations:
                 if self.useExtendedGvar:
