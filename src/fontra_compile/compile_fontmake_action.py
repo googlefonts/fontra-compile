@@ -11,7 +11,7 @@ from fontra.backends import getFileSystemBackend, newFileSystemBackend
 from fontra.backends.copy import copyFont
 from fontra.core.protocols import ReadableFontBackend
 from fontra.workflow.actions import (
-    OutputActionProtocol,
+    OutputProcessorProtocol,
     getActionClass,
     registerOutputAction,
 )
@@ -32,7 +32,7 @@ class CompileFontMakeAction:
     @asynccontextmanager
     async def connect(
         self, input: ReadableFontBackend
-    ) -> AsyncGenerator[OutputActionProtocol, None]:
+    ) -> AsyncGenerator[OutputProcessorProtocol, None]:
         self.input = input
         try:
             yield self
