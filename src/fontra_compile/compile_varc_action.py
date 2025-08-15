@@ -5,7 +5,7 @@ from dataclasses import dataclass, field
 from typing import AsyncGenerator
 
 from fontra.core.protocols import ReadableFontBackend
-from fontra.workflow.actions import OutputActionProtocol, registerOutputAction
+from fontra.workflow.actions import OutputProcessorProtocol, registerOutputAction
 
 from .builder import Builder
 
@@ -21,7 +21,7 @@ class FontraCompileAction:
     @asynccontextmanager
     async def connect(
         self, input: ReadableFontBackend
-    ) -> AsyncGenerator[ReadableFontBackend | OutputActionProtocol, None]:
+    ) -> AsyncGenerator[ReadableFontBackend | OutputProcessorProtocol, None]:
         self.input = input
         try:
             yield self
