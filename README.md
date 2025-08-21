@@ -1,3 +1,5 @@
+This repository is now archived. Go to https://github.com/fontra/fontra-compile for new development.
+
 # fontra-compile — A Variable Font outline compiler for Fontra
 
 This is for now a work in progress proof of concept.
